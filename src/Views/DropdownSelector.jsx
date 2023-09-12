@@ -1,26 +1,26 @@
+import React from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
-import PersonalData from '../DataTemplates/PersonalData';
-import { Reputation } from '../DataTemplates/KingdomReputations';
+import PersonalData, { Reputation } from '../DataTemplates/PersonalData';
 import { Capitalize } from '../Strings';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 
-export default function DropdownSelector(
-	name: string,
-	dataKey: keyof PersonalData,
-	options: string[],
-	returnText: <K extends keyof PersonalData>(key: K, value: PersonalData[K] | Reputation) => void,
-	selection: PersonalData[keyof PersonalData] | null) {
-
+export default function DropdownSelector({
+	name,
+	dataKey,
+	options,
+	returnText,
+	selection,
+}) {
 	const label = () => {
-		if (selection && typeof selection === "string") {
-			return Capitalize(selection)
+		if (selection && typeof selection === 'string') {
+			return Capitalize(selection);
 		}
 
-		return 'Select your ' + name
-	}
+		return 'Select your ' + name;
+	};
 
-	const handleSelect = (e: any) => {
+	const handleSelect = (e) => {
 		returnText(dataKey, e);
 	};
 
