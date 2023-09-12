@@ -10,7 +10,7 @@ import { Character } from '../DataTemplates/CharacterObject';
 export default function PersonalPage(submitPersonalData: (pd: PersonalData, name: keyof Character) => void) {
     const [personalData, setPersonalData] = useState<PersonalData>(newCharacterPersonalDetails)
 
-    function setField<K extends keyof PersonalData>(key: K, stringData: PersonalData[K] | Reputation): void {
+    function setField(key: keyof PersonalData, stringData: PersonalData[keyof PersonalData] | Reputation): void {
         setPersonalData((prevState) => ({
             ...prevState,
             [key]: stringData,

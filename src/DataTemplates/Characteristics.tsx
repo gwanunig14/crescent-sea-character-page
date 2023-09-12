@@ -1,12 +1,12 @@
 export default interface Characteristics {
-    strength: Number;
-    constitution: Number;
-    size: Number;
-    intelligence: Number;
-    power: Number;
-    dexterity: Number;
-    charisma: Number;
-    education: Number;
+    strength: number;
+    constitution: number;
+    size: number;
+    intelligence: number;
+    power: number;
+    dexterity: number;
+    charisma: number;
+    education: number;
 }
 
 export const newHumanCharacteristics = {

@@ -26,7 +26,15 @@ const Strings = {
     AWARE: 'aware',
     DISLIKE: 'dislike',
     HATE: 'hate',
-    FEAR: 'fear'
+    FEAR: 'fear',
+    STRENGTH: 'strength',
+    CONSTITUTION: 'constitution',
+    SIZE: 'size',
+    INTELLIGENCE: 'intelligence',
+    POWER: 'power',
+    DEXTERITY: 'dexterity',
+    CHARISMA: 'charisma',
+    EDUCATION: 'education'
 }
 
 export const Capitalize = (word: string) => {
