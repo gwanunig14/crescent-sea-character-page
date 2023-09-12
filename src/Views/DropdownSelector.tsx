@@ -8,7 +8,6 @@ import { Capitalize } from '../Strings';
 
 export default function DropdownSelector(name: string, 
     dataKey: keyof PersonalData, 
-    show: boolean, 
     options: string[], 
     returnText: <K extends keyof PersonalData>(key: K, value: PersonalData[K] | Reputation) => void) {
     const [selectedValue, setSelectedValue] = useState('Select your ' + name);
@@ -19,7 +18,6 @@ export default function DropdownSelector(name: string,
     };
     
     return (
-        show && (
           <div>
             {name}
             <Dropdown onSelect={handleSelect}>
@@ -35,6 +33,5 @@ export default function DropdownSelector(name: string,
               </Dropdown.Menu>
             </Dropdown>
           </div>
-        )
       );
   }

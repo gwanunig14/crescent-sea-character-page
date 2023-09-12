@@ -4,8 +4,10 @@ import TextInput from '../Views/TextInput';
 import DropdownSelector from '../Views/DropdownSelector';
 import KingdomReputations, { Reputation } from '../DataTemplates/KingdomReputations';
 import { Capitalize } from '../Strings';
+import { Button } from 'react-bootstrap';
+import { Character } from '../DataTemplates/CharacterObject';
 
-export default function PersonalPage() {
+export default function PersonalPage(submitPersonalData: (pd: PersonalData, name: keyof Character) => void ) {
     const [personalData, setPersonalData] = useState<PersonalData>(newCharacterPersonalDetails)
 
     function setField<K extends keyof PersonalData>(key: K, stringData: PersonalData[K] | Reputation): void {
@@ -15,18 +17,18 @@ export default function PersonalPage() {
           }));
     }
 
-    const textDataField = (name: string, dataKey: keyof PersonalData, show: boolean) => TextInput(name, dataKey, show, setField)
+    const textDataField = (name: string, dataKey: keyof PersonalData) => TextInput(name, dataKey, setField)
 
-    const dropdownDataField = (name: string, dataKey: keyof PersonalData, show: boolean, optionList: string[]) => DropdownSelector(name, dataKey, show, optionList, setField)
+    const dropdownDataField = (name: string, dataKey: keyof PersonalData, optionList: string[]) => DropdownSelector(name, dataKey, optionList, setField)
 
-    const distinctiveFeatureDataField = () => TextInput('Distinctive Features (separated by commas)', 'distinctiveFeatures', showField('religion'), (value: string) => {
+    const distinctiveFeatureDataField = () => TextInput('Distinctive Features (separated by commas)', 'distinctiveFeatures', (value: string) => {
         const features = value.split(',');
         setField('distinctiveFeatures' as keyof PersonalData, features as string[]);
       })
 
 
     const startingLoyalty = (kingdom: keyof KingdomReputations) =>
-        DropdownSelector('reputation', 'kingdomReputations', showField('kingdomLoyalty'), ['friendly', 'none', 'aware', 'dislike'], (key, stringData) => {
+        DropdownSelector('reputation', 'kingdomReputations', ['friendly', 'none', 'aware', 'dislike'], (key, stringData) => {
             setPersonalData((prevState) => ({
                 ...prevState,
                 kingdomReputations: {
@@ -39,32 +41,32 @@ export default function PersonalPage() {
 
     const arrayMap = (array: any) => Object.keys(array).map(k => array[k])
 
-    const showField = (valueCheck: keyof PersonalData) => personalData[valueCheck] !== null
-
     return (
         <div>
-            {textDataField('Name', 'characterName', true)}
-            {dropdownDataField('Gender','gender', showField('characterName'), arrayMap(Genders))}
-            {dropdownDataField('Race', 'race', showField('gender'), arrayMap(Races))}
-            {dropdownDataField('Birth Kingdom', 'kingdomBirth', showField('race'), arrayMap(Kingdoms))}
-            {textDataField('Height in centimeters', 'height', showField('kingdomBirth'))}
-            {textDataField('Weight in pounds', 'weight', showField('height'))}
-            {textDataField("Character's profession", 'startingProfession', showField('weight'))}
-            {dropdownDataField('Religion', 'religion', showField('startingProfession'), arrayMap(Religions))}
+            {textDataField('Name', 'characterName')}
+            {dropdownDataField('Gender','gender', arrayMap(Genders))}
+            {dropdownDataField('Race', 'race', arrayMap(Races))}
+            {dropdownDataField('Birth Kingdom', 'kingdomBirth', arrayMap(Kingdoms))}
+            {textDataField('Height in centimeters', 'height')}
+            {textDataField('Weight in pounds', 'weight')}
+            {textDataField(personalData.characterName + "'s profession", 'startingProfession')}
+            {dropdownDataField('Religion', 'religion', arrayMap(Religions))}
             {distinctiveFeatureDataField()}
-            {textDataField('Age', 'age', showField('distinctiveFeatures'))}
-            {dropdownDataField('Kingdom Devotion', 'kingdomLoyalty',showField('age'), arrayMap(Kingdoms))}
+            {textDataField('Age', 'age')}
+            {dropdownDataField('Kingdom Devotion', 'kingdomLoyalty', arrayMap(Kingdoms))}
             {
                 <div>
-                    <div>Set your character's starting Reputation</div>
+                    {<div>Set your character's starting Reputation</div>}
                     {Object.keys(Kingdoms).map((k) => (
                         <div key={k}>
-                            <div>{Capitalize(Kingdoms[k as keyof typeof Kingdoms])}</div>
+                            {<div>{Capitalize(Kingdoms[k as keyof typeof Kingdoms])}</div>}
                             {startingLoyalty(Kingdoms[k as keyof typeof Kingdoms] as keyof KingdomReputations)}
                         </div>
                     ))}
+                    <Button onClick={() => submitPersonalData(personalData, 'personalDetails')} title='Next'/>
                 </div>
             }
+
         </div>
     )
 }

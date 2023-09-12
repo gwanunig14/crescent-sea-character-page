@@ -4,24 +4,18 @@ import PersonalPage from './PersonalPage';
 import PersonalData from '../DataTemplates/PersonalData';
 import Characteristics from '../DataTemplates/Characteristics';
 
-const pages = [
-    'personalDetails',
-    'characteristics',
-    'skills'
-]
-
 function CharacterCreator() {
-    const [character, setCharacter] = useState<Character>()
-    const [pageNumber, setPageNumber] = useState(0)
+    const [character, setCharacter] = useState<Character>({personalDetails: null, characteristics: null, skills: null, weapons: {}, armor: {}})
 
-    // const setCharacterData = (pageData: PersonalData | Characteristics | Skills) => {
-    //     Object.keys(pageData).forEach(k => {
-    //         setCharacter(character[pages[pageNumber]] = pageData[k])
-    //         setPageNumber(pageNumber + 1)
-    //     })
-    // }
 
-    return PersonalPage()
+    const setCharacterData = (pageData: PersonalData | Characteristics | Skills, step: keyof Character) => {
+        setCharacter((prevState) => ({
+            ...prevState,
+            [step]: pageData,
+            }))
+    }
+
+    return PersonalPage(setCharacterData)
 }
 
 export default CharacterCreator;

@@ -17,9 +17,9 @@ export interface Skills {
 }
 
 export interface Character {
-    personalDetails: PersonalData;
-    characteristics: Characteristics;
-    skills: Skills;
+    personalDetails: PersonalData | null;
+    characteristics: Characteristics | null;
+    skills: Skills | null;
     armor: {}
     weapons: {}
 }
