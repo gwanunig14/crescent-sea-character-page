@@ -1,23 +1,25 @@
 import { useState } from 'react';
-import TextInput from '../Views/TextInput';
-import DropdownSelector from '../Views/DropdownSelector';
-import KingdomReputations, { Reputation } from '../DataTemplates/KingdomReputations';
-import Strings, { Capitalize } from '../Strings';
-import { Button } from 'react-bootstrap';
+import Strings from '../Strings';
 import { Character } from '../DataTemplates/CharacterObject';
 import Characteristics, { newDwarfCharacteristics, newElfCharacteristics, newHumanCharacteristics } from '../DataTemplates/Characteristics';
 import CountUp from '../Views/CountUp';
+import { Button } from 'react-bootstrap';
 
-export default function CharacteristPage(race: string, submitCharacteristicData: (cd: Characteristics, name: keyof Character) => void) {
+export default function CharacteristicPage(race: string | null | undefined, submitCharacteristicData: (cd: Characteristics, name: keyof Character) => void) {
     var characteristics = newHumanCharacteristics
 
     switch (race) {
         case Strings.DWARF:
             characteristics = newDwarfCharacteristics
+            break
         case Strings.ELF:
             characteristics = newElfCharacteristics
+            break
         default:
+            break
     }
+
+    debugger
 
     const [characteristicData, setCharacteristicData] = useState<Characteristics>(characteristics)
 
@@ -49,6 +51,7 @@ export default function CharacteristPage(race: string, submitCharacteristicData:
             <div>
                 {getCount()}
             </div>
+            {getCount() === 0 && <Button onClick={() => submitCharacteristicData(characteristicData, 'characteristics')}></Button>}
         </div>
     )
 }

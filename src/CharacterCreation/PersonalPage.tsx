@@ -19,7 +19,7 @@ export default function PersonalPage(submitPersonalData: (pd: PersonalData, name
 
     const textDataField = (name: string, dataKey: keyof PersonalData) => TextInput(name, dataKey, setField)
 
-    const dropdownDataField = (name: string, dataKey: keyof PersonalData, optionList: string[]) => DropdownSelector(name, dataKey, optionList, setField)
+    const dropdownDataField = (name: string, dataKey: keyof PersonalData, optionList: string[]) => DropdownSelector(name, dataKey, optionList, setField, personalData[dataKey])
 
     const distinctiveFeatureDataField = () => TextInput('Distinctive Features (separated by commas)', 'distinctiveFeatures', (value: string) => {
         const features = value.split(',');
@@ -37,7 +37,8 @@ export default function PersonalPage(submitPersonalData: (pd: PersonalData, name
                 },
             })
             )
-        })
+        },
+            personalData.kingdomReputations[kingdom])
 
     const arrayMap = (array: any) => Object.keys(array).map(k => array[k])
 
