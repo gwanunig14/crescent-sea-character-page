@@ -1,6 +1,6 @@
-import KingdomReputations from "./KingdomReputations";
+// import KingdomReputations from "./KingdomReputations";
 
-export const Genders = { 
+export const Genders = {
     MALE: 'male',
     FEMALE: 'female'
 }
@@ -31,32 +31,32 @@ export const Religions = {
     WATER: 'the water of life'
 }
 
-type Gender = 'male' | 'female'
+// type Gender = 'male' | 'female'
 
-type Race = 'dwarf' | 'elf' | 'human'
+// type Race = 'dwarf' | 'elf' | 'human'
 
-export type Kingdom = 'gartu' | 'drishma' | 'edneth' | 'brelloth' | 'portro' | 'hobantho' | 'crillatha' | 'virensa' | 'pirates' | 'independent'
+// export type Kingdom = 'gartu' | 'drishma' | 'edneth' | 'brelloth' | 'portro' | 'hobantho' | 'crillatha' | 'virensa' | 'pirates' | 'independent'
 
-type Religion = 'the twelve' | 'the trinity' | "the creator's children" | 'the water of life'
+// type Religion = 'the twelve' | 'the trinity' | "the creator's children" | 'the water of life'
 
-export default interface PersonalData {
-    characterName: string | null;
-    gender: Gender | null;
-    race: Race | null;
-    kingdomBirth: Kingdom | null;
-    height: number | null;
-    weight: number | null;
-    startingProfession: string | null;
-    religion: Religion | null;
-    distinctiveFeatures: string[] | null;
-    movement: number;
-    age: number | null;
-    wealth: string | null;
-    kingdomLoyalty: Kingdom | null;
-    kingdomReputations: KingdomReputations;
-}
+// export default interface PersonalData {
+//     characterName: string | null;
+//     gender: Gender | null;
+//     race: Race | null;
+//     kingdomBirth: Kingdom | null;
+//     height: number | null;
+//     weight: number | null;
+//     startingProfession: string | null;
+//     religion: Religion | null;
+//     distinctiveFeatures: string[] | null;
+//     movement: number;
+//     age: number | null;
+//     wealth: string | null;
+//     kingdomLoyalty: Kingdom | null;
+//     kingdomReputations: KingdomReputations;
+// }
 
-export const newCharacterPersonalDetails : PersonalData = {
+export const newCharacterPersonalDetails = {
     characterName: null,
     gender: null,
     race: null,

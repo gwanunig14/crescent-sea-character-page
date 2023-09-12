@@ -1,4 +1,4 @@
-const Strings = {
+export const Strings = {
     DWARF: 'dwarf',
     ELF: 'elf',
     HUMAN: 'human',
@@ -37,8 +37,6 @@ const Strings = {
     EDUCATION: 'education'
 }
 
-export const Capitalize = (word: string) => {
-    return word.charAt(0).toUpperCase() + word.slice(1)
+export const Capitalize = (word) => {
+    return word?.charAt(0).toUpperCase() + word?.slice(1)
 }
-
-export default Strings

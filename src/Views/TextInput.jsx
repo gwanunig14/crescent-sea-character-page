@@ -1,23 +1,17 @@
-import React from 'react';
-import PersonalData from '../DataTemplates/PersonalData';
-import { Capitalize } from '../Strings';
-import Characteristics from '../DataTemplates/Characteristics';
+import React from "react";
+import { Capitalize } from "../Strings";
 
-export default function TextInput({
-    fieldName,
-    dataKey,
-    returnText,
-}) {
-    const enterPressed = (event) => {
-        if (event.key === 'Enter') {
-            returnText(dataKey, event.target.value);
-        }
-    };
+export default function TextInput({ name, dataKey, setField }) {
+  const enterPressed = (event) => {
+    if (event.key === "Enter") {
+      setField(dataKey, event.target.value);
+    }
+  };
 
-    return (
-        <div>
-            {Capitalize(fieldName) + ': '}
-            <input type='text' onKeyDown={enterPressed} />
-        </div>
-    );
+  return (
+    <div>
+      {Capitalize(name) + ": "}
+      <input type="text" onKeyDown={enterPressed} />
+    </div>
+  );
 }
