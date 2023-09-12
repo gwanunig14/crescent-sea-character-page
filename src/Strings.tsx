@@ -1,0 +1,32 @@
+const Strings = {
+    DWARF: 'dwarf',
+    ELF: 'elf',
+    HUMAN: 'human',
+    MALE: 'male',
+    FEMALE: 'female',
+    GARTU: 'gartu',
+    DRISHMA: 'drishma',
+    EDNETH: 'edneth',
+    BRELLOTH: 'brelloth',
+    PORTRO: 'portro',
+    HOBANTHO: 'hobantho',
+    CRILLATHA: 'crillatha',
+    VIRENSA: 'virensa',
+    PIRATE: 'pirate',
+    INDEPENDENT: 'independent',
+    TWELVE: 'the twelve',
+    TRINITY: 'the trinity',
+    CREATOR: "the creator's children",
+    WATER: 'the water of life',
+    HERO: 'hero',
+    LOVE: 'love',
+    GRATEFUL: 'grateful',
+    FRIENDLY: 'friendly',
+    NONE: 'none',
+    AWARE: 'aware',
+    DISLIKE: 'dislike',
+    HATE: 'hate',
+    FEAR: 'fear'
+}
+
+export default Strings
