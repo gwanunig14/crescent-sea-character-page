@@ -63,7 +63,7 @@ export default function PersonalPage(submitPersonalData: (pd: PersonalData, name
                             {startingLoyalty(Kingdoms[k as keyof typeof Kingdoms] as keyof KingdomReputations)}
                         </div>
                     ))}
-                    <Button onClick={() => submitPersonalData(personalData, 'personalDetails')} title='Next' />
+                    <Button onClick={() => submitPersonalData(personalData, 'personalDetails')}>Next</Button>
                 </div>
             }
 
