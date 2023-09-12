@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import PersonalData, {Genders, Kingdoms, Races, Religions, newCharacterPersonalDetails} from '../DataTemplates/PersonalData';
+import PersonalData, { Genders, Kingdoms, Races, Religions, newCharacterPersonalDetails } from '../DataTemplates/PersonalData';
 import TextInput from '../Views/TextInput';
 import DropdownSelector from '../Views/DropdownSelector';
 import KingdomReputations, { Reputation } from '../DataTemplates/KingdomReputations';
@@ -7,14 +7,14 @@ import { Capitalize } from '../Strings';
 import { Button } from 'react-bootstrap';
 import { Character } from '../DataTemplates/CharacterObject';
 
-export default function PersonalPage(submitPersonalData: (pd: PersonalData, name: keyof Character) => void ) {
+export default function PersonalPage(submitPersonalData: (pd: PersonalData, name: keyof Character) => void) {
     const [personalData, setPersonalData] = useState<PersonalData>(newCharacterPersonalDetails)
 
     function setField<K extends keyof PersonalData>(key: K, stringData: PersonalData[K] | Reputation): void {
         setPersonalData((prevState) => ({
             ...prevState,
             [key]: stringData,
-          }));
+        }));
     }
 
     const textDataField = (name: string, dataKey: keyof PersonalData) => TextInput(name, dataKey, setField)
@@ -24,7 +24,7 @@ export default function PersonalPage(submitPersonalData: (pd: PersonalData, name
     const distinctiveFeatureDataField = () => TextInput('Distinctive Features (separated by commas)', 'distinctiveFeatures', (value: string) => {
         const features = value.split(',');
         setField('distinctiveFeatures' as keyof PersonalData, features as string[]);
-      })
+    })
 
 
     const startingLoyalty = (kingdom: keyof KingdomReputations) =>
@@ -35,7 +35,7 @@ export default function PersonalPage(submitPersonalData: (pd: PersonalData, name
                     ...prevState.kingdomReputations,
                     [kingdom]: stringData
                 },
-              })
+            })
             )
         })
 
@@ -44,7 +44,7 @@ export default function PersonalPage(submitPersonalData: (pd: PersonalData, name
     return (
         <div>
             {textDataField('Name', 'characterName')}
-            {dropdownDataField('Gender','gender', arrayMap(Genders))}
+            {dropdownDataField('Gender', 'gender', arrayMap(Genders))}
             {dropdownDataField('Race', 'race', arrayMap(Races))}
             {dropdownDataField('Birth Kingdom', 'kingdomBirth', arrayMap(Kingdoms))}
             {textDataField('Height in centimeters', 'height')}
@@ -63,7 +63,7 @@ export default function PersonalPage(submitPersonalData: (pd: PersonalData, name
                             {startingLoyalty(Kingdoms[k as keyof typeof Kingdoms] as keyof KingdomReputations)}
                         </div>
                     ))}
-                    <Button onClick={() => submitPersonalData(personalData, 'personalDetails')} title='Next'/>
+                    <Button onClick={() => submitPersonalData(personalData, 'personalDetails')} title='Next' />
                 </div>
             }
 

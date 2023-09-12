@@ -12,8 +12,8 @@ export default function TextInput(fieldName: string, dataKey: keyof PersonalData
 
     return (
         <div>
-            {Capitalize(fieldName) + ': '} 
-            <input type='text' onKeyDown={enterPressed}/>
+            {Capitalize(fieldName) + ': '}
+            <input type='text' onKeyDown={enterPressed} />
         </div>
     )
 }
