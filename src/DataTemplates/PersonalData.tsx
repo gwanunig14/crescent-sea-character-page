@@ -5,11 +5,11 @@ export const Genders = {
     FEMALE: 'female'
 }
 
-export const Races = [{
+export const Races = {
     DWARF: 'dwarf',
     ELF: 'elf',
     HUMAN: 'human'
-}]
+}
 
 export const Kingdoms = {
     GARTU: 'gartu',
