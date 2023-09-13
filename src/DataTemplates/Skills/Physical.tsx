@@ -1,8 +1,8 @@
 export const startingDwarfPhysical = {
     climb: 40,
-    fishing: 5,
+    fish: 5,
     hide: 10,
-    hunting: 5,
+    hunt: 5,
     jump: 25,
     liquor: 10,
     pilot: { general: 20 },
@@ -14,9 +14,9 @@ export const startingDwarfPhysical = {
 
 export const startingElfPhysical = {
     climb: 40,
-    fishing: 5,
+    fish: 5,
     hide: 10,
-    hunting: 5,
+    hunt: 5,
     jump: 25,
     liquor: 10,
     pilot: { general: 20 },
@@ -28,9 +28,9 @@ export const startingElfPhysical = {
 
 export const startingHumanPhysical = {
     climb: 40,
-    fishing: 20,
+    fish: 20,
     hide: 10,
-    hunting: 20,
+    hunt: 20,
     jump: 25,
     liquor: 10,
     pilot: { general: 25 },

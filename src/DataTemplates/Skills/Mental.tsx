@@ -21,7 +21,7 @@ export const startingElfMental = {
     potion: { general: 5 },
     science: { general: 1 },
     strategy: 1,
-    technical: { genearl: 5 }
+    technical: { general: 5 }
 }
 
 export const startingHumanMental = {
@@ -32,7 +32,7 @@ export const startingHumanMental = {
     literacy: { basic: 50 },
     medicine: 5,
     potion: { general: 5 },
-    science: { genearl: 1 },
+    science: { general: 1 },
     strategy: 5,
     technical: { general: 5 }
 }
