@@ -2,6 +2,7 @@ import './App.css';
 import React from 'react';
 import CharacterCreator from './CharacterCreation/CharacterCreator';
 import { Button } from 'react-bootstrap';
+import CharacterSheet from './CharacterManagement/CharacterSheet';
 
 function App() {
   return (
@@ -10,7 +11,7 @@ function App() {
         <Button>
           Create New Character +
         </Button>
-        {CharacterCreator()}
+        {CharacterSheet()}
       </header>
     </div>
   );
