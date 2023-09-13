@@ -57,7 +57,7 @@ function CharacterCreator() {
       return (
         <SkillPage
           character={character}
-          maxSkillPoints={1132}
+          maxSkillPoints={962}
           submitSkillData={setCharacterData}
         />
       );
@@ -65,7 +65,7 @@ function CharacterCreator() {
       return (
         <SkillPage
           character={character}
-          maxSkillPoints={1232}
+          maxSkillPoints={1062}
           submitSkillData={setCharacterData}
         />
       );

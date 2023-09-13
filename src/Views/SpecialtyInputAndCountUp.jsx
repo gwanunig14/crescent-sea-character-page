@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { Button } from "react-bootstrap";
 import CountUp from "./CountUp";
 
 export default function SpecialtyInputAndCountUp({
@@ -8,9 +9,14 @@ export default function SpecialtyInputAndCountUp({
   setSpecialty,
   disabled,
 }) {
+  const [opened, setOpened] = useState(false);
+  const [inputValue, setInputValue] = useState("");
+
   const enterPressed = (event) => {
     if (event.key === "Enter") {
       setSpecialty(primarySkill, event.target.value, 0);
+      setOpened(false);
+      setInputValue("");
     }
   };
 
@@ -78,8 +84,16 @@ export default function SpecialtyInputAndCountUp({
           disabled(stringHash.name, skillPoint, "minus")
         );
       })}
-      {"New Specialty: "}
-      <input type="text" onKeyDown={enterPressed} />
+      {opened ? (
+        <input
+          type="text"
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          onKeyDown={enterPressed}
+        />
+      ) : (
+        <Button onClick={() => setOpened(true)}>New Specialty</Button>
+      )}
     </div>
   );
 }

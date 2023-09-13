@@ -95,20 +95,32 @@ export default function SkillPage({
     let statCount = 0;
     Object.values(skillData).forEach((v) => {
       Object.values(v).forEach((va) => {
-        if (typeof va === "number") {
-          statCount += va;
-        } else {
-          Object.values(va).forEach((val) => {
-            statCount += val;
-          });
-        }
+        if (
+          va !== "Language" ||
+          va !== "Literacy" ||
+          va !== "Dodge" ||
+          va !== "Gaming"
+        )
+          if (typeof va === "number") {
+            statCount += va;
+          } else {
+            Object.values(va).forEach((val) => {
+              statCount += val;
+            });
+          }
       });
     });
     return maxSkillPoints - statCount;
   };
 
   const disabled = (skill, current, func) => {
-    if (skill === ("Language" | "Literacy" | "Dodge" | "Gaming")) return true;
+    if (
+      skill === "Language" ||
+      skill === "Literacy" ||
+      skill === "Dodge" ||
+      skill === "Gaming"
+    )
+      return true;
     if (func === "plus") {
       if (getCount() === 0) {
         return true;

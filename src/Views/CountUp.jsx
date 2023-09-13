@@ -31,12 +31,16 @@ export default function CountUp({
     <div>
       {fieldName + ": " + count}
       {characteristicWarning()}
-      <Button disabled={minusDisabled} onClick={() => pressed("minus")}>
-        -
-      </Button>
-      <Button disabled={plusDisabled} onClick={() => pressed("plus")}>
-        +
-      </Button>
+      {minusDisabled && (
+        <Button disabled={minusDisabled} onClick={() => pressed("minus")}>
+          -
+        </Button>
+      )}
+      {plusDisabled && (
+        <Button disabled={plusDisabled} onClick={() => pressed("plus")}>
+          +
+        </Button>
+      )}
     </div>
   );
 }

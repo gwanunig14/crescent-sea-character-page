@@ -127,7 +127,11 @@ export default function CharacteristicPage({ race, submitCharacteristicData }) {
       {getCount() === 0 && (
         <Button
           onClick={() =>
-            submitCharacteristicData(characteristicData, "characteristics")
+            submitCharacteristicData(
+              characteristicData,
+              "characteristics",
+              "plus"
+            )
           }
         >
           Next
