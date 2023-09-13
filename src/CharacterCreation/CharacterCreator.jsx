@@ -28,7 +28,7 @@ function CharacterCreator() {
       return (
         <CharacteristicPage
           race={race}
-          setCharacteristicData={setCharacterData}
+          submitCharacteristicData={setCharacterData}
         />
       );
     default:
