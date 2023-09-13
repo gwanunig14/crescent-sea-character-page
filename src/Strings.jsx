@@ -52,7 +52,25 @@ export const CharacteristicStrings = {
   education: "Education",
 };
 
+export const MeleeWeaponStrings = {
+  name: "Melee Weapon",
+  axe: "Axe",
+  sword: "Sword",
+};
+
+export const MissileWeaponStrings = { name: "Missile Weapon", bow: "Bow" };
+
+export const CombatStrings = {
+  brawl: "Brawl",
+  dodge: "Dodge",
+  grapple: "Grapple",
+  meleeWeapon: MeleeWeaponStrings,
+  missileWeapon: MissileWeaponStrings,
+  shield: "Shield",
+};
+
 export const LanguageStrings = {
+  name: "Language",
   basic: "Basic",
   elvish: "Elvish",
   dwarvish: "Dwarvish",
@@ -62,13 +80,8 @@ export const LanguageStrings = {
   blackSpeech: "Black Speech",
 };
 
-export const CombatStrings = {
-  brawl: "Brawl",
-  dodge: "Dodge",
-  grapple: "Grapple",
-  meleeWeapon: "Melee Weapon",
-  missileWeapon: "Missile Weapon",
-  shield: "Shield",
+export const NatureStrings = {
+  name: "Nature",
 };
 
 export const CommunicationStrings = {
@@ -78,34 +91,69 @@ export const CommunicationStrings = {
   etiquette: "Etiquette",
   fastTalk: "Fast Talk",
   intimidate: "Intimidate",
-  langauage: "Language",
-  nature: "Nature",
+  language: LanguageStrings,
+  nature: NatureStrings,
   perform: "Perform",
   persuade: "Persuade",
   teach: "Teach",
+};
+
+export const KnowledgeStrings = {
+  name: "Knowledge",
+};
+
+export const LiteracyStrings = {
+  ...LanguageStrings,
+  name: "Literacy",
+};
+
+export const PotionStrings = {
+  name: "Potion",
+};
+
+export const ScienceStrings = { name: "Science" };
+
+export const TechnicalStrings = {
+  name: "Technical",
 };
 
 export const MentalStrings = {
   appraise: "Appraise",
   firstAid: "First Aid",
   gaming: "Gaming",
-  knowledge: "Knowledge",
-  literacy: "Literacy",
+  knowledge: KnowledgeStrings,
+  literacy: LiteracyStrings,
   medicine: "Medicine",
-  potion: "Potion",
-  science: "Science",
+  potion: PotionStrings,
+  science: ScienceStrings,
   strategy: "Strategy",
-  technical: "Technical",
+  technical: TechnicalStrings,
+};
+
+export const ArtStrings = {
+  name: "Art",
+};
+
+export const CraftStrings = {
+  name: "Craft",
+};
+
+export const InstrumentStrings = {
+  name: "Instrument",
+};
+
+export const RepairStrings = {
+  name: "Repair",
 };
 
 export const MotorSkillStrings = {
-  art: "Art",
-  craft: "Craft",
+  art: ArtStrings,
+  craft: CraftStrings,
   demolition: "Demoltion",
   fineManipulation: "Fine Manipulation",
-  instrument: "Instrument",
+  instrument: InstrumentStrings,
   lockpicking: "Lockpicking",
-  repair: "Repair",
+  repair: RepairStrings,
   sleightOfHand: "Sleight of Hand",
 };
 
@@ -119,6 +167,10 @@ export const PerceptionStrings = {
   track: "Track",
 };
 
+export const PilotStrings = {
+  name: "Pilot",
+};
+
 export const PhysicalStrings = {
   climb: "climb",
   fish: "fish",
@@ -126,7 +178,7 @@ export const PhysicalStrings = {
   hunt: "hunt",
   jump: "jump",
   liquor: "liquor",
-  pilot: "pilot",
+  pilot: PilotStrings,
   ride: "ride",
   stealth: "stealth",
   swim: "swim",
@@ -141,10 +193,6 @@ export const SkillStrings = {
   perception: PerceptionStrings,
   physical: PhysicalStrings,
 };
-
-export const MeleeWeaponStrings = { axe: "Axe", sword: "Sword" };
-
-export const MissileWeaponStrings = { bow: "Bow" };
 
 export const WeaponStrings = {
   meleeWeapon: MeleeWeaponStrings,
@@ -161,8 +209,4 @@ export const Strings = {
   language: LanguageStrings,
   skill: SkillStrings,
   weapon: WeaponStrings,
-};
-
-export const Capitalize = (word) => {
-  return word?.charAt(0).toUpperCase() + word?.slice(1);
 };

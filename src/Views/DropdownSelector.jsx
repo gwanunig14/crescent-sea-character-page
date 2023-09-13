@@ -1,6 +1,5 @@
 import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
-import { Capitalize } from "../Strings";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
@@ -13,7 +12,7 @@ export default function DropdownSelector({
 }) {
   const label = () => {
     if (value && typeof value === "string") {
-      return Capitalize(value);
+      return value;
     }
 
     return "Select your " + name;
@@ -33,7 +32,7 @@ export default function DropdownSelector({
         <Dropdown.Menu>
           {optionList?.map((option) => (
             <Dropdown.Item eventKey={option} key={option}>
-              {Capitalize(option)}
+              {option}
             </Dropdown.Item>
           ))}
         </Dropdown.Menu>

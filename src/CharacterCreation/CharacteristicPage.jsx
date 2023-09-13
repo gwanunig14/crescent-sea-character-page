@@ -130,9 +130,20 @@ export default function CharacteristicPage({ race, submitCharacteristicData }) {
             submitCharacteristicData(characteristicData, "characteristics")
           }
         >
-          Submit
+          Next
         </Button>
       )}
+      <Button
+        onClick={() =>
+          submitCharacteristicData(
+            characteristicData,
+            "personalDetails",
+            "minus"
+          )
+        }
+      >
+        Back
+      </Button>
     </div>
   );
 }

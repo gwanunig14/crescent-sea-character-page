@@ -1,5 +1,4 @@
 import React from "react";
-import { Capitalize } from "../Strings";
 import { Button } from "react-bootstrap";
 
 export default function CountUp({
@@ -15,9 +14,23 @@ export default function CountUp({
     returnText(dataKey, newNumber);
   };
 
+  const characteristicWarning = () => {
+    if (fieldName === "Dodge" || fieldName === "Gaming") {
+      return (
+        <div>
+          {"Starting " +
+            fieldName +
+            " skill is based on characteristics and can't be altered directly."}
+        </div>
+      );
+    }
+    return null;
+  };
+
   return (
     <div>
-      {Capitalize(fieldName) + ": " + count}
+      {fieldName + ": " + count}
+      {characteristicWarning()}
       <Button disabled={minusDisabled} onClick={() => pressed("minus")}>
         -
       </Button>

@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-import {
-  Genders,
-  Kingdoms,
-  Races,
-  Religions,
-  newCharacterPersonalDetails,
-} from "../DataTemplates/PersonalData";
+import { newCharacterPersonalDetails } from "../DataTemplates/PersonalData";
 import TextInput from "../Views/TextInput";
 import DropdownSelector from "../Views/DropdownSelector";
-import { Capitalize } from "../Strings";
+import {
+  GenderStrings,
+  KingdomStrings,
+  RaceStrings,
+  ReligionStrings,
+} from "../Strings";
 import { Button } from "react-bootstrap";
 
 export default function PersonalPage({ submitPersonalData }) {
@@ -69,35 +68,44 @@ export default function PersonalPage({ submitPersonalData }) {
   return (
     <div>
       {textDataField("Name", "characterName")}
-      {dropdownDataField("Gender", "gender", arrayMap(Genders))}
-      {dropdownDataField("Race", "race", arrayMap(Races))}
-      {dropdownDataField("Birth Kingdom", "kingdomBirth", arrayMap(Kingdoms))}
+      {dropdownDataField("Gender", "gender", arrayMap(GenderStrings))}
+      {dropdownDataField("Race", "race", arrayMap(RaceStrings))}
+      {dropdownDataField(
+        "Birth Kingdom",
+        "kingdomBirth",
+        arrayMap(KingdomStrings)
+      )}
       {textDataField("Height in centimeters", "height")}
       {textDataField("Weight in pounds", "weight")}
       {textDataField(
         personalData.characterName + "'s profession",
         "startingProfession"
       )}
-      {dropdownDataField("Religion", "religion", arrayMap(Religions))}
+      {dropdownDataField("Religion", "religion", arrayMap(ReligionStrings))}
       {distinctiveFeatureDataField()}
       {textDataField("Age", "age")}
       {dropdownDataField(
         "Kingdom Devotion",
         "kingdomLoyalty",
-        arrayMap(Kingdoms)
+        arrayMap(KingdomStrings)
       )}
       <div>
         <div>Set your character's starting Reputation</div>
-        {Object.keys(Kingdoms).map((k) => (
+        {Object.keys(KingdomStrings).map((k) => (
           <div key={k}>
-            <div>{Capitalize(Kingdoms[k])}</div>
-            {startingLoyalty(Kingdoms[k])}
+            <div>{KingdomStrings[k]}</div>
+            {startingLoyalty(KingdomStrings[k])}
           </div>
         ))}
         <Button
-          onClick={() => submitPersonalData(personalData, "personalDetails")}
+          onClick={() => submitPersonalData(personalData, "personalDetails", 'plus')}
         >
           Next
+        </Button>
+        <Button
+          onClick={() => submitPersonalData(personalData, "personalDetails", 'minus')}
+        >
+          Back
         </Button>
       </div>
     </div>

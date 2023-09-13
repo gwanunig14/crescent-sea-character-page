@@ -1,5 +1,4 @@
 import React from "react";
-import { Capitalize } from "../Strings";
 
 export default function TextInput({ name, dataKey, setField }) {
   const enterPressed = (event) => {
@@ -10,7 +9,7 @@ export default function TextInput({ name, dataKey, setField }) {
 
   return (
     <div>
-      {Capitalize(name) + ": "}
+      {name + ": "}
       <input type="text" onKeyDown={enterPressed} />
     </div>
   );
