@@ -10,6 +10,7 @@ export const startingDwarfCommunication = {
   perform: 5,
   persuade: 15,
   teach: 10,
+  modifier: "charisma",
 };
 
 export const startingElfCommunication = {
@@ -24,6 +25,7 @@ export const startingElfCommunication = {
   perform: 5,
   persuade: 15,
   teach: 10,
+  modifier: "charisma",
 };
 
 export const startingHumanCommunication = {
@@ -38,4 +40,5 @@ export const startingHumanCommunication = {
   perform: 15,
   persuade: 15,
   teach: 10,
+  modifier: "charisma",
 };

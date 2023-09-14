@@ -7,7 +7,7 @@ const currentCharacterSlice = createSlice({
   name: "currentCharacter",
   initialState,
   reducers: {
-    setCharacter: (state, action) => {
+    setCurrentCharacter: (state, action) => {
       // This reducer sets the current character to the payload
       return action.payload;
     },

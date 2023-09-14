@@ -7,6 +7,7 @@ export const startingDwarfMotorSkills = {
   lockpicking: 1,
   repair: { general: 20 },
   sleightOfHand: 5,
+  modifier: "dexterity",
 };
 
 export const startingElfMotorSkills = {
@@ -18,6 +19,7 @@ export const startingElfMotorSkills = {
   lockpicking: 1,
   repair: { general: 15 },
   sleightOfHand: 5,
+  modifier: "dexterity",
 };
 
 export const startingHumanMotorSkills = {
@@ -29,4 +31,5 @@ export const startingHumanMotorSkills = {
   lockpicking: 10,
   repair: { general: 25 },
   sleightOfHand: 20,
+  modifier: "dexterity",
 };

@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 
-function CharacteristicsSection({ characteristics, postGameCheck }) {
+function CharacteristicsSection({ characteristics, postGameCheck, drinks }) {
   const calculateEffortRoll = (stat) => stat * 5;
   const successfulTest = (characteristic) =>
     postGameCheck("characteristics", characteristic);
@@ -32,9 +32,11 @@ function CharacteristicsSection({ characteristics, postGameCheck }) {
 
   const renderCharacteristic = (name, statName) => (
     <div>
-      <div>{`${name}: ${characteristics[statName]}`}</div>
+      <div>{`${name}: ${characteristics[statName] - drinks}`}</div>
       <div>{`${name} Roll ${calculateEffortRoll(
-        characteristics[statName]
+        statName === "size"
+          ? characteristics[statName]
+          : characteristics[statName] - drinks
       )}%`}</div>
       <Button onClick={() => successfulTest(statName)}>Successful Test</Button>
     </div>

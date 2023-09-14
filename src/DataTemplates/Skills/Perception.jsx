@@ -6,6 +6,7 @@ export const startingDwarfPerception = {
   sense: 15,
   spot: 25,
   track: 10,
+  modifier: "power",
 };
 
 export const startingElfPerception = {
@@ -16,6 +17,7 @@ export const startingElfPerception = {
   sense: 25,
   spot: 25,
   track: 15,
+  modifier: "power",
 };
 
 export const startingHumanPerception = {
@@ -26,4 +28,5 @@ export const startingHumanPerception = {
   sense: 10,
   spot: 25,
   track: 20,
+  modifier: "power",
 };

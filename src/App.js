@@ -19,10 +19,7 @@ function App() {
           <Routes>
             <Route path="/" element={<LoginPage />} />
             <Route path="/home-page" element={<HomePage />} />
-            <Route
-              path="/existing-character"
-              element={<ExistingCharacterPage />}
-            />
+            <Route path="/character-sheet" element={<CharacterSheet />} />
             <Route path="/add-character" element={<AddCharacterPage />}>
               <Route path="personal" />
               <Route path="characteristic" />

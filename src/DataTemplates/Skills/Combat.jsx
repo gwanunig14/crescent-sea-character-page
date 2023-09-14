@@ -5,6 +5,7 @@ export const startingDwarfCombat = {
   meleeWeapon: { general: 20, axe: 25 },
   missileWeapon: { general: 10 },
   shield: 15,
+  modifier: "dexterity",
 };
 
 export const startingElfCombat = {
@@ -14,6 +15,7 @@ export const startingElfCombat = {
   meleeWeapon: { general: 20 },
   missileWeapon: { general: 10, bow: 25 },
   shield: 25,
+  modifier: "dexterity",
 };
 
 export const startingHumanCombat = {
@@ -23,4 +25,5 @@ export const startingHumanCombat = {
   meleeWeapon: { general: 20, sword: 25 },
   missileWeapon: { general: 10 },
   shield: 20,
+  modifier: "dexterity",
 };

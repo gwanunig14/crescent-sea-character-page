@@ -1,11 +1,11 @@
 // src/components/ExistingCharacterPage.js
 import React from "react";
+import CharacterSheet from "../CharacterManagement/CharacterSheet";
 
 function ExistingCharacterPage() {
   return (
     <div>
-      <h1>Existing Character Page</h1>
-      {/* Add code to display existing characters */}
+      <CharacterSheet />
     </div>
   );
 }

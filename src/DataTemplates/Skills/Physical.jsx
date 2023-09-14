@@ -10,6 +10,7 @@ export const startingDwarfPhysical = {
   stealth: 10,
   swim: 25,
   throw: 25,
+  modifier: "strength",
 };
 
 export const startingElfPhysical = {
@@ -24,6 +25,7 @@ export const startingElfPhysical = {
   stealth: 15,
   swim: 25,
   throw: 25,
+  modifier: "strength",
 };
 
 export const startingHumanPhysical = {
@@ -38,4 +40,5 @@ export const startingHumanPhysical = {
   stealth: 10,
   swim: 35,
   throw: 25,
+  modifier: "strength",
 };

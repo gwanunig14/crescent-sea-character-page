@@ -7,11 +7,7 @@ const currentPlayerSlice = createSlice({
   name: "currentPlayer",
   initialState,
   reducers: {
-    setCurrentPlayer: (state, action) => {
-      // This reducer sets the current player to the payload
-      debugger;
-      return action.payload;
-    },
+    setCurrentPlayer: (state, action) => action.payload, // This reducer sets the current player to the payload
   },
 });
 

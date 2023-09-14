@@ -1,9 +1,11 @@
 import {
-  newDwarfCharacteristics,
   newElfCharacteristics,
   newHumanCharacteristics,
 } from "./DataTemplates/Characteristics";
-import { StarterHumanSkills } from "./DataTemplates/Skills/StarterRaces";
+import {
+  StarterElfSkills,
+  StarterHumanSkills,
+} from "./DataTemplates/Skills/StarterRaces";
 
 export const TestingCharacter1 = {
   personalDetails: {
@@ -41,6 +43,6 @@ export const TestingCharacter2 = {
     kingdomLoyalty: "independent",
   },
   characteristics: newElfCharacteristics,
-  skills: newDwarfCharacteristics,
+  skills: StarterElfSkills,
   magicActivated: true,
 };

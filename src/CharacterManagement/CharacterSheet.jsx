@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import PersonalDetailsSection from "./CharacterSheetSections/PersonalDetailsSection";
 import CharacteristicsSection from "./CharacterSheetSections/CharacteristicsSections";
 import CountUp from "../Views/CountUp";
 import SkillsSection from "./CharacterSheetSections/SkillsSection";
 
-function CharacterSheet({ character }) {
+function CharacterSheet() {
+  const character = useSelector((state) => state.currentCharacter);
+
   const { personalDetails, characteristics, skills, magicActivated } =
     character;
 
@@ -13,6 +16,7 @@ function CharacterSheet({ character }) {
   const [postGameChecks, setPostGameChecks] = useState({});
   const [hitPoints, setHitPoints] = useState(maxHitPoints);
   const [powerPoints, setPowerPoints] = useState(characteristics.power);
+  const [drinkCounter, setDrinkCounter] = useState(0);
 
   const adjustHitPoints = (unnecessary, newHP) => {
     setHitPoints(newHP);
@@ -20,6 +24,10 @@ function CharacterSheet({ character }) {
 
   const adjustPowerPoints = (unnecessary, newPP) => {
     setPowerPoints(newPP);
+  };
+
+  const adjustDrinks = (unnecessary, newD) => {
+    setDrinkCounter(newD);
   };
 
   const addToPostGameCheckList = (category, characteristicOrSkill) => {
@@ -35,13 +43,14 @@ function CharacterSheet({ character }) {
       <div>{personalDetails.characterName}</div>
       <div>
         Personal
-        <PersonalDetailsSection {...personalDetails} />
+        <PersonalDetailsSection personalData={personalDetails} />
       </div>
       <div>
         Characteristics
         <CharacteristicsSection
           characteristics={characteristics}
-          addToPostGameCheckList={addToPostGameCheckList}
+          postGameCheck={addToPostGameCheckList}
+          drinks={drinkCounter}
         />
       </div>
       <div>
@@ -65,15 +74,28 @@ function CharacterSheet({ character }) {
         </div>
       )}
       <div>
+        <CountUp
+          fieldName={"Drinks"}
+          count={drinkCounter}
+          returnText={adjustDrinks}
+          plusDisabled={drinkCounter === 100}
+          minusDisabled={drinkCounter === 0}
+        />
+      </div>
+      <div>
         Skills
-        {Object.entries(skills).map(([heading, skill]) => (
-          <SkillsSection
-            key={heading}
-            heading={heading}
-            modifier={Math.floor(characteristics[heading] / 2)}
-            skills={skill}
-          />
-        ))}
+        {Object.entries(skills).map(([heading, skill]) => {
+          return (
+            <SkillsSection
+              key={heading}
+              heading={heading}
+              modifier={Math.floor(characteristics[skill.modifier] / 2)}
+              skills={skill}
+              drinks={drinkCounter}
+              postGameCheck={addToPostGameCheckList}
+            />
+          );
+        })}
       </div>
       <div>Weapons</div>
       <div>Armor</div>
