@@ -64,7 +64,7 @@ export default function PersonalPage({ submitPersonalData }) {
           },
         }));
       }}
-      value={"None"}
+      value={"none"}
     />
   );
 
@@ -102,6 +102,13 @@ export default function PersonalPage({ submitPersonalData }) {
             {startingLoyalty(KingdomStrings[kingdom])}
           </div>
         ))}
+        <Button
+          onClick={() =>
+            submitPersonalData(personalData, "personalDetails", "minus")
+          }
+        >
+          Back
+        </Button>
         {!Object.values(personalData).includes("") && (
           <Button
             onClick={() =>
@@ -111,13 +118,6 @@ export default function PersonalPage({ submitPersonalData }) {
             Next
           </Button>
         )}
-        <Button
-          onClick={() =>
-            submitPersonalData(personalData, "personalDetails", "minus")
-          }
-        >
-          Back
-        </Button>
       </div>
     </div>
   );

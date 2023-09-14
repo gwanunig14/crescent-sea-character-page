@@ -178,16 +178,16 @@ export default function SkillPage({ maxSkillPoints, submitSkillData }) {
       {skillSection("Physical", "physical", "strength", PhysicalStrings)}
       {skillSection("Combat", "combat", "dexterity", CombatStrings)}
       <div>{getCount()}</div>
-      {getCount() === 0 && (
-        <Button onClick={() => submitSkillData(skillData, "characteristics")}>
-          Next
-        </Button>
-      )}
       <Button
         onClick={() => submitSkillData(skillData, "personalDetails", "minus")}
       >
         Back
       </Button>
+      {getCount() === 0 && (
+        <Button onClick={() => submitSkillData(skillData, "characteristics")}>
+          Next
+        </Button>
+      )}
     </div>
   );
 }

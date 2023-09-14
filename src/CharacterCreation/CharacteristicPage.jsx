@@ -69,6 +69,17 @@ export default function CharacteristicPage({ submitCharacteristicData }) {
         ))}
       </div>
       <div>{getCount()}</div>
+      <Button
+        onClick={() =>
+          submitCharacteristicData(
+            characteristicData,
+            "personalDetails",
+            "minus"
+          )
+        }
+      >
+        Back
+      </Button>
       {getCount() === 0 && (
         <Button
           onClick={() =>
@@ -82,17 +93,6 @@ export default function CharacteristicPage({ submitCharacteristicData }) {
           Next
         </Button>
       )}
-      <Button
-        onClick={() =>
-          submitCharacteristicData(
-            characteristicData,
-            "personalDetails",
-            "minus"
-          )
-        }
-      >
-        Back
-      </Button>
     </div>
   );
 }
