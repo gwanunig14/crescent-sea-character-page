@@ -72,4 +72,5 @@ export const TestingCharacter = {
   },
   characteristics: newHumanCharacteristics,
   skills: StarterHumanSkills,
+  magicActivated: true,
 };

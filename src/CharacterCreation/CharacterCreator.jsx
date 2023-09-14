@@ -10,7 +10,7 @@ function CharacterCreator() {
   //   skills: null,
   //   weapons: {},
   //   armor: {},
-  //   magicActivate: false,
+  //   magicActivated: false,
   // });
 
   const [character, setCharacter] = useState({

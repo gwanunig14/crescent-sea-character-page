@@ -17,33 +17,27 @@ function CharacteristicsSection(characteristics, postGameCheck) {
     const strengthAndSizeCombo =
       characteristics.strength + characteristics.size;
 
-    if (strengthAndSizeCombo > 152) {
-      return "9D6";
-    } else if (strengthAndSizeCombo > 136) {
-      return "8D6";
-    } else if (strengthAndSizeCombo > 120) {
-      return "7D6";
-    } else if (strengthAndSizeCombo > 104) {
-      return "6D6";
-    } else if (strengthAndSizeCombo > 88) {
-      return "5D6";
-    } else if (strengthAndSizeCombo > 72) {
-      return "4D6";
-    } else if (strengthAndSizeCombo > 56) {
-      return "3D6";
-    } else if (strengthAndSizeCombo > 40) {
-      return "2D6";
-    } else if (strengthAndSizeCombo > 32) {
-      return "1D6";
-    } else if (strengthAndSizeCombo > 25) {
-      return "1D4";
-    } else if (strengthAndSizeCombo > 16) {
-      return "None";
-    } else if (strengthAndSizeCombo > 12) {
-      return "-1D4";
-    } else {
-      return "-1D6";
-    }
+    // Define the conditions and corresponding return values in an array
+    const damageModifiers = [
+      { condition: strengthAndSizeCombo > 152, value: "9D6" },
+      { condition: strengthAndSizeCombo > 136, value: "8D6" },
+      { condition: strengthAndSizeCombo > 120, value: "7D6" },
+      { condition: strengthAndSizeCombo > 104, value: "6D6" },
+      { condition: strengthAndSizeCombo > 88, value: "5D6" },
+      { condition: strengthAndSizeCombo > 72, value: "4D6" },
+      { condition: strengthAndSizeCombo > 56, value: "3D6" },
+      { condition: strengthAndSizeCombo > 40, value: "2D6" },
+      { condition: strengthAndSizeCombo > 32, value: "1D6" },
+      { condition: strengthAndSizeCombo > 25, value: "1D4" },
+      { condition: strengthAndSizeCombo > 16, value: "None" },
+      { condition: strengthAndSizeCombo > 12, value: "-1D4" },
+    ];
+
+    // Find the first matching condition and return its corresponding value
+    const result = damageModifiers.find((modifier) => modifier.condition);
+
+    // If no matching condition is found, default to "-1D6"
+    return result ? result.value : "-1D6";
   };
 
   return (
