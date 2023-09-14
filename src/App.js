@@ -11,10 +11,13 @@ const character = TestingCharacter
   return (
     <Provider store={store}>
       <div className="App">
-        <Button>
+      <Switch>
+          <Route exact path="/" component={LoginPage} />
+        {/* <Button>
           Create New Character +
         </Button>
-        {CharacterSheet(character)}
+        {CharacterSheet(character)} */}
+        </Switch>
       </div>
     </Provider>
   );
