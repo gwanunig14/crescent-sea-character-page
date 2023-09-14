@@ -13,6 +13,10 @@ export default function TextInput({ name, dataKey, value, setField }) {
     }
   };
 
+  const handleFocusChange = (event) => {
+    setField(dataKey, event.target.value);
+  };
+
   return (
     <div>
       {name + ": "}
@@ -21,6 +25,7 @@ export default function TextInput({ name, dataKey, value, setField }) {
         value={inputValue}
         onChange={handleInputChange}
         onKeyDown={handleInputKeyDown}
+        onBlur={handleFocusChange}
       />
     </div>
   );

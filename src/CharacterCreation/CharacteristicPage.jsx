@@ -6,7 +6,7 @@ import {
   newHumanCharacteristics,
 } from "../DataTemplates/Characteristics";
 import CountUp from "../Views/CountUp";
-import { Button } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 import { useSelector } from "react-redux";
 
 export default function CharacteristicPage({ submitCharacteristicData }) {

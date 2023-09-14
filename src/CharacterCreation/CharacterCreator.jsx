@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-import PersonalPage from "./PersonalPage";
-import CharacteristicPage from "./CharacteristicPage";
-import SkillPage from "./SkillPage";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setCurrentCharacter } from "../reducers/currentCharacterReducer";
+import { addCharacter } from "../reducers/characterReducer";
+import Button from "react-bootstrap/Button";
+import PersonalPage from "./PersonalPage";
+import CharacteristicPage from "./CharacteristicPage";
+import SkillPage from "./SkillPage";
+import CharacterSheet from "../CharacterManagement/CharacterSheet";
 
 function CharacterCreator() {
   const dispatch = useDispatch();
@@ -49,6 +52,11 @@ function CharacterCreator() {
     }
   };
 
+  const createCharacter = () => {
+    dispatch(addCharacter(character));
+    navigate("/home-page");
+  };
+
   switch (page) {
     case 0:
       return <PersonalPage submitPersonalData={setCharacterData} />;
@@ -75,6 +83,14 @@ function CharacterCreator() {
           maxSkillPoints={1062}
           submitSkillData={setCharacterData}
         />
+      );
+    case 4:
+      return (
+        <div>
+          <CharacterSheet />
+          <Button onClick={() => setPage(page - 1)}>Back</Button>
+          <Button onClick={createCharacter}>Confirm character?</Button>
+        </div>
       );
     default:
       return null;

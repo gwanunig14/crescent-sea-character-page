@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 import CountUp from "./CountUp";
 
 export default function SpecialtyInputAndCountUp({

@@ -9,7 +9,7 @@ import {
   PhysicalStrings,
 } from "../Strings";
 import CountUp from "../Views/CountUp";
-import { Button } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 import {
   StarterDwarfSkills,
   StarterHumanSkills,

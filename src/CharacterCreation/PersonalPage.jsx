@@ -7,7 +7,7 @@ import {
   RaceStrings,
   ReligionStrings,
 } from "../Strings";
-import { Button } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 import { useSelector } from "react-redux";
 
 export default function PersonalPage({ submitPersonalData }) {
