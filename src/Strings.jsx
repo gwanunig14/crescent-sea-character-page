@@ -61,6 +61,7 @@ export const MeleeWeaponStrings = {
 export const MissileWeaponStrings = { name: "Missile Weapon", bow: "Bow" };
 
 export const CombatStrings = {
+  name: "Combat",
   brawl: "Brawl",
   dodge: "Dodge",
   grapple: "Grapple",
@@ -85,6 +86,7 @@ export const NatureStrings = {
 };
 
 export const CommunicationStrings = {
+  name: "Communication",
   bargain: "Bargain",
   command: "Command",
   disguise: "Disguise",
@@ -118,6 +120,7 @@ export const TechnicalStrings = {
 };
 
 export const MentalStrings = {
+  name: "Mental",
   appraise: "Appraise",
   firstAid: "First Aid",
   gaming: "Gaming",
@@ -147,6 +150,7 @@ export const RepairStrings = {
 };
 
 export const MotorSkillStrings = {
+  name: "Motor Skills",
   art: ArtStrings,
   craft: CraftStrings,
   demolition: "Demoltion",
@@ -158,6 +162,7 @@ export const MotorSkillStrings = {
 };
 
 export const PerceptionStrings = {
+  name: "Perception",
   insight: "Insight",
   listen: "Listen",
   navigate: "Navigate",
@@ -172,17 +177,18 @@ export const PilotStrings = {
 };
 
 export const PhysicalStrings = {
-  climb: "climb",
-  fish: "fish",
-  hide: "hide",
-  hunt: "hunt",
-  jump: "jump",
-  liquor: "liquor",
+  name: "Physical",
+  climb: "Climb",
+  fish: "Fish",
+  hide: "Hide",
+  hunt: "Hunt",
+  jump: "Jump",
+  liquor: "Liquor",
   pilot: PilotStrings,
-  ride: "ride",
-  stealth: "stealth",
-  swim: "swim",
-  throw: "throw",
+  ride: "Ride",
+  stealth: "Stealth",
+  swim: "Swim",
+  throw: "Throw",
 };
 
 export const SkillStrings = {
