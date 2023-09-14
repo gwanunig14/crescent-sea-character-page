@@ -1,14 +1,19 @@
 import React, { useState } from "react";
-import PersonalPage from "./PersonalPage";
-import CharacteristicPage from "./CharacteristicPage";
-import SkillPage from "./SkillPage";
+import PersonalDetailsSection from "./CharacterSheetSections/PersonalDetailsSection";
+import CharacteristicsSection from "./CharacterSheetSections/CharacteristicsSections";
 
 function CharacterSheet(character) {
   return (
     <div>
-      <div>{character.personalData.characterName}</div>
-      <div>Personal</div>
-      <div>Characteristics</div>
+      <div>{character.personalDetails.characterName}</div>
+      <div>
+        Personal
+        {PersonalDetailsSection(character.personalDetails)}
+      </div>
+      <div>
+        Characteristics
+        {CharacteristicsSection(character.characteristics)}
+      </div>
       <div>Hit Points</div>
       <div>Power</div>
       <div>

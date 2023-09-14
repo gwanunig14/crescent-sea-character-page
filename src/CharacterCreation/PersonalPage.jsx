@@ -68,8 +68,8 @@ export default function PersonalPage({ submitPersonalData }) {
   return (
     <div>
       {textDataField("Name", "characterName")}
-      {dropdownDataField("Gender", "gender", arrayMap(GenderStrings))}
       {dropdownDataField("Race", "race", arrayMap(RaceStrings))}
+      {dropdownDataField("Gender", "gender", arrayMap(GenderStrings))}
       {dropdownDataField(
         "Birth Kingdom",
         "kingdomBirth",
@@ -78,7 +78,9 @@ export default function PersonalPage({ submitPersonalData }) {
       {textDataField("Height in centimeters", "height")}
       {textDataField("Weight in pounds", "weight")}
       {textDataField(
-        personalData.characterName + "'s profession",
+        personalData.characterName
+          ? +personalData.characterName + "'s profession"
+          : "Your character's profession",
         "startingProfession"
       )}
       {dropdownDataField("Religion", "religion", arrayMap(ReligionStrings))}
@@ -98,12 +100,16 @@ export default function PersonalPage({ submitPersonalData }) {
           </div>
         ))}
         <Button
-          onClick={() => submitPersonalData(personalData, "personalDetails", 'plus')}
+          onClick={() =>
+            submitPersonalData(personalData, "personalDetails", "plus")
+          }
         >
           Next
         </Button>
         <Button
-          onClick={() => submitPersonalData(personalData, "personalDetails", 'minus')}
+          onClick={() =>
+            submitPersonalData(personalData, "personalDetails", "minus")
+          }
         >
           Back
         </Button>

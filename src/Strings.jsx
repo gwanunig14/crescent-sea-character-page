@@ -1,25 +1,25 @@
 export const RaceStrings = {
-  dwarf: "dwarf",
-  elf: "elf",
-  human: "human",
+  dwarf: "Dwarf",
+  elf: "Elf",
+  human: "Human",
 };
 
 export const GenderStrings = {
-  male: "male",
-  female: "female",
+  male: "Male",
+  female: "Female",
 };
 
 export const KingdomStrings = {
-  gartu: "gartu",
-  drishma: "drishma",
-  edneth: "edneth",
-  brelloth: "brelloth",
-  portro: "portro",
-  hobantho: "hobantho",
-  crillatha: "crillatha",
-  virensa: "virensa",
-  pirate: "pirate",
-  independent: "independent",
+  gartu: "Gartu",
+  drishma: "Drishma",
+  edneth: "Edneth",
+  brelloth: "Brelloth",
+  portro: "Portro",
+  hobantho: "Hobantho",
+  crillatha: "Crillatha",
+  virensa: "Virensa",
+  pirate: "Pirate",
+  independent: "Independent",
 };
 
 export const ReligionStrings = {
@@ -199,6 +199,14 @@ export const WeaponStrings = {
   missileWeapon: MissileWeaponStrings,
 };
 
+export const WealthStrings = {
+  wealthy: "Wealthy",
+  affluent: "Affluent",
+  average: "Average",
+  poor: "Poor",
+  destitute: "Destitute",
+};
+
 export const Strings = {
   race: RaceStrings,
   gender: GenderStrings,
@@ -209,4 +217,5 @@ export const Strings = {
   language: LanguageStrings,
   skill: SkillStrings,
   weapon: WeaponStrings,
+  wealth: WealthStrings,
 };
