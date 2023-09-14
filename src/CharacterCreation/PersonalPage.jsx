@@ -13,12 +13,12 @@ import { Button } from "react-bootstrap";
 export default function PersonalPage({ submitPersonalData }) {
   const [personalData, setPersonalData] = useState(newCharacterPersonalDetails);
 
-  function setField(key, stringData) {
+  const setField = (key, stringData) => {
     setPersonalData((prevState) => ({
       ...prevState,
       [key]: stringData,
     }));
-  }
+  };
 
   const textDataField = (name, dataKey) => (
     <TextInput name={name} dataKey={dataKey} setField={setField} />
@@ -63,40 +63,38 @@ export default function PersonalPage({ submitPersonalData }) {
     />
   );
 
-  const arrayMap = (array) => Object.keys(array).map((k) => array[k]);
+  const renderFields = () => {
+    const fieldArray = [
+      textDataField("Name", "characterName"),
+      dropdownDataField("Race", "race", RaceStrings),
+      dropdownDataField("Gender", "gender", GenderStrings),
+      dropdownDataField("Birth Kingdom", "kingdomBirth", KingdomStrings),
+      textDataField("Height in centimeters", "height"),
+      textDataField("Weight in pounds", "weight"),
+      textDataField(
+        personalData.characterName
+          ? `${personalData.characterName}'s profession`
+          : "Your character's profession",
+        "startingProfession"
+      ),
+      dropdownDataField("Religion", "religion", ReligionStrings),
+      distinctiveFeatureDataField(),
+      textDataField("Age", "age"),
+      dropdownDataField("Kingdom Devotion", "kingdomLoyalty", KingdomStrings),
+    ];
+
+    return fieldArray.map((field, index) => <div key={index}>{field}</div>);
+  };
 
   return (
     <div>
-      {textDataField("Name", "characterName")}
-      {dropdownDataField("Race", "race", arrayMap(RaceStrings))}
-      {dropdownDataField("Gender", "gender", arrayMap(GenderStrings))}
-      {dropdownDataField(
-        "Birth Kingdom",
-        "kingdomBirth",
-        arrayMap(KingdomStrings)
-      )}
-      {textDataField("Height in centimeters", "height")}
-      {textDataField("Weight in pounds", "weight")}
-      {textDataField(
-        personalData.characterName
-          ? +personalData.characterName + "'s profession"
-          : "Your character's profession",
-        "startingProfession"
-      )}
-      {dropdownDataField("Religion", "religion", arrayMap(ReligionStrings))}
-      {distinctiveFeatureDataField()}
-      {textDataField("Age", "age")}
-      {dropdownDataField(
-        "Kingdom Devotion",
-        "kingdomLoyalty",
-        arrayMap(KingdomStrings)
-      )}
+      {renderFields()}
       <div>
         <div>Set your character's starting Reputation</div>
-        {Object.keys(KingdomStrings).map((k) => (
-          <div key={k}>
-            <div>{KingdomStrings[k]}</div>
-            {startingLoyalty(KingdomStrings[k])}
+        {Object.keys(KingdomStrings).map((kingdom) => (
+          <div key={kingdom}>
+            <div>{KingdomStrings[kingdom]}</div>
+            {startingLoyalty(KingdomStrings[kingdom])}
           </div>
         ))}
         <Button

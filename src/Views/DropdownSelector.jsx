@@ -10,16 +10,11 @@ export default function DropdownSelector({
   setField,
   value,
 }) {
-  const label = () => {
-    if (value && typeof value === "string") {
-      return value;
-    }
+  const label =
+    value && typeof value === "string" ? value : `Select your ${name}`;
 
-    return "Select your " + name;
-  };
-
-  const handleSelect = (e) => {
-    setField(dataKey, e);
+  const handleSelect = (selectedValue) => {
+    setField(dataKey, selectedValue);
   };
 
   return (
@@ -27,7 +22,7 @@ export default function DropdownSelector({
       {name}
       <Dropdown onSelect={handleSelect}>
         <Dropdown.Toggle variant="success" id="dropdown-basic">
-          {label()}
+          {label}
         </Dropdown.Toggle>
         <Dropdown.Menu>
           {optionList?.map((option) => (

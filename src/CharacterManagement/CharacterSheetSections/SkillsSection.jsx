@@ -7,25 +7,23 @@ function SkillDetail({ skill, success, modifier }) {
   if (typeof success !== "number") {
     return (
       <>
-        {success.general !== undefined ? (
+        {success.general !== undefined && (
           <SkillDetail
             skill={skill}
             success={success.general}
             modifier={modifier}
           />
-        ) : null}
-        {Object.keys(success).map((specialty) => {
-          return (
-            specialty !== "general" && (
-              <SkillDetail
-                key={specialty}
-                skill={specialty}
-                success={success[specialty]}
-                modifier={modifier}
-              />
-            )
-          );
-        })}
+        )}
+        {Object.keys(success).map((specialty) =>
+          specialty !== "general" ? (
+            <SkillDetail
+              key={specialty}
+              skill={specialty}
+              success={success[specialty]}
+              modifier={modifier}
+            />
+          ) : null
+        )}
       </>
     );
   } else {

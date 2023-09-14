@@ -12,7 +12,15 @@ export default function SpecialtyInputAndCountUp({
   const [opened, setOpened] = useState(false);
   const [inputValue, setInputValue] = useState("");
 
-  const enterPressed = (event) => {
+  const specialtyChanged = (specialty, newNumber) => {
+    setSpecialty(primarySkill, specialty, newNumber);
+  };
+
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+  };
+
+  const handleInputKeyDown = (event) => {
     if (event.key === "Enter") {
       setSpecialty(primarySkill, event.target.value, 0);
       setOpened(false);
@@ -20,26 +28,26 @@ export default function SpecialtyInputAndCountUp({
     }
   };
 
-  const specialtyChanged = (specialty, newNumber) => {
-    setSpecialty(primarySkill, specialty, newNumber);
-  };
+  const renderSpecialties = () => {
+    return Object.keys(list).map((specialty) => {
+      if (specialty === "general") return null;
 
-  const countUpView = (
-    fieldName,
-    dataKey,
-    count,
-    plusDisabled,
-    minusDisabled
-  ) => (
-    <CountUp
-      fieldName={fieldName}
-      dataKey={dataKey}
-      count={count}
-      returnText={specialtyChanged}
-      plusDisabled={plusDisabled}
-      minusDisabled={minusDisabled}
-    />
-  );
+      const skillString = stringHash[specialty] || specialty;
+      const skillPoint = list[specialty];
+
+      return (
+        <CountUp
+          key={specialty}
+          fieldName={skillString}
+          dataKey={specialty}
+          count={skillPoint}
+          returnText={specialtyChanged}
+          plusDisabled={disabled(stringHash.name, skillPoint, "plus")}
+          minusDisabled={disabled(stringHash.name, skillPoint, "minus")}
+        />
+      );
+    });
+  };
 
   const characteristicWarning = () => {
     if (stringHash.name === "Literacy" || stringHash.name === "Language") {
@@ -69,27 +77,13 @@ export default function SpecialtyInputAndCountUp({
         <div>{stringHash.name + ": "}</div>
       )}
       {characteristicWarning()}
-      {Object.keys(list).map((specialty) => {
-        if (specialty === "general") return null;
-
-        const skillString = stringHash[specialty]
-          ? stringHash[specialty]
-          : specialty;
-        const skillPoint = list[specialty];
-        return countUpView(
-          skillString,
-          specialty,
-          skillPoint,
-          disabled(stringHash.name, skillPoint, "plus"),
-          disabled(stringHash.name, skillPoint, "minus")
-        );
-      })}
+      {renderSpecialties()}
       {opened ? (
         <input
           type="text"
           value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          onKeyDown={enterPressed}
+          onChange={handleInputChange}
+          onKeyDown={handleInputKeyDown}
         />
       ) : (
         <Button onClick={() => setOpened(true)}>New Specialty</Button>

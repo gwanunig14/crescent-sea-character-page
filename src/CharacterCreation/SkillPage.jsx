@@ -21,29 +21,9 @@ export default function SkillPage({
   maxSkillPoints,
   submitSkillData,
 }) {
-  let skills = character.skills;
-
-  if (skills === null) {
-    switch (character.personalDetails.race) {
-      case RaceStrings.dwarf:
-        skills = StarterDwarfSkills;
-        break;
-      case RaceStrings.elf:
-        skills = StarterDwarfSkills;
-        break;
-      default:
-        skills = StarterHumanSkills;
-        break;
-    }
-  }
-
-  skills.communication.language = setLanguageSpecialties();
-  skills.mental.gaming =
-    character.characteristics.intelligence + character.characteristics.power;
-  skills.mental.literacy = setLiteracySpecialties();
-  skills.combat.dodge = character.characteristics.dexterity * 2;
-
-  const [skillData, setSkillData] = useState(skills);
+  const [skillData, setSkillData] = useState(
+    character.skills || getDefaultSkills(character)
+  );
 
   function setSkill(key, stringData) {
     const group = findGroup(skillData, key);
@@ -59,36 +39,14 @@ export default function SkillPage({
     setSkillData(newSkillData);
   }
 
-  function setLanguageSpecialties() {
-    const languageSkills = skills.communication.language;
-    for (const l in languageSkills) {
-      languageSkills[l] =
-        (character.characteristics.intelligence /
-          character.characteristics.education) *
-        5;
+  function getDefaultSkills(character) {
+    switch (character.personalDetails.race) {
+      case RaceStrings.dwarf:
+      case RaceStrings.elf:
+        return StarterDwarfSkills;
+      default:
+        return StarterHumanSkills;
     }
-    return languageSkills;
-  }
-
-  function setLiteracySpecialties() {
-    const languageSkills = skills.communication.language;
-    const literacySkills = skills.mental.literacy;
-    for (const l in languageSkills) {
-      literacySkills[l] = languageSkills[l];
-    }
-    return literacySkills;
-  }
-
-  function findGroup(hash, targetItem) {
-    for (const k in hash) {
-      for (const ke in hash[k]) {
-        if (ke === targetItem) {
-          return k;
-        }
-      }
-    }
-
-    return null;
   }
 
   const getCount = () => {
@@ -140,13 +98,9 @@ export default function SkillPage({
     <div>
       <div>{sectionName}</div>
       <div>
-        {sectionName +
-          " skills will have " +
-          Math.floor(character.characteristics[modifier] / 2) +
-          " points added to them based on " +
-          character.personalDetails.characterName +
-          "'s " +
-          modifier}
+        {sectionName} skills will have{" "}
+        {Math.floor(character.characteristics[modifier] / 2)} points added to
+        them based on {character.personalDetails.characterName}'s {modifier}
       </div>
       {countUpLoop(stringHash, section)}
     </div>
@@ -167,6 +121,7 @@ export default function SkillPage({
       } else {
         return (
           <SpecialtyInputAndCountUp
+            key={skill}
             primarySkill={skill}
             stringHash={skillHash[skill]}
             list={skillData[skillGroup][skill]}
@@ -186,6 +141,7 @@ export default function SkillPage({
     minusDisabled
   ) => (
     <CountUp
+      key={dataKey}
       fieldName={fieldName}
       dataKey={dataKey}
       count={count}

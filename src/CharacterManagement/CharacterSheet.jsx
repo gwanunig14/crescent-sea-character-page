@@ -4,8 +4,9 @@ import CharacteristicsSection from "./CharacterSheetSections/CharacteristicsSect
 import CountUp from "../Views/CountUp";
 import SkillsSection from "./CharacterSheetSections/SkillsSection";
 
-function CharacterSheet(character) {
-  const { personalDetails, characteristics, skills } = character;
+function CharacterSheet({ character }) {
+  const { personalDetails, characteristics, skills, magicActivated } =
+    character;
 
   const maxHitPoints = characteristics.constitution + characteristics.size;
 
@@ -22,13 +23,11 @@ function CharacterSheet(character) {
   };
 
   const addToPostGameCheckList = (category, characteristicOrSkill) => {
-    let oldList = { ...postGameChecks };
-    if (!oldList[category]) {
-      oldList[category] = [characteristicOrSkill];
-    } else if (!oldList[category].includes(characteristicOrSkill)) {
-      oldList[category].push(characteristicOrSkill);
-    }
-    setPostGameChecks(oldList);
+    setPostGameChecks((oldList) => {
+      const newList = { ...oldList };
+      newList[category] = [...(newList[category] || []), characteristicOrSkill];
+      return newList;
+    });
   };
 
   return (
@@ -36,11 +35,14 @@ function CharacterSheet(character) {
       <div>{personalDetails.characterName}</div>
       <div>
         Personal
-        {PersonalDetailsSection(personalDetails)}
+        <PersonalDetailsSection {...personalDetails} />
       </div>
       <div>
         Characteristics
-        {CharacteristicsSection(characteristics, addToPostGameCheckList)}
+        <CharacteristicsSection
+          characteristics={characteristics}
+          addToPostGameCheckList={addToPostGameCheckList}
+        />
       </div>
       <div>
         <CountUp
@@ -51,47 +53,27 @@ function CharacterSheet(character) {
           minusDisabled={hitPoints === 0}
         />
       </div>
-      {character.magicActivated && (
-        <CountUp
-          fieldName={"Power Points"}
-          count={powerPoints}
-          returnText={adjustPowerPoints}
-          plusDisabled={powerPoints === characteristics.power}
-          minusDisabled={powerPoints === 0}
-        />
+      {magicActivated && (
+        <div>
+          <CountUp
+            fieldName={"Power Points"}
+            count={powerPoints}
+            returnText={adjustPowerPoints}
+            plusDisabled={powerPoints === characteristics.power}
+            minusDisabled={powerPoints === 0}
+          />
+        </div>
       )}
       <div>
         Skills
-        <SkillsSection
-          heading="communication"
-          modifier={Math.floor(characteristics.charisma / 2)}
-          skills={skills.communication}
-        />
-        <SkillsSection
-          heading="motorSkills"
-          modifier={Math.floor(characteristics.dexterity / 2)}
-          skills={skills.motorSkills}
-        />
-        <SkillsSection
-          heading="mental"
-          modifier={Math.floor(characteristics.intelligence / 2)}
-          skills={skills.mental}
-        />
-        <SkillsSection
-          heading="perception"
-          modifier={Math.floor(characteristics.power / 2)}
-          skills={skills.perception}
-        />
-        <SkillsSection
-          heading="physical"
-          modifier={Math.floor(characteristics.strength / 2)}
-          skills={skills.physical}
-        />
-        <SkillsSection
-          heading="combat"
-          modifier={Math.floor(characteristics.dexterity / 2)}
-          skills={skills.combat}
-        />
+        {Object.entries(skills).map(([heading, skill]) => (
+          <SkillsSection
+            key={heading}
+            heading={heading}
+            modifier={Math.floor(characteristics[heading] / 2)}
+            skills={skill}
+          />
+        ))}
       </div>
       <div>Weapons</div>
       <div>Armor</div>

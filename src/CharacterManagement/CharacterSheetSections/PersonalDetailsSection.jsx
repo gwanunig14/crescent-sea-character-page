@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   GenderStrings,
   KingdomStrings,
@@ -7,22 +7,34 @@ import {
   ReligionStrings,
 } from "../../Strings";
 
-function PersonalDetailsSection(personalData) {
+function PersonalDetailsSection({ personalData }) {
+  const {
+    race,
+    gender,
+    kingdomBirth,
+    height,
+    weight,
+    startingProfession,
+    wealth,
+    religion,
+    distinctiveFeatures,
+    age,
+  } = personalData;
+
   return (
     <div>
-      <div>{"Race: " + RaceStrings[personalData.race]}</div>
-      <div>{"Gender: " + GenderStrings[personalData.gender]}</div>
-      <div>{"Kingdom: " + KingdomStrings[personalData.kingdomBirth]}</div>
-      <div>{"Height: " + personalData.height}</div>
-      <div>{"Weight: " + personalData.weight}</div>
-      <div>{"Profession: " + personalData.startingProfession}</div>
-      <div>{"Wealth: " + WealthStrings[personalData.wealth]}</div>
-      <div>{"Religion: " + ReligionStrings[personalData.religion]}</div>
+      <div>{"Race: " + RaceStrings[race]}</div>
+      <div>{"Gender: " + GenderStrings[gender]}</div>
+      <div>{"Kingdom: " + KingdomStrings[kingdomBirth]}</div>
+      <div>{"Height: " + height}</div>
+      <div>{"Weight: " + weight}</div>
+      <div>{"Profession: " + startingProfession}</div>
+      <div>{"Wealth: " + WealthStrings[wealth]}</div>
+      <div>{"Religion: " + ReligionStrings[religion]}</div>
       <div>
-        {"Distinctive Features: " +
-          personalData.distinctiveFeatures.map((f) => f + ", ")}
+        {"Distinctive Features: " + distinctiveFeatures.map((f) => f + ", ")}
       </div>
-      <div>{"Age: " + personalData.age}</div>
+      <div>{"Age: " + age}</div>
     </div>
   );
 }

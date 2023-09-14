@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function TextInput({ name, dataKey, setField }) {
-  const enterPressed = (event) => {
+  const handleEnterPressed = (event) => {
     if (event.key === "Enter") {
       setField(dataKey, event.target.value);
     }
@@ -10,7 +10,7 @@ export default function TextInput({ name, dataKey, setField }) {
   return (
     <div>
       {name + ": "}
-      <input type="text" onKeyDown={enterPressed} />
+      <input type="text" onKeyDown={handleEnterPressed} />
     </div>
   );
 }

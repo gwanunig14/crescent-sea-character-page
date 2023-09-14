@@ -9,8 +9,8 @@ import CountUp from "../Views/CountUp";
 import { Button } from "react-bootstrap";
 
 export default function CharacteristicPage({ race, submitCharacteristicData }) {
+  // Initialize characteristics based on race
   let characteristics = newHumanCharacteristics;
-
   switch (race) {
     case Strings.DWARF:
       characteristics = newDwarfCharacteristics;
@@ -24,6 +24,7 @@ export default function CharacteristicPage({ race, submitCharacteristicData }) {
 
   const [characteristicData, setCharacteristicData] = useState(characteristics);
 
+  // Update the field in characteristicData
   function setField(key, stringData) {
     setCharacteristicData((prevState) => ({
       ...prevState,
@@ -31,97 +32,39 @@ export default function CharacteristicPage({ race, submitCharacteristicData }) {
     }));
   }
 
+  // Calculate remaining points
   const getCount = () => {
-    let statCount = 0;
-    Object.values(characteristicData).forEach((v) => {
-      statCount += v;
-    });
+    let statCount = Object.values(characteristicData).reduce(
+      (acc, v) => acc + v,
+      0
+    );
     return 108 - statCount;
   };
 
-  const disabled = (current, func, max) => {
+  // Check if a button should be disabled
+  const isDisabled = (current, func, max) => {
     if (func === "plus") {
-      if (getCount() === 0) {
-        return true;
-      } else if (max === current) {
-        return true;
-      }
+      return getCount() === 0 || current === max;
     } else {
-      if (current === 0) {
-        return true;
-      }
+      return current === 0;
     }
-
-    return false;
   };
 
   return (
     <div>
       <div>
-        <CountUp
-          fieldName="STR"
-          dataKey="strength"
-          count={characteristicData.strength}
-          returnText={setField}
-          plusDisabled={disabled(characteristicData.strength, "plus", 20)}
-          minusDisabled={disabled(characteristicData.strength, "minus")}
-        />
-        <CountUp
-          fieldName="CON"
-          dataKey="constitution"
-          count={characteristicData.constitution}
-          returnText={setField}
-          plusDisabled={disabled(characteristicData.constitution, "plus", 20)}
-          minusDisabled={disabled(characteristicData.constitution, "minus")}
-        />
-        <CountUp
-          fieldName="SIZ"
-          dataKey="size"
-          count={characteristicData.size}
-          returnText={setField}
-          plusDisabled={disabled(characteristicData.size, "plus", 20)}
-          minusDisabled={disabled(characteristicData.size, "minus")}
-        />
-        <CountUp
-          fieldName="INT"
-          dataKey="intelligence"
-          count={characteristicData.intelligence}
-          returnText={setField}
-          plusDisabled={disabled(characteristicData.intelligence, "plus", 20)}
-          minusDisabled={disabled(characteristicData.intelligence, "minus")}
-        />
-        <CountUp
-          fieldName="POW"
-          dataKey="power"
-          count={characteristicData.power}
-          returnText={setField}
-          plusDisabled={disabled(characteristicData.power, "plus", 200)}
-          minusDisabled={disabled(characteristicData.power, "minus")}
-        />
-        <CountUp
-          fieldName="DEX"
-          dataKey="dexterity"
-          count={characteristicData.dexterity}
-          returnText={setField}
-          plusDisabled={disabled(characteristicData.dexterity, "plus", 20)}
-          minusDisabled={disabled(characteristicData.dexterity, "minus")}
-        />
-        <CountUp
-          fieldName="CHA"
-          dataKey="charisma"
-          count={characteristicData.charisma}
-          returnText={setField}
-          plusDisabled={disabled(characteristicData.charisma, "plus", 20)}
-          minusDisabled={disabled(characteristicData.charisma, "minus")}
-        />
-        <CountUp
-          fieldName="EDU"
-          dataKey="education"
-          count={characteristicData.education}
-          returnText={setField}
-          plusDisabled={disabled(characteristicData.education, "plus", 20)}
-          minusDisabled={disabled(characteristicData.education, "minus")}
-        />
+        {/* Render CountUp components */}
+        {Object.keys(characteristicData).map((key) => (
+          <CountUp
+            key={key}
+            fieldName={key}
+            dataKey={key}
+            count={characteristicData[key]}
+            returnText={setField}
+            plusDisabled={isDisabled(characteristicData[key], "plus", 20)}
+            minusDisabled={isDisabled(characteristicData[key], "minus")}
+          />
+        ))}
       </div>
       <div>{getCount()}</div>
       {getCount() === 0 && (

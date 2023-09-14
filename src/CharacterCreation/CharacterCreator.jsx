@@ -28,15 +28,16 @@ function CharacterCreator() {
     weapons: {},
     armor: {},
   });
+
   const [page, setPage] = useState(2);
 
-  const setCharacterData = (pageData, step, func) => {
+  const setCharacterData = (data, pageNumber, navigationAction) => {
     setCharacter((prevState) => ({
       ...prevState,
-      [step]: pageData,
+      [pageNumber]: data,
     }));
 
-    if (func === "plus") {
+    if (navigationAction === "plus") {
       setPage(page + 1);
     } else {
       setPage(page - 1);
@@ -47,7 +48,7 @@ function CharacterCreator() {
     case 0:
       return <PersonalPage submitPersonalData={setCharacterData} />;
     case 1:
-      var race = character.personalDetails?.race;
+      const race = character.personalDetails?.race;
       return (
         <CharacteristicPage
           race={race}

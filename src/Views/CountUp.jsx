@@ -9,8 +9,8 @@ export default function CountUp({
   plusDisabled,
   minusDisabled,
 }) {
-  const pressed = (func) => {
-    var newNumber = func === "plus" ? count + 1 : count - 1;
+  const handleButtonPress = (func) => {
+    const newNumber = func === "plus" ? count + 1 : count - 1;
     returnText(dataKey, newNumber);
   };
 
@@ -18,9 +18,7 @@ export default function CountUp({
     if (fieldName === "Dodge" || fieldName === "Gaming") {
       return (
         <div>
-          {"Starting " +
-            fieldName +
-            " skill is based on characteristics and can't be altered directly."}
+          {`Starting ${fieldName} skill is based on characteristics and can't be altered directly.`}
         </div>
       );
     }
@@ -29,15 +27,21 @@ export default function CountUp({
 
   return (
     <div>
-      {fieldName + ": " + count}
+      {`${fieldName}: ${count}`}
       {characteristicWarning()}
       {!minusDisabled && (
-        <Button disabled={minusDisabled} onClick={() => pressed("minus")}>
+        <Button
+          disabled={minusDisabled}
+          onClick={() => handleButtonPress("minus")}
+        >
           -
         </Button>
       )}
       {!plusDisabled && (
-        <Button disabled={plusDisabled} onClick={() => pressed("plus")}>
+        <Button
+          disabled={plusDisabled}
+          onClick={() => handleButtonPress("plus")}
+        >
           +
         </Button>
       )}
