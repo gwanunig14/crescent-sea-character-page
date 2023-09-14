@@ -1,6 +1,6 @@
 // src/store/store.js
 import { configureStore } from "@reduxjs/toolkit";
-import characterReducer from "./reducers"; // Create your reducers in this file
+import characterReducer from "../reducers/characterReducer"; // Create your reducers in this file
 
 const store = configureStore({
   reducer: {

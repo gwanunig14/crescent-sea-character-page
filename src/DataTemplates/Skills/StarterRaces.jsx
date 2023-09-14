@@ -54,23 +54,3 @@ export const StarterHumanSkills = {
   perception: startingHumanPerception,
   physical: startingHumanPhysical,
 };
-
-export const TestingCharacter = {
-  personalDetails: {
-    characterName: "Paul",
-    race: "elf",
-    gender: "male",
-    kingdomBirth: "drishma",
-    height: 120,
-    weight: 10,
-    startingProfession: "Blacksmith",
-    wealth: "average",
-    religion: "theTwelve",
-    distinctiveFeatures: ["Face scar"],
-    age: 19,
-    kingdomLoyalty: "independent",
-  },
-  characteristics: newHumanCharacteristics,
-  skills: StarterHumanSkills,
-  magicActivated: true,
-};
