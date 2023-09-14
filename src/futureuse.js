@@ -15,3 +15,6 @@
 // }
 
 // export default YourComponent;
+
+
+// To add characters to the Redux store, you can use the useDispatch hook from react-redux to dispatch actions. Import your action creators and dispatch them when needed.
