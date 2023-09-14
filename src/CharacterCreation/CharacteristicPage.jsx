@@ -13,11 +13,12 @@ export default function CharacteristicPage({ submitCharacteristicData }) {
   // Initialize characteristics based on race
   const character = useSelector((state) => state.currentCharacter);
   let characteristics = newHumanCharacteristics;
+
   switch (character.personalDetails.race) {
-    case Strings.DWARF:
+    case "dwarf":
       characteristics = newDwarfCharacteristics;
       break;
-    case Strings.ELF:
+    case "elf":
       characteristics = newElfCharacteristics;
       break;
     default:
@@ -73,7 +74,7 @@ export default function CharacteristicPage({ submitCharacteristicData }) {
         onClick={() =>
           submitCharacteristicData(
             characteristicData,
-            "personalDetails",
+            "characteristics",
             "minus"
           )
         }

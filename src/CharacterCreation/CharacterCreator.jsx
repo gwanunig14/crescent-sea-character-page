@@ -38,12 +38,9 @@ function CharacterCreator() {
   const [page, setPage] = useState(0);
 
   const setCharacterData = (data, section, navigationAction) => {
-    dispatch(
-      setCurrentCharacter({
-        ...character,
-        [section]: data,
-      })
-    );
+    let newCharacterData = { ...character };
+    newCharacterData[section] = data;
+    dispatch(setCurrentCharacter(newCharacterData));
 
     if (navigationAction === "plus") {
       setPage(page + 1);

@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 
-export default function TextInput({ name, dataKey, setField }) {
-  const handleEnterPressed = (event) => {
+export default function TextInput({ name, dataKey, value, setField }) {
+  const [inputValue, setInputValue] = useState(value);
+
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+  };
+
+  const handleInputKeyDown = (event) => {
     if (event.key === "Enter" || event.key === "Tab") {
       setField(dataKey, event.target.value);
     }
@@ -10,7 +16,12 @@ export default function TextInput({ name, dataKey, setField }) {
   return (
     <div>
       {name + ": "}
-      <input type="text" onKeyDown={handleEnterPressed} />
+      <input
+        type="text"
+        value={inputValue}
+        onChange={handleInputChange}
+        onKeyDown={handleInputKeyDown}
+      />
     </div>
   );
 }

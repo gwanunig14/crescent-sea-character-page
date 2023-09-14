@@ -18,7 +18,7 @@ export const KingdomStrings = {
   hobantho: "Hobantho",
   crillatha: "Crillatha",
   virensa: "Virensa",
-  pirate: "Pirate",
+  pirates: "Pirates",
   independent: "Independent",
 };
 

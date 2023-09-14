@@ -20,9 +20,17 @@ export default function PersonalPage({ submitPersonalData }) {
     setPersonalData(newPD);
   };
 
-  const textDataField = (name, dataKey) => (
-    <TextInput name={name} dataKey={dataKey} setField={setField} />
-  );
+  const textDataField = (name, dataKey) => {
+    const value = personalData[dataKey] ? personalData[dataKey] : "";
+    return (
+      <TextInput
+        name={name}
+        dataKey={dataKey}
+        value={value}
+        setField={setField}
+      />
+    );
+  };
 
   const dropdownDataField = (name, dataKey, optionList) => (
     <DropdownSelector
@@ -45,28 +53,31 @@ export default function PersonalPage({ submitPersonalData }) {
     />
   );
 
-  const startingLoyalty = (kingdom) => (
-    <DropdownSelector
-      name="reputation"
-      dataKey="kingdomReputations"
-      optionList={{
-        friendly: "Friendly",
-        none: "None",
-        aware: "Aware",
-        dislike: "Dislike",
-      }}
-      setField={(key, stringData) => {
-        setPersonalData((prevState) => ({
-          ...prevState,
-          kingdomReputations: {
-            ...prevState.kingdomReputations,
-            [kingdom]: stringData,
-          },
-        }));
-      }}
-      value={"none"}
-    />
-  );
+  const startingLoyalty = (kingdom) => {
+    return (
+      <DropdownSelector
+        name="reputation"
+        dataKey="kingdomReputations"
+        optionList={{
+          friendly: "Friendly",
+          none: "None",
+          aware: "Aware",
+          dislike: "Dislike",
+        }}
+        setField={(key, stringData) => {
+          let newPD = {
+            ...personalData,
+            kingdomReputations: {
+              ...personalData.kingdomReputations,
+            },
+          };
+          newPD.kingdomReputations[kingdom] = stringData;
+          setPersonalData(newPD);
+        }}
+        value={personalData.kingdomReputations[kingdom]}
+      />
+    );
+  };
 
   const renderFields = () => {
     const fieldArray = [
@@ -99,16 +110,9 @@ export default function PersonalPage({ submitPersonalData }) {
         {Object.keys(KingdomStrings).map((kingdom) => (
           <div key={kingdom}>
             <div>{KingdomStrings[kingdom]}</div>
-            {startingLoyalty(KingdomStrings[kingdom])}
+            {startingLoyalty(kingdom)}
           </div>
         ))}
-        <Button
-          onClick={() =>
-            submitPersonalData(personalData, "personalDetails", "minus")
-          }
-        >
-          Back
-        </Button>
         {!Object.values(personalData).includes("") && (
           <Button
             onClick={() =>

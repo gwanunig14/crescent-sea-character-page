@@ -30,10 +30,16 @@ export default function SkillPage({ maxSkillPoints, submitSkillData }) {
     setSkillData(newSkillData);
   }
 
-  function setSpecialty(skillKey, specialtyKey, stringData) {
+  function setSpecialty(skillKey, specialtyKey, specialtyValue) {
     const group = findGroup(skillData, skillKey);
-    const newSkillData = { ...skillData };
-    newSkillData[group][skillKey][specialtyKey] = Number(stringData);
+    let newSkillData = {
+      ...skillData,
+      [group]: {
+        ...skillData[group],
+        [skillKey]: { ...skillData[group][skillKey] },
+      },
+    };
+    newSkillData[group][skillKey][specialtyKey] = specialtyValue;
     setSkillData(newSkillData);
   }
 
@@ -126,7 +132,7 @@ export default function SkillPage({ maxSkillPoints, submitSkillData }) {
           disabled(skillPoint, "plus"),
           disabled(skillPoint, "minus")
         );
-      } else {
+      } else if (skill !== "name") {
         return (
           <SpecialtyInputAndCountUp
             key={skill}
@@ -137,7 +143,7 @@ export default function SkillPage({ maxSkillPoints, submitSkillData }) {
             disabled={disabled}
           />
         );
-      }
+      } else return null;
     });
   };
 
