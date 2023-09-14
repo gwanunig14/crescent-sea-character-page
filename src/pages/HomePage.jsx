@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setCurrentCharacter } from "../reducers/currentCharacterReducer";
 import Button from "react-bootstrap/Button";
+import { newCharacterPersonalDetails } from "../DataTemplates/PersonalData";
 
 function HomePage() {
   const characters = useSelector((state) => state.characters);
@@ -16,6 +17,20 @@ function HomePage() {
     navigate("/character-sheet");
   };
 
+  const createNewCharacter = () => {
+    dispatch(
+      setCurrentCharacter({
+        personalDetails: newCharacterPersonalDetails,
+        characteristics: null,
+        skills: null,
+        weapons: {},
+        armor: {},
+        magicActivated: false,
+      })
+    );
+    navigate("/character-creator");
+  };
+
   return (
     <div>
       <h1>{`${player}'s Home Page`}</h1>
@@ -24,7 +39,7 @@ function HomePage() {
           {character.personalDetails.characterName}
         </Button>
       ))}
-      <Button>Create New Character</Button>
+      <Button onClick={createNewCharacter}>Create New Character</Button>
     </div>
   );
 }

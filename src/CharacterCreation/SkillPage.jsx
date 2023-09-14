@@ -15,12 +15,10 @@ import {
   StarterHumanSkills,
 } from "../DataTemplates/Skills/StarterRaces";
 import SpecialtyInputAndCountUp from "../Views/SpecialtyInputAndCountUp";
+import { useSelector } from "react-redux";
 
-export default function SkillPage({
-  character,
-  maxSkillPoints,
-  submitSkillData,
-}) {
+export default function SkillPage({ maxSkillPoints, submitSkillData }) {
+  const character = useSelector((state) => state.currentCharacter);
   const [skillData, setSkillData] = useState(
     character.skills || getDefaultSkills(character)
   );
@@ -37,6 +35,16 @@ export default function SkillPage({
     const newSkillData = { ...skillData };
     newSkillData[group][skillKey][specialtyKey] = Number(stringData);
     setSkillData(newSkillData);
+  }
+
+  function findGroup(hash, targetItem) {
+    for (const k in hash) {
+      for (const ke in hash[k]) {
+        if (ke === targetItem) {
+          return k;
+        }
+      }
+    }
   }
 
   function getDefaultSkills(character) {

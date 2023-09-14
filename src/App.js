@@ -3,12 +3,10 @@ import React from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"; // Import Routes from react-router-dom
 import store from "./store/store";
-import { Button } from "react-bootstrap";
 import CharacterSheet from "./CharacterManagement/CharacterSheet";
 import LoginPage from "./pages/LoginPage";
-import ExistingCharacterPage from "./pages/ExistingCharacterPage";
-import AddCharacterPage from "./pages/AddCharacterPage";
 import HomePage from "./pages/HomePage";
+import CharacterCreator from "./CharacterCreation/CharacterCreator";
 
 function App() {
   return (
@@ -20,12 +18,11 @@ function App() {
             <Route path="/" element={<LoginPage />} />
             <Route path="/home-page" element={<HomePage />} />
             <Route path="/character-sheet" element={<CharacterSheet />} />
-            <Route path="/add-character" element={<AddCharacterPage />}>
-              <Route path="personal" />
-              <Route path="characteristic" />
-              <Route path="skill" />
-              <Route path="finalize" />
-            </Route>
+            <Route path="/character-creator" element={<CharacterCreator />} />
+            <Route path="/personal" />
+            <Route path="/characteristic" />
+            <Route path="/skill" />
+            <Route path="/finalize" />
           </Routes>
         </Router>
       </div>

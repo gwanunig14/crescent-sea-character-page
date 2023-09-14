@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { newCharacterPersonalDetails } from "../DataTemplates/PersonalData";
 import TextInput from "../Views/TextInput";
 import DropdownSelector from "../Views/DropdownSelector";
 import {
@@ -9,15 +8,16 @@ import {
   ReligionStrings,
 } from "../Strings";
 import { Button } from "react-bootstrap";
+import { useSelector } from "react-redux";
 
 export default function PersonalPage({ submitPersonalData }) {
-  const [personalData, setPersonalData] = useState(newCharacterPersonalDetails);
+  const character = useSelector((state) => state.currentCharacter);
+  const [personalData, setPersonalData] = useState(character.personalDetails);
 
   const setField = (key, stringData) => {
-    setPersonalData((prevState) => ({
-      ...prevState,
-      [key]: stringData,
-    }));
+    let newPD = { ...personalData };
+    newPD[key] = stringData;
+    setPersonalData(newPD);
   };
 
   const textDataField = (name, dataKey) => (
@@ -49,7 +49,12 @@ export default function PersonalPage({ submitPersonalData }) {
     <DropdownSelector
       name="reputation"
       dataKey="kingdomReputations"
-      optionList={["friendly", "none", "aware", "dislike"]}
+      optionList={{
+        friendly: "Friendly",
+        none: "None",
+        aware: "Aware",
+        dislike: "Dislike",
+      }}
       setField={(key, stringData) => {
         setPersonalData((prevState) => ({
           ...prevState,
@@ -59,7 +64,7 @@ export default function PersonalPage({ submitPersonalData }) {
           },
         }));
       }}
-      value={personalData.kingdomReputations[kingdom]}
+      value={"None"}
     />
   );
 
@@ -97,13 +102,15 @@ export default function PersonalPage({ submitPersonalData }) {
             {startingLoyalty(KingdomStrings[kingdom])}
           </div>
         ))}
-        <Button
-          onClick={() =>
-            submitPersonalData(personalData, "personalDetails", "plus")
-          }
-        >
-          Next
-        </Button>
+        {!Object.values(personalData).includes("") && (
+          <Button
+            onClick={() =>
+              submitPersonalData(personalData, "personalDetails", "plus")
+            }
+          >
+            Next
+          </Button>
+        )}
         <Button
           onClick={() =>
             submitPersonalData(personalData, "personalDetails", "minus")

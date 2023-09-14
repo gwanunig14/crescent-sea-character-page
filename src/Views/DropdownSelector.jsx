@@ -11,7 +11,9 @@ export default function DropdownSelector({
   value,
 }) {
   const label =
-    value && typeof value === "string" ? value : `Select your ${name}`;
+    value && typeof value === "string"
+      ? optionList[value]
+      : `Select your ${name}`;
 
   const handleSelect = (selectedValue) => {
     setField(dataKey, selectedValue);
@@ -25,9 +27,9 @@ export default function DropdownSelector({
           {label}
         </Dropdown.Toggle>
         <Dropdown.Menu>
-          {optionList?.map((option) => (
+          {Object.keys(optionList)?.map((option) => (
             <Dropdown.Item eventKey={option} key={option}>
-              {option}
+              {optionList[option]}
             </Dropdown.Item>
           ))}
         </Dropdown.Menu>

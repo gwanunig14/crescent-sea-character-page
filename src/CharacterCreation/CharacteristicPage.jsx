@@ -7,11 +7,13 @@ import {
 } from "../DataTemplates/Characteristics";
 import CountUp from "../Views/CountUp";
 import { Button } from "react-bootstrap";
+import { useSelector } from "react-redux";
 
-export default function CharacteristicPage({ race, submitCharacteristicData }) {
+export default function CharacteristicPage({ submitCharacteristicData }) {
   // Initialize characteristics based on race
+  const character = useSelector((state) => state.currentCharacter);
   let characteristics = newHumanCharacteristics;
-  switch (race) {
+  switch (character.personalDetails.race) {
     case Strings.DWARF:
       characteristics = newDwarfCharacteristics;
       break;

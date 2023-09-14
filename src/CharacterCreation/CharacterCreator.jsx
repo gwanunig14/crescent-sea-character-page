@@ -2,8 +2,14 @@ import React, { useState } from "react";
 import PersonalPage from "./PersonalPage";
 import CharacteristicPage from "./CharacteristicPage";
 import SkillPage from "./SkillPage";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { setCurrentCharacter } from "../reducers/currentCharacterReducer";
 
 function CharacterCreator() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const character = useSelector((state) => state.currentCharacter);
   // const [character, setCharacter] = useState({
   //   personalDetails: null,
   //   characteristics: null,
@@ -13,29 +19,31 @@ function CharacterCreator() {
   //   magicActivated: false,
   // });
 
-  const [character, setCharacter] = useState({
-    personalDetails: { characterName: "Allen", race: "dwarf" },
-    characteristics: {
-      charisma: 13,
-      dexterity: 10,
-      strength: 10,
-      constitution: 10,
-      intelligence: 10,
-      power: 10,
-      education: 10,
-    },
-    skills: null,
-    weapons: {},
-    armor: {},
-  });
+  // const [character, setCharacter] = useState({
+  //   personalDetails: { characterName: "Allen", race: "dwarf" },
+  //   characteristics: {
+  //     charisma: 13,
+  //     dexterity: 10,
+  //     strength: 10,
+  //     constitution: 10,
+  //     intelligence: 10,
+  //     power: 10,
+  //     education: 10,
+  //   },
+  //   skills: null,
+  //   weapons: {},
+  //   armor: {},
+  // });
 
-  const [page, setPage] = useState(2);
+  const [page, setPage] = useState(0);
 
-  const setCharacterData = (data, pageNumber, navigationAction) => {
-    setCharacter((prevState) => ({
-      ...prevState,
-      [pageNumber]: data,
-    }));
+  const setCharacterData = (data, section, navigationAction) => {
+    dispatch(
+      setCurrentCharacter({
+        ...character,
+        [section]: data,
+      })
+    );
 
     if (navigationAction === "plus") {
       setPage(page + 1);
