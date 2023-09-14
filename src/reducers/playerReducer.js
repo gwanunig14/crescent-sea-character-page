@@ -2,7 +2,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  players: ["James", "Rachela"], // Initial state for players
+  players: ["James", "Racheal"], // Initial state for players
 };
 
 const playerSlice = createSlice({

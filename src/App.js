@@ -8,6 +8,7 @@ import CharacterSheet from "./CharacterManagement/CharacterSheet";
 import LoginPage from "./pages/LoginPage";
 import ExistingCharacterPage from "./pages/ExistingCharacterPage";
 import AddCharacterPage from "./pages/AddCharacterPage";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
           {/* Use Routes to define your routes */}
           <Routes>
             <Route path="/" element={<LoginPage />} />
-            <Route path="/home-page" />
+            <Route path="/home-page" element={<HomePage />} />
             <Route
               path="/existing-character"
               element={<ExistingCharacterPage />}
