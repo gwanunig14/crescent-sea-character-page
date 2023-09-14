@@ -1,6 +1,7 @@
 import './App.css';
 import React from 'react';
-import CharacterCreator from './CharacterCreation/CharacterCreator';
+import { Provider } from "react-redux";
+import store from "./store/store";
 import { Button } from 'react-bootstrap';
 import CharacterSheet from './CharacterManagement/CharacterSheet';
 import { TestingCharacter } from './DataTemplates/Skills/StarterRaces';
@@ -8,14 +9,14 @@ import { TestingCharacter } from './DataTemplates/Skills/StarterRaces';
 function App() {
 const character = TestingCharacter
   return (
-    <div className="App">
-      <header className="App-header">
+    <Provider store={store}>
+      <div className="App">
         <Button>
           Create New Character +
         </Button>
         {CharacterSheet(character)}
-      </header>
-    </div>
+      </div>
+    </Provider>
   );
 }
 
