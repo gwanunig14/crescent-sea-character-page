@@ -44,22 +44,22 @@ function SkillDetail({
     success = success - drinks;
     modifiedSuccess = success + modifier < 100 ? success + modifier : 100;
     return (
-      <div>
-        <div>
+      <tr>
+        <td style={{ textAlign: "left" }}>
           {typeof SkillStrings[grouping][skill] === "string"
             ? SkillStrings[grouping][skill]
             : SkillStrings[grouping][skill].name}
-        </div>
-        <div>{"success " + modifiedSuccess}</div>
-        <div>{"special success " + Math.ceil(modifiedSuccess / 5)}</div>
-        <div>{"critical " + Math.ceil(modifiedSuccess / 20)}</div>
-        <div>
-          {"failure " + (100 - Math.ceil((100 - modifiedSuccess) / 20))}
-        </div>
-        {!confirmation && (
-          <Button onClick={() => successfulTest(skill)}>Successful Test</Button>
-        )}
-      </div>
+        </td>
+        <td>{modifiedSuccess}</td>
+        <td>{Math.ceil(modifiedSuccess / 5)}</td>
+        <td>{Math.ceil(modifiedSuccess / 20)}</td>
+        <td>{100 - Math.ceil((100 - modifiedSuccess) / 20)}</td>
+        <td>
+          {!confirmation && (
+            <Button onClick={() => successfulTest(skill)}>Success</Button>
+          )}
+        </td>
+      </tr>
     );
   }
 }
@@ -72,31 +72,39 @@ function SkillsSection({
   drinks,
   confirmation,
 }) {
-  debugger;
   return (
-    <div>
-      <div>
-        <div>{SkillStrings[heading].name}</div>
-        <div>{"success " + modifier}</div>
-        <div>{"special success " + Math.ceil(modifier / 5)}</div>
-        <div>{"critical " + Math.ceil(modifier / 20)}</div>
-        <div>{"failure " + (100 - Math.ceil((100 - modifier) / 20))}</div>
-      </div>
-      {Object.keys(skills).map((skill) =>
-        skill === "modifier" ? null : (
-          <SkillDetail
-            grouping={heading}
-            key={skill}
-            skill={skill}
-            success={skills[skill]}
-            modifier={modifier}
-            postGameCheck={postGameCheck}
-            drinks={drinks * 5}
-            confirmation={confirmation}
-          />
-        )
-      )}
-    </div>
+    <table>
+      <tbody>
+        <tr>
+          <td style={{ textAlign: "left" }}>Name</td>
+          <td>S</td>
+          <td>SS</td>
+          <td>Cr</td>
+          <td>F</td>
+        </tr>
+        <tr>
+          <td style={{ textAlign: "left" }}>{SkillStrings[heading].name}</td>
+          <td>{modifier}</td>
+          <td>{Math.ceil(modifier / 5)}</td>
+          <td>{Math.ceil(modifier / 20)}</td>
+          <td>{100 - Math.ceil((100 - modifier) / 20)}</td>
+        </tr>
+        {Object.keys(skills).map((skill) =>
+          skill === "modifier" ? null : (
+            <SkillDetail
+              grouping={heading}
+              key={skill}
+              skill={skill}
+              success={skills[skill]}
+              modifier={modifier}
+              postGameCheck={postGameCheck}
+              drinks={drinks * 5}
+              confirmation={confirmation}
+            />
+          )
+        )}
+      </tbody>
+    </table>
   );
 }
 

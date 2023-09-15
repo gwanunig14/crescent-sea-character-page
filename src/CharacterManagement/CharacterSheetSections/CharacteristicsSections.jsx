@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
+import { characterSheetStyleNames } from "../../Tools/StyleNames";
 
 function CharacteristicsSection({
   characteristics,
@@ -34,36 +35,41 @@ function CharacteristicsSection({
     return result ? result.value : "-1D6";
   };
 
-  const renderCharacteristic = (name, statName) => (
-    <div>
-      <div>{`${name}: ${characteristics[statName] - drinks}`}</div>
-      <div>{`${name} Roll ${calculateEffortRoll(
+  const renderCharacteristic = (name, statName, rollType) => (
+    <tr>
+      <td>{name}</td>
+      <td>{characteristics[statName] - drinks}</td>
+      <td>{`${rollType} Roll ${calculateEffortRoll(
         statName === "size"
           ? characteristics[statName]
           : characteristics[statName] - drinks
-      )}%`}</div>
-      {!confirmation && (
-        <Button onClick={() => successfulTest(statName)}>
-          Successful Test
-        </Button>
-      )}
-    </div>
+      )}%`}</td>
+      <td>
+        {!confirmation && (
+          <Button onClick={() => successfulTest(statName)}>success</Button>
+        )}
+      </td>
+    </tr>
   );
 
   return (
-    <div>
-      {renderCharacteristic("STR", "strength")}
-      {renderCharacteristic("CON", "constitution")}
-      <div>
-        <div>{`SIZ: ${characteristics.size}`}</div>
-        <div>{`DMG Mod ${damageModifier()}`}</div>
-      </div>
-      {renderCharacteristic("INT", "intelligence")}
-      {renderCharacteristic("POW", "power")}
-      {renderCharacteristic("DEX", "dexterity")}
-      {renderCharacteristic("CHA", "charisma")}
-      {renderCharacteristic("EDU", "education")}
-    </div>
+    <table style={{ width: "100%" }}>
+      <tbody>
+        {renderCharacteristic("STR", "strength", "Effort")}
+        {renderCharacteristic("CON", "constitution", "Stamina")}
+        <tr>
+          <td colSpan={1}>SIZ</td>
+          <td>{characteristics.size}</td>
+          <td>Damage Modifier</td>
+          <td>{damageModifier()}</td>
+        </tr>
+        {renderCharacteristic("INT", "intelligence", "Idea")}
+        {renderCharacteristic("POW", "power", "Luck")}
+        {renderCharacteristic("DEX", "dexterity", "Agility")}
+        {renderCharacteristic("CHA", "charisma", "Charm")}
+        {renderCharacteristic("EDU", "education", "Knowledge")}
+      </tbody>
+    </table>
   );
 }
 

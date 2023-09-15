@@ -1,0 +1,49 @@
+.characterHeader {
+  display: flex;
+  width: 100%;
+}
+
+.characterName {
+  font-size: 48px;
+  width: 100%;
+}
+
+.endSessionButton {
+  font-size: 12px !important;
+  height: 45px;
+  margin: 10px 10px 0 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100px;
+}
+
+.sectionTopRow {
+  display: flex;
+  width: 100%;
+}
+
+.sectionTitle {
+  font-size: 24px;
+}
+
+.sectionBox {
+  border: 4px solid black;
+  text-align: left;
+}
+
+.personalTableRow {
+  border-top: 1px solid black;
+}
+
+.personalTableRowDivider {
+  border-right: 1px solid black;
+}
+
+.characteristic {
+  display: flex;
+}
+
+.skillCategoryRow {
+  vertical-align: top;
+}

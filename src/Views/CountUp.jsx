@@ -28,25 +28,34 @@ export default function CountUp({
   };
 
   return (
-    <div>
-      {`${fieldName}: ${count}`}
-      {characteristicWarning()}
-      {!minusDisabled && !confirmation && (
-        <Button
-          disabled={minusDisabled}
-          onClick={() => handleButtonPress("minus")}
-        >
-          -
-        </Button>
-      )}
-      {!plusDisabled && !confirmation && (
-        <Button
-          disabled={plusDisabled}
-          onClick={() => handleButtonPress("plus")}
-        >
-          +
-        </Button>
-      )}
-    </div>
+    <table style={{ width: "100%" }}>
+      <tbody>
+        <tr>
+          <td style={{ width: "100px" }}>{`${fieldName}:`}</td>
+          <td style={{ width: "30px", textAlign: "right" }}>{count}</td>
+          <td>{characteristicWarning()}</td>
+          <td>
+            {!minusDisabled && !confirmation && (
+              <Button
+                disabled={minusDisabled}
+                onClick={() => handleButtonPress("minus")}
+              >
+                -
+              </Button>
+            )}
+          </td>
+          <td>
+            {!plusDisabled && !confirmation && (
+              <Button
+                disabled={plusDisabled}
+                onClick={() => handleButtonPress("plus")}
+              >
+                +
+              </Button>
+            )}
+          </td>
+        </tr>
+      </tbody>
+    </table>
   );
 }
