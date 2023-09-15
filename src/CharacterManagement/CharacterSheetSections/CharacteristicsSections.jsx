@@ -1,7 +1,12 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 
-function CharacteristicsSection({ characteristics, postGameCheck, drinks }) {
+function CharacteristicsSection({
+  characteristics,
+  postGameCheck,
+  drinks,
+  confirmation,
+}) {
   const calculateEffortRoll = (stat) => stat * 5;
   const successfulTest = (characteristic) =>
     postGameCheck("characteristics", characteristic);
@@ -38,7 +43,11 @@ function CharacteristicsSection({ characteristics, postGameCheck, drinks }) {
           ? characteristics[statName]
           : characteristics[statName] - drinks
       )}%`}</div>
-      <Button onClick={() => successfulTest(statName)}>Successful Test</Button>
+      {!confirmation && (
+        <Button onClick={() => successfulTest(statName)}>
+          Successful Test
+        </Button>
+      )}
     </div>
   );
 

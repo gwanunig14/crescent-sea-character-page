@@ -8,6 +8,7 @@ export default function CountUp({
   returnText,
   plusDisabled,
   minusDisabled,
+  confirmation,
 }) {
   const handleButtonPress = (func) => {
     const newNumber = func === "plus" ? count + 1 : count - 1;
@@ -29,7 +30,7 @@ export default function CountUp({
     <div>
       {`${fieldName}: ${count}`}
       {characteristicWarning()}
-      {!minusDisabled && (
+      {!minusDisabled && !confirmation && (
         <Button
           disabled={minusDisabled}
           onClick={() => handleButtonPress("minus")}
@@ -37,7 +38,7 @@ export default function CountUp({
           -
         </Button>
       )}
-      {!plusDisabled && (
+      {!plusDisabled && !confirmation && (
         <Button
           disabled={plusDisabled}
           onClick={() => handleButtonPress("plus")}

@@ -12,6 +12,7 @@ import CountUp from "../Views/CountUp";
 import Button from "react-bootstrap/Button";
 import {
   StarterDwarfSkills,
+  StarterElfSkills,
   StarterHumanSkills,
 } from "../DataTemplates/Skills/StarterRaces";
 import SpecialtyInputAndCountUp from "../Views/SpecialtyInputAndCountUp";
@@ -23,10 +24,18 @@ export default function SkillPage({ maxSkillPoints, submitSkillData }) {
     character.skills || getDefaultSkills(character)
   );
 
-  function setSkill(key, stringData) {
+  function setSkill(key, skillValue) {
     const group = findGroup(skillData, key);
-    const newSkillData = { ...skillData };
-    newSkillData[group][key] = Number(stringData);
+    let newSkillData = { ...skillData };
+    if (typeof skillData[group][key] === "number") {
+      newSkillData[group] = { ...newSkillData[group] };
+      newSkillData[group][key] = Number(skillValue);
+    } else {
+      newSkillData[group] = {
+        ...newSkillData[group],
+        [key]: { ...newSkillData[group][key], general: Number(skillValue) },
+      };
+    }
     setSkillData(newSkillData);
   }
 
@@ -55,9 +64,10 @@ export default function SkillPage({ maxSkillPoints, submitSkillData }) {
 
   function getDefaultSkills(character) {
     switch (character.personalDetails.race) {
-      case RaceStrings.dwarf:
-      case RaceStrings.elf:
+      case "dwarf":
         return StarterDwarfSkills;
+      case "elf":
+        return StarterElfSkills;
       default:
         return StarterHumanSkills;
     }
@@ -75,7 +85,7 @@ export default function SkillPage({ maxSkillPoints, submitSkillData }) {
         )
           if (typeof va === "number") {
             statCount += va;
-          } else {
+          } else if (typeof va !== "string") {
             Object.values(va).forEach((val) => {
               statCount += val;
             });
@@ -129,8 +139,8 @@ export default function SkillPage({ maxSkillPoints, submitSkillData }) {
           skillString,
           skill,
           skillPoint,
-          disabled(skillPoint, "plus"),
-          disabled(skillPoint, "minus")
+          disabled(skill, skillPoint, "plus"),
+          disabled(skill, skillPoint, "minus")
         );
       } else if (skill !== "name") {
         return (
@@ -139,6 +149,7 @@ export default function SkillPage({ maxSkillPoints, submitSkillData }) {
             primarySkill={skill}
             stringHash={skillHash[skill]}
             list={skillData[skillGroup][skill]}
+            setSkill={setSkill}
             setSpecialty={setSpecialty}
             disabled={disabled}
           />
@@ -184,13 +195,11 @@ export default function SkillPage({ maxSkillPoints, submitSkillData }) {
       {skillSection("Physical", "physical", "strength", PhysicalStrings)}
       {skillSection("Combat", "combat", "dexterity", CombatStrings)}
       <div>{getCount()}</div>
-      <Button
-        onClick={() => submitSkillData(skillData, "personalDetails", "minus")}
-      >
+      <Button onClick={() => submitSkillData(skillData, "skills", "minus")}>
         Back
       </Button>
       {getCount() === 0 && (
-        <Button onClick={() => submitSkillData(skillData, "characteristics")}>
+        <Button onClick={() => submitSkillData(skillData, "skills", "plus")}>
           Next
         </Button>
       )}

@@ -9,7 +9,7 @@ const characterSlice = createSlice({
   initialState,
   reducers: {
     addCharacter: (state, action) => {
-      state.characters.push(action.payload);
+      state.push(action.payload);
     },
     // Add more reducers to handle other actions
   },

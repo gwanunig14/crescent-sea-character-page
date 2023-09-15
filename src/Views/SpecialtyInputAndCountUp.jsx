@@ -6,11 +6,16 @@ export default function SpecialtyInputAndCountUp({
   primarySkill,
   stringHash,
   list,
+  setSkill,
   setSpecialty,
   disabled,
 }) {
   const [opened, setOpened] = useState(false);
   const [inputValue, setInputValue] = useState("");
+
+  const skillChanged = (skill, newNumber) => {
+    setSkill(skill, newNumber);
+  };
 
   const specialtyChanged = (specialty, newNumber) => {
     setSpecialty(primarySkill, specialty, newNumber);
@@ -69,7 +74,7 @@ export default function SpecialtyInputAndCountUp({
           fieldName={stringHash.name}
           dataKey={primarySkill}
           count={list.general}
-          returnText={specialtyChanged}
+          returnText={skillChanged}
           plusDisabled={disabled(list.general, "plus")}
           minusDisabled={disabled(list.general, "plus")}
         />

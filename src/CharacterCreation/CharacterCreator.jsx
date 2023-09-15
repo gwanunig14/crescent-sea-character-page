@@ -13,30 +13,6 @@ function CharacterCreator() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const character = useSelector((state) => state.currentCharacter);
-  // const [character, setCharacter] = useState({
-  //   personalDetails: null,
-  //   characteristics: null,
-  //   skills: null,
-  //   weapons: {},
-  //   armor: {},
-  //   magicActivated: false,
-  // });
-
-  // const [character, setCharacter] = useState({
-  //   personalDetails: { characterName: "Allen", race: "dwarf" },
-  //   characteristics: {
-  //     charisma: 13,
-  //     dexterity: 10,
-  //     strength: 10,
-  //     constitution: 10,
-  //     intelligence: 10,
-  //     power: 10,
-  //     education: 10,
-  //   },
-  //   skills: null,
-  //   weapons: {},
-  //   armor: {},
-  // });
 
   const [page, setPage] = useState(0);
 
@@ -72,7 +48,8 @@ function CharacterCreator() {
       return (
         <SkillPage
           character={character}
-          maxSkillPoints={962}
+          maxSkillPoints={885}
+          // maxSkillPoints={1132}
           submitSkillData={setCharacterData}
         />
       );
@@ -80,14 +57,15 @@ function CharacterCreator() {
       return (
         <SkillPage
           character={character}
-          maxSkillPoints={1062}
+          maxSkillPoints={884}
+          // maxSkillPoints={1232}
           submitSkillData={setCharacterData}
         />
       );
     case 4:
       return (
         <div>
-          <CharacterSheet />
+          <CharacterSheet confirmation={true} />
           <Button onClick={() => setPage(page - 1)}>Back</Button>
           <Button onClick={createCharacter}>Confirm character?</Button>
         </div>

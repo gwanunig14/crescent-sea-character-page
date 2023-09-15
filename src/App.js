@@ -17,7 +17,10 @@ function App() {
           <Routes>
             <Route path="/" element={<LoginPage />} />
             <Route path="/home-page" element={<HomePage />} />
-            <Route path="/character-sheet" element={<CharacterSheet />} />
+            <Route
+              path="/character-sheet"
+              element={<CharacterSheet confirmation={false} />}
+            />
             <Route path="/character-creator" element={<CharacterCreator />} />
             <Route path="/personal" />
             <Route path="/characteristic" />

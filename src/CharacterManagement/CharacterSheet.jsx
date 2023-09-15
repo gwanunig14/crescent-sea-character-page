@@ -5,7 +5,7 @@ import CharacteristicsSection from "./CharacterSheetSections/CharacteristicsSect
 import CountUp from "../Views/CountUp";
 import SkillsSection from "./CharacterSheetSections/SkillsSection";
 
-function CharacterSheet() {
+function CharacterSheet({ confirmation }) {
   const character = useSelector((state) => state.currentCharacter);
 
   const { personalDetails, characteristics, skills, magicActivated } =
@@ -51,6 +51,7 @@ function CharacterSheet() {
           characteristics={characteristics}
           postGameCheck={addToPostGameCheckList}
           drinks={drinkCounter}
+          confirmation={confirmation}
         />
       </div>
       <div>
@@ -60,6 +61,7 @@ function CharacterSheet() {
           returnText={adjustHitPoints}
           plusDisabled={hitPoints === maxHitPoints}
           minusDisabled={hitPoints === 0}
+          confirmation={confirmation}
         />
       </div>
       {magicActivated && (
@@ -70,6 +72,7 @@ function CharacterSheet() {
             returnText={adjustPowerPoints}
             plusDisabled={powerPoints === characteristics.power}
             minusDisabled={powerPoints === 0}
+            confirmation={confirmation}
           />
         </div>
       )}
@@ -80,6 +83,7 @@ function CharacterSheet() {
           returnText={adjustDrinks}
           plusDisabled={drinkCounter === 100}
           minusDisabled={drinkCounter === 0}
+          confirmation={confirmation}
         />
       </div>
       <div>
@@ -93,6 +97,7 @@ function CharacterSheet() {
               skills={skill}
               drinks={drinkCounter}
               postGameCheck={addToPostGameCheckList}
+              confirmation={confirmation}
             />
           );
         })}

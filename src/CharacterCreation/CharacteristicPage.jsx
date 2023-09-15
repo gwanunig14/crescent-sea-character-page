@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Strings } from "../Strings";
 import {
   newDwarfCharacteristics,
   newElfCharacteristics,
@@ -12,27 +11,30 @@ import { useSelector } from "react-redux";
 export default function CharacteristicPage({ submitCharacteristicData }) {
   // Initialize characteristics based on race
   const character = useSelector((state) => state.currentCharacter);
-  let characteristics = newHumanCharacteristics;
+  let characteristics = character.characteristics;
 
-  switch (character.personalDetails.race) {
-    case "dwarf":
-      characteristics = newDwarfCharacteristics;
-      break;
-    case "elf":
-      characteristics = newElfCharacteristics;
-      break;
-    default:
-      break;
+  if (!characteristics) {
+    characteristics = newHumanCharacteristics;
+
+    switch (character.personalDetails.race) {
+      case "dwarf":
+        characteristics = newDwarfCharacteristics;
+        break;
+      case "elf":
+        characteristics = newElfCharacteristics;
+        break;
+      default:
+        break;
+    }
   }
 
   const [characteristicData, setCharacteristicData] = useState(characteristics);
 
   // Update the field in characteristicData
   function setField(key, stringData) {
-    setCharacteristicData((prevState) => ({
-      ...prevState,
-      [key]: Number(stringData),
-    }));
+    let newCD = { ...characteristicData };
+    newCD[key] = Number(stringData);
+    setCharacteristicData(newCD);
   }
 
   // Calculate remaining points
