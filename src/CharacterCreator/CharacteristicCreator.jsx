@@ -3,7 +3,7 @@ import {
   newDwarfCharacteristics,
   newElfCharacteristics,
   newHumanCharacteristics,
-} from "../DataTemplates/Characteristics";
+} from "../DataTemplates/CharacteristicData";
 import CountUp from "../Views/CountUp";
 import Button from "react-bootstrap/Button";
 import { useSelector } from "react-redux";

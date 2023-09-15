@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
-import { ignore } from "../Strings";
+import { ignore } from "../Tools/Strings";
 
 export default function CountUp({
   fieldName,

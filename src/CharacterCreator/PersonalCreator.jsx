@@ -6,7 +6,7 @@ import {
   KingdomStrings,
   RaceStrings,
   ReligionStrings,
-} from "../Strings";
+} from "../Tools/Strings";
 import Button from "react-bootstrap/Button";
 import { useSelector } from "react-redux";
 import { makeMutableCopy } from "../Tools/ReusableFunctions";

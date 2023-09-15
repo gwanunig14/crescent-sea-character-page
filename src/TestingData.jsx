@@ -1,7 +1,7 @@
 import {
   newElfCharacteristics,
   newHumanCharacteristics,
-} from "./DataTemplates/Characteristics";
+} from "./DataTemplates/CharacteristicData";
 import {
   StarterElfSkills,
   StarterHumanSkills,

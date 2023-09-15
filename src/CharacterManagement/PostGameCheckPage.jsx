@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "react-bootstrap";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Strings } from "../Strings";
+import { Strings } from "../Tools/Strings";
 import { upDateCharacter } from "../reducers/characterReducer";
 import { setCurrentCharacter } from "../reducers/currentCharacterReducer";
 import {

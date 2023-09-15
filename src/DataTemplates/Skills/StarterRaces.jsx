@@ -1,4 +1,3 @@
-import { newHumanCharacteristics } from "../Characteristics";
 import {
   startingDwarfCombat,
   startingElfCombat,

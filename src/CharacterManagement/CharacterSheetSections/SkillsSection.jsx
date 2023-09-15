@@ -1,5 +1,5 @@
 import React from "react";
-import { SkillStrings } from "../../Strings";
+import { SkillStrings } from "../../Tools/Strings";
 import Button from "react-bootstrap/Button";
 
 function SkillDetail({

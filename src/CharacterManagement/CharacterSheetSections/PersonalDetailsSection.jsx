@@ -5,7 +5,7 @@ import {
   RaceStrings,
   WealthStrings,
   ReligionStrings,
-} from "../../Strings";
+} from "../../Tools/Strings";
 
 function PersonalDetailsSection({ personalData }) {
   const {
