@@ -15,7 +15,6 @@ const characterSlice = createSlice({
       const { characterIndex, character } = action.payload;
       state[characterIndex] = character;
     },
-    // Add more reducers to handle other actions
   },
 });
 

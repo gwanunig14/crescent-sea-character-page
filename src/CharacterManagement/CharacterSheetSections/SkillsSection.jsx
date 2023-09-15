@@ -11,16 +11,12 @@ function SkillDetail({
   drinks,
   confirmation,
 }) {
-  const strings = SkillStrings;
-
-  let modifiedSuccess = 0;
-  if (typeof success !== "number") {
-    success = success - drinks;
-    modifiedSuccess = success + modifier < 100 ? success + modifier : 100;
-  }
   const successfulTest = (characteristic) => postGameCheck(characteristic);
+  let modifiedSuccess = 0;
 
   if (typeof success !== "number") {
+    success = success.general - drinks;
+    modifiedSuccess = success + modifier < 100 ? success + modifier : 100;
     return (
       <>
         {success.general !== undefined && (
@@ -45,6 +41,8 @@ function SkillDetail({
       </>
     );
   } else {
+    success = success - drinks;
+    modifiedSuccess = success + modifier < 100 ? success + modifier : 100;
     return (
       <div>
         <div>
@@ -74,6 +72,7 @@ function SkillsSection({
   drinks,
   confirmation,
 }) {
+  debugger;
   return (
     <div>
       <div>

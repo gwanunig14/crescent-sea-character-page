@@ -1,9 +1,5 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import PersonalDetailsSection from "./CharacterSheetSections/PersonalDetailsSection";
-import CharacteristicsSection from "./CharacterSheetSections/CharacteristicsSections";
-import CountUp from "../Views/CountUp";
-import SkillsSection from "./CharacterSheetSections/SkillsSection";
 import { Button } from "react-bootstrap";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Strings } from "../Strings";
@@ -17,11 +13,6 @@ function PostGameCheckPage() {
   const character = useSelector((state) => state.currentCharacter);
   const characters = useSelector((state) => state.characters);
   const [statsToCheck, setStatsToCheck] = useState(state?.checks);
-  //   const [statsToCheck, setStatsToCheck] = useState([
-  //     "strength",
-  //     "demolition",
-  //     "sword",
-  //   ]);
   const [statCheck, setStatCheck] = useState(statsToCheck[0]);
 
   if (!statCheck) {

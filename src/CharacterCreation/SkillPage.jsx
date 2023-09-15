@@ -3,7 +3,6 @@ import {
   CommunicationStrings,
   MotorSkillStrings,
   CombatStrings,
-  RaceStrings,
   MentalStrings,
   PerceptionStrings,
   PhysicalStrings,
