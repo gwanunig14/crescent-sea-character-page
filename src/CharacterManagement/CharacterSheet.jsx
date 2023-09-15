@@ -4,8 +4,11 @@ import PersonalDetailsSection from "./CharacterSheetSections/PersonalDetailsSect
 import CharacteristicsSection from "./CharacterSheetSections/CharacteristicsSections";
 import CountUp from "../Views/CountUp";
 import SkillsSection from "./CharacterSheetSections/SkillsSection";
+import { Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 function CharacterSheet({ confirmation }) {
+  const navigate = useNavigate();
   const character = useSelector((state) => state.currentCharacter);
 
   const { personalDetails, characteristics, skills, magicActivated } =
@@ -13,7 +16,7 @@ function CharacterSheet({ confirmation }) {
 
   const maxHitPoints = characteristics.constitution + characteristics.size;
 
-  const [postGameChecks, setPostGameChecks] = useState({});
+  const [postGameChecks, setPostGameChecks] = useState([]);
   const [hitPoints, setHitPoints] = useState(maxHitPoints);
   const [powerPoints, setPowerPoints] = useState(characteristics.power);
   const [drinkCounter, setDrinkCounter] = useState(0);
@@ -30,17 +33,26 @@ function CharacterSheet({ confirmation }) {
     setDrinkCounter(newD);
   };
 
-  const addToPostGameCheckList = (category, characteristicOrSkill) => {
-    setPostGameChecks((oldList) => {
-      const newList = { ...oldList };
-      newList[category] = [...(newList[category] || []), characteristicOrSkill];
-      return newList;
-    });
+  const addToPostGameCheckList = (characteristicOrSkill) => {
+    if (!postGameChecks.includes(characteristicOrSkill)) {
+      let newGC = postGameChecks;
+      newGC.push(characteristicOrSkill);
+      setPostGameChecks(newGC);
+    }
+  };
+
+  const endSession = () => {
+    if (postGameChecks.length) {
+      navigate("/finalize", { state: { checks: postGameChecks } });
+    } else {
+      navigate("/home-page");
+    }
   };
 
   return (
     <div>
       <div>{personalDetails.characterName}</div>
+      {!confirmation && <Button onClick={endSession}>End Session</Button>}
       <div>
         Personal
         <PersonalDetailsSection personalData={personalDetails} />

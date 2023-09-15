@@ -7,6 +7,7 @@ import CharacterSheet from "./CharacterManagement/CharacterSheet";
 import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
 import CharacterCreator from "./CharacterCreation/CharacterCreator";
+import PostGameCheckPage from "./CharacterManagement/PostGameCheckPage";
 
 function App() {
   return (
@@ -22,10 +23,7 @@ function App() {
               element={<CharacterSheet confirmation={false} />}
             />
             <Route path="/character-creator" element={<CharacterCreator />} />
-            <Route path="/personal" />
-            <Route path="/characteristic" />
-            <Route path="/skill" />
-            <Route path="/finalize" />
+            <Route path="/finalize" element={<PostGameCheckPage />} />
           </Routes>
         </Router>
       </div>

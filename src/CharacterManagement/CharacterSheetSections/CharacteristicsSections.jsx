@@ -8,8 +8,7 @@ function CharacteristicsSection({
   confirmation,
 }) {
   const calculateEffortRoll = (stat) => stat * 5;
-  const successfulTest = (characteristic) =>
-    postGameCheck("characteristics", characteristic);
+  const successfulTest = (characteristic) => postGameCheck(characteristic);
 
   const damageModifier = () => {
     const strengthAndSizeCombo =

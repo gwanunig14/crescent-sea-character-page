@@ -11,9 +11,13 @@ const characterSlice = createSlice({
     addCharacter: (state, action) => {
       state.push(action.payload);
     },
+    upDateCharacter: (state, action) => {
+      const { characterIndex, character } = action.payload;
+      state[characterIndex] = character;
+    },
     // Add more reducers to handle other actions
   },
 });
 
-export const { addCharacter } = characterSlice.actions;
+export const { addCharacter, upDateCharacter } = characterSlice.actions;
 export default characterSlice.reducer;

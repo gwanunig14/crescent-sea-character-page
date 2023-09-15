@@ -18,8 +18,7 @@ function SkillDetail({
     success = success - drinks;
     modifiedSuccess = success + modifier < 100 ? success + modifier : 100;
   }
-  const successfulTest = (characteristic) =>
-    postGameCheck("characteristics", characteristic);
+  const successfulTest = (characteristic) => postGameCheck(characteristic);
 
   if (typeof success !== "number") {
     return (
