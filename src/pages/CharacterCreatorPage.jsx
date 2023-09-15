@@ -4,9 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { setCurrentCharacter } from "../reducers/currentCharacterReducer";
 import { addCharacter } from "../reducers/characterReducer";
 import Button from "react-bootstrap/Button";
-import PersonalPage from "./PersonalPage";
-import CharacteristicPage from "./CharacteristicPage";
-import SkillPage from "./SkillPage";
+import PersonalCreator from "../CharacterCreator/PersonalCreator";
+import CharacteristicCreator from "../CharacterCreator/CharacteristicCreator";
+import SkillCreator from "../CharacterCreator/SkillCreator";
 import CharacterSheet from "../CharacterManagement/CharacterSheet";
 import { makeMutableCopy } from "../Tools/ReusableFunctions";
 
@@ -36,18 +36,18 @@ function CharacterCreator() {
 
   switch (page) {
     case 0:
-      return <PersonalPage submitPersonalData={setCharacterData} />;
+      return <PersonalCreator submitPersonalData={setCharacterData} />;
     case 1:
       const race = character.personalDetails?.race;
       return (
-        <CharacteristicPage
+        <CharacteristicCreator
           race={race}
           submitCharacteristicData={setCharacterData}
         />
       );
     case 2:
       return (
-        <SkillPage
+        <SkillCreator
           character={character}
           maxSkillPoints={1132}
           submitSkillData={setCharacterData}
@@ -55,7 +55,7 @@ function CharacterCreator() {
       );
     case 3:
       return (
-        <SkillPage
+        <SkillCreator
           character={character}
           maxSkillPoints={1232}
           submitSkillData={setCharacterData}

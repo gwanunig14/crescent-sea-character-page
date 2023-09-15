@@ -11,7 +11,7 @@ import SpecialtyInputAndCountUp from "../Views/SpecialtyInputAndCountUp";
 import { useSelector } from "react-redux";
 import { makeMutableCopy } from "../Tools/ReusableFunctions";
 
-export default function SkillPage({ maxSkillPoints, submitSkillData }) {
+export default function SkillCreator({ maxSkillPoints, submitSkillData }) {
   const character = useSelector((state) => state.currentCharacter);
   const [skillData, setSkillData] = useState(
     character.skills || getDefaultSkills(character)

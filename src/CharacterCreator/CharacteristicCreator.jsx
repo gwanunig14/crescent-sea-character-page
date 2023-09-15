@@ -9,7 +9,7 @@ import Button from "react-bootstrap/Button";
 import { useSelector } from "react-redux";
 import { makeMutableCopy } from "../Tools/ReusableFunctions";
 
-export default function CharacteristicPage({ submitCharacteristicData }) {
+export default function CharacteristicCreator({ submitCharacteristicData }) {
   // Initialize characteristics based on race
   const character = useSelector((state) => state.currentCharacter);
   let characteristics = character.characteristics;

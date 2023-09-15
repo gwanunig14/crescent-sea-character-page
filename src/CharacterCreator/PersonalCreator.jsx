@@ -11,7 +11,7 @@ import Button from "react-bootstrap/Button";
 import { useSelector } from "react-redux";
 import { makeMutableCopy } from "../Tools/ReusableFunctions";
 
-export default function PersonalPage({ submitPersonalData }) {
+export default function PersonalCreator({ submitPersonalData }) {
   const character = useSelector((state) => state.currentCharacter);
   const [personalData, setPersonalData] = useState(character.personalDetails);
 
