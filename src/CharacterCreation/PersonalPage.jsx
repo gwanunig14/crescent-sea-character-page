@@ -9,6 +9,7 @@ import {
 } from "../Strings";
 import Button from "react-bootstrap/Button";
 import { useSelector } from "react-redux";
+import { makeMutableCopy } from "../Tools/ReusableFunctions";
 
 export default function PersonalPage({ submitPersonalData }) {
   const character = useSelector((state) => state.currentCharacter);
@@ -65,12 +66,7 @@ export default function PersonalPage({ submitPersonalData }) {
           dislike: "Dislike",
         }}
         setField={(key, stringData) => {
-          let newPD = {
-            ...personalData,
-            kingdomReputations: {
-              ...personalData.kingdomReputations,
-            },
-          };
+          let newPD = makeMutableCopy(personalData);
           newPD.kingdomReputations[kingdom] = stringData;
           setPersonalData(newPD);
         }}

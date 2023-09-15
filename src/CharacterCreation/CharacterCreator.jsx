@@ -8,6 +8,7 @@ import PersonalPage from "./PersonalPage";
 import CharacteristicPage from "./CharacteristicPage";
 import SkillPage from "./SkillPage";
 import CharacterSheet from "../CharacterManagement/CharacterSheet";
+import { makeMutableCopy } from "../Tools/ReusableFunctions";
 
 function CharacterCreator() {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ function CharacterCreator() {
   const [page, setPage] = useState(0);
 
   const setCharacterData = (data, section, navigationAction) => {
-    let newCharacterData = { ...character };
+    let newCharacterData = makeMutableCopy(character);
     newCharacterData[section] = data;
     dispatch(setCurrentCharacter(newCharacterData));
 
@@ -48,8 +49,7 @@ function CharacterCreator() {
       return (
         <SkillPage
           character={character}
-          maxSkillPoints={885}
-          // maxSkillPoints={1132}
+          maxSkillPoints={1132}
           submitSkillData={setCharacterData}
         />
       );
@@ -57,8 +57,7 @@ function CharacterCreator() {
       return (
         <SkillPage
           character={character}
-          maxSkillPoints={884}
-          // maxSkillPoints={1232}
+          maxSkillPoints={1232}
           submitSkillData={setCharacterData}
         />
       );

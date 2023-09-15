@@ -19,7 +19,7 @@ export default function TextInput({ name, dataKey, value, setField }) {
 
   return (
     <div>
-      {name + ": "}
+      {`${name}: `}
       <input
         type="text"
         value={inputValue}

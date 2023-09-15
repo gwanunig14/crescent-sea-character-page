@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-import {
-  CommunicationStrings,
-  MotorSkillStrings,
-  CombatStrings,
-  MentalStrings,
-  PerceptionStrings,
-  PhysicalStrings,
-} from "../Strings";
+import { ignore, SkillSectionStrings } from "../Strings";
 import CountUp from "../Views/CountUp";
 import Button from "react-bootstrap/Button";
 import {
@@ -16,6 +9,7 @@ import {
 } from "../DataTemplates/Skills/StarterRaces";
 import SpecialtyInputAndCountUp from "../Views/SpecialtyInputAndCountUp";
 import { useSelector } from "react-redux";
+import { makeMutableCopy } from "../Tools/ReusableFunctions";
 
 export default function SkillPage({ maxSkillPoints, submitSkillData }) {
   const character = useSelector((state) => state.currentCharacter);
@@ -25,30 +19,20 @@ export default function SkillPage({ maxSkillPoints, submitSkillData }) {
 
   function setSkill(key, skillValue) {
     const group = findGroup(skillData, key);
-    let newSkillData = { ...skillData };
+    let newSD = makeMutableCopy(skillData);
     if (typeof skillData[group][key] === "number") {
-      newSkillData[group] = { ...newSkillData[group] };
-      newSkillData[group][key] = Number(skillValue);
+      newSD[group][key] = Number(skillValue);
     } else {
-      newSkillData[group] = {
-        ...newSkillData[group],
-        [key]: { ...newSkillData[group][key], general: Number(skillValue) },
-      };
+      newSD[group][key].general = Number(skillValue);
     }
-    setSkillData(newSkillData);
+    setSkillData(newSD);
   }
 
   function setSpecialty(skillKey, specialtyKey, specialtyValue) {
     const group = findGroup(skillData, skillKey);
-    let newSkillData = {
-      ...skillData,
-      [group]: {
-        ...skillData[group],
-        [skillKey]: { ...skillData[group][skillKey] },
-      },
-    };
-    newSkillData[group][skillKey][specialtyKey] = specialtyValue;
-    setSkillData(newSkillData);
+    let newSD = makeMutableCopy(skillData);
+    newSD[group][skillKey][specialtyKey] = specialtyValue;
+    setSkillData(newSD);
   }
 
   function findGroup(hash, targetItem) {
@@ -76,12 +60,7 @@ export default function SkillPage({ maxSkillPoints, submitSkillData }) {
     let statCount = 0;
     Object.values(skillData).forEach((v) => {
       Object.values(v).forEach((va) => {
-        if (
-          va !== "Language" ||
-          va !== "Literacy" ||
-          va !== "Dodge" ||
-          va !== "Gaming"
-        )
+        if (ignore.includes(va))
           if (typeof va === "number") {
             statCount += va;
           } else if (typeof va !== "string") {
@@ -95,13 +74,7 @@ export default function SkillPage({ maxSkillPoints, submitSkillData }) {
   };
 
   const disabled = (skill, current, func) => {
-    if (
-      skill === "Language" ||
-      skill === "Literacy" ||
-      skill === "Dodge" ||
-      skill === "Gaming"
-    )
-      return true;
+    if (ignore.includes(skill)) return true;
     if (func === "plus") {
       if (getCount() === 0) {
         return true;
@@ -117,17 +90,20 @@ export default function SkillPage({ maxSkillPoints, submitSkillData }) {
     return false;
   };
 
-  const skillSection = (sectionName, section, modifier, stringHash) => (
-    <div>
-      <div>{sectionName}</div>
+  const skillSection = (sectionData) => {
+    const { sectionName, section, modifier, stringHash } = sectionData;
+    return (
       <div>
-        {sectionName} skills will have{" "}
-        {Math.floor(character.characteristics[modifier] / 2)} points added to
-        them based on {character.personalDetails.characterName}'s {modifier}
+        <div>{sectionName}</div>
+        <div>
+          {sectionName} skills will have{" "}
+          {Math.floor(character.characteristics[modifier] / 2)} points added to
+          them based on {character.personalDetails.characterName}'s {modifier}
+        </div>
+        {countUpLoop(stringHash, section)}
       </div>
-      {countUpLoop(stringHash, section)}
-    </div>
-  );
+    );
+  };
 
   const countUpLoop = (skillHash, skillGroup) => {
     return Object.keys(skillHash).map((skill) => {
@@ -177,22 +153,12 @@ export default function SkillPage({ maxSkillPoints, submitSkillData }) {
 
   return (
     <div>
-      {skillSection(
-        "Communication",
-        "communication",
-        "charisma",
-        CommunicationStrings
-      )}
-      {skillSection(
-        "Motor Skills",
-        "motorSkills",
-        "dexterity",
-        MotorSkillStrings
-      )}
-      {skillSection("Mental", "mental", "intelligence", MentalStrings)}
-      {skillSection("Perception", "perception", "power", PerceptionStrings)}
-      {skillSection("Physical", "physical", "strength", PhysicalStrings)}
-      {skillSection("Combat", "combat", "dexterity", CombatStrings)}
+      {skillSection(SkillSectionStrings.communication)}
+      {skillSection(SkillSectionStrings.motorSkills)}
+      {skillSection(SkillSectionStrings.mental)}
+      {skillSection(SkillSectionStrings.perception)}
+      {skillSection(SkillSectionStrings.physical)}
+      {skillSection(SkillSectionStrings.combat)}
       <div>{getCount()}</div>
       <Button onClick={() => submitSkillData(skillData, "skills", "minus")}>
         Back

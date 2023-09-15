@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
+import { ignore } from "../Strings";
 
 export default function CountUp({
   fieldName,
@@ -16,7 +17,7 @@ export default function CountUp({
   };
 
   const characteristicWarning = () => {
-    if (fieldName === "Dodge" || fieldName === "Gaming") {
+    if (ignore.includes(fieldName)) {
       return (
         <div>
           {`Starting ${fieldName} skill is based on characteristics and can't be altered directly.`}

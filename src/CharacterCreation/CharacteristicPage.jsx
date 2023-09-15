@@ -7,6 +7,7 @@ import {
 import CountUp from "../Views/CountUp";
 import Button from "react-bootstrap/Button";
 import { useSelector } from "react-redux";
+import { makeMutableCopy } from "../Tools/ReusableFunctions";
 
 export default function CharacteristicPage({ submitCharacteristicData }) {
   // Initialize characteristics based on race
@@ -32,7 +33,7 @@ export default function CharacteristicPage({ submitCharacteristicData }) {
 
   // Update the field in characteristicData
   function setField(key, stringData) {
-    let newCD = { ...characteristicData };
+    let newCD = makeMutableCopy(characteristicData);
     newCD[key] = Number(stringData);
     setCharacteristicData(newCD);
   }
@@ -58,7 +59,6 @@ export default function CharacteristicPage({ submitCharacteristicData }) {
   return (
     <div>
       <div>
-        {/* Render CountUp components */}
         {Object.keys(characteristicData).map((key) => (
           <CountUp
             key={key}

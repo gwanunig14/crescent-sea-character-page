@@ -225,3 +225,44 @@ export const Strings = {
   weapon: WeaponStrings,
   wealth: WealthStrings,
 };
+
+export const SkillSectionStrings = {
+  communication: {
+    sectionName: "Communication",
+    section: "communication",
+    modifier: "charisma",
+    stringHash: CommunicationStrings,
+  },
+  motorSkills: {
+    sectionName: "Motor Skills",
+    section: "motorSkills",
+    modifier: "dexterity",
+    stringHash: MotorSkillStrings,
+  },
+  mental: {
+    sectionName: "Mental",
+    section: "mental",
+    modifier: "intelligence",
+    stringHash: MentalStrings,
+  },
+  perception: {
+    sectionName: "Perception",
+    section: "perception",
+    modifier: "power",
+    stringHash: PerceptionStrings,
+  },
+  physical: {
+    sectionName: "Physical",
+    section: "physical",
+    modifier: "strength",
+    stringHash: PhysicalStrings,
+  },
+  combat: {
+    sectionName: "Combat",
+    section: "combat",
+    modifier: "dexterity",
+    stringHash: CombatStrings,
+  },
+};
+
+export const ignore = ["Dodge", "Gaming", "Literacy", "Language"];

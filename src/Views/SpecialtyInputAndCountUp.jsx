@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import CountUp from "./CountUp";
+import { ignore } from "../Strings";
 
 export default function SpecialtyInputAndCountUp({
   primarySkill,
@@ -55,12 +56,10 @@ export default function SpecialtyInputAndCountUp({
   };
 
   const characteristicWarning = () => {
-    if (stringHash.name === "Literacy" || stringHash.name === "Language") {
+    if (ignore.includes(stringHash.name)) {
       return (
         <div>
-          {"Starting " +
-            stringHash.name +
-            " skill is based on characteristics and can't be altered directly."}
+          {`Starting ${stringHash.name} skill is based on characteristics and can't be altered directly.`}
         </div>
       );
     }
