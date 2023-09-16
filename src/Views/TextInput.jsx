@@ -18,17 +18,18 @@ export default function TextInput({ name, dataKey, value, setField }) {
   };
 
   return (
-    <tr>
-      <td>{`${name}:`}</td>
-      <td>
+    <div style={{ width: "100%", display: "flex" }}>
+      <div>{name}</div>
+      <div style={{ width: "100%" }}>
         <input
           type="text"
           value={inputValue}
           onChange={handleInputChange}
           onKeyDown={handleInputKeyDown}
           onBlur={handleFocusChange}
+          style={{ width: "100%" }}
         />
-      </td>
-    </tr>
+      </div>
+    </div>
   );
 }

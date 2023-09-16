@@ -53,7 +53,7 @@ function CharacterSheet({ confirmation }) {
   };
 
   return (
-    <div styles={{ width: "100%" }}>
+    <div styles={{ width: "100%", padding: "20px" }}>
       <div className={characterSheetStyleNames.header}>
         <div className={characterSheetStyleNames.name}>
           {personalDetails.characterName}

@@ -71,6 +71,7 @@ export default function PersonalCreator({ submitPersonalData }) {
           setPersonalData(newPD);
         }}
         value={personalData.kingdomReputations[kingdom]}
+        rep={true}
       />
     );
   };
@@ -99,30 +100,34 @@ export default function PersonalCreator({ submitPersonalData }) {
   };
 
   return (
-    <div style={{ textAlign: "left" }}>
-      <table>
+    <div style={{ padding: "30px" }}>
+      <div style={{ display: "flex", textAlign: "left", width: "100%" }}>
+        <div style={{ width: "100%" }}>{renderFields()}</div>
+      </div>
+      <div>
+        Set your character's starting reputation with each political group
+      </div>
+      <table style={{ width: "100%" }}>
         <tbody>
-          {renderFields()}
-          <div>
-            <div>Set your character's starting Reputation</div>
+          <tr>
             {Object.keys(KingdomStrings).map((kingdom) => (
-              <div key={kingdom}>
-                <div>{KingdomStrings[kingdom]}</div>
+              <td key={kingdom}>
+                <tr>{KingdomStrings[kingdom]}</tr>
                 {startingLoyalty(kingdom)}
-              </div>
+              </td>
             ))}
-            {!Object.values(personalData).includes("") && (
-              <Button
-                onClick={() =>
-                  submitPersonalData(personalData, "personalDetails", "plus")
-                }
-              >
-                Next
-              </Button>
-            )}
-          </div>
+          </tr>
         </tbody>
       </table>
+      {!Object.values(personalData).includes("") && (
+        <Button
+          onClick={() =>
+            submitPersonalData(personalData, "personalDetails", "plus")
+          }
+        >
+          Next
+        </Button>
+      )}
     </div>
   );
 }

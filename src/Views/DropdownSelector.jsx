@@ -9,6 +9,7 @@ export default function DropdownSelector({
   optionList,
   setField,
   value,
+  rep = false,
 }) {
   const label =
     value && typeof value === "string"
@@ -19,9 +20,11 @@ export default function DropdownSelector({
     setField(dataKey, selectedValue);
   };
 
+  debugger;
+
   return (
     <tr>
-      <td>{name}</td>
+      {!rep ? <td>{name}</td> : null}
       <td>
         <Dropdown onSelect={handleSelect}>
           <Dropdown.Toggle variant="success" id="dropdown-basic">
