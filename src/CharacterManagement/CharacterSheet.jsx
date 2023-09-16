@@ -8,6 +8,7 @@ import CharacteristicsSection from "./CharacterSheetSections/CharacteristicsSect
 import CountUp from "../Views/CountUp";
 import SkillsSection from "./CharacterSheetSections/SkillsSection";
 import { characterSheetStyleNames } from "../Tools/StyleNames";
+import { KingdomStrings } from "../Tools/Strings";
 
 function CharacterSheet({ confirmation }) {
   const navigate = useNavigate();
@@ -128,6 +129,19 @@ function CharacterSheet({ confirmation }) {
             </div>
           </td>
         </tr>
+      </table>
+      <div className={characterSheetStyleNames.title}>Kingdom Reputations</div>
+      <table style={{ width: "100%" }}>
+        <tbody>
+          <tr>
+            {Object.keys(personalDetails.kingdomReputations).map((rep) => (
+              <td>
+                <div>{KingdomStrings[rep]}</div>
+                <div>{personalDetails.kingdomReputations[rep]}</div>
+              </td>
+            ))}
+          </tr>
+        </tbody>
       </table>
       {/* </div> */}
       <div>

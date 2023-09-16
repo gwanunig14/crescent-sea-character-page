@@ -16,7 +16,7 @@ export default function PersonalCreator({ submitPersonalData }) {
   const [personalData, setPersonalData] = useState(character.personalDetails);
 
   const setField = (key, stringData) => {
-    let newPD = { ...personalData };
+    let newPD = makeMutableCopy(personalData);
     newPD[key] = stringData;
     setPersonalData(newPD);
   };
@@ -95,30 +95,34 @@ export default function PersonalCreator({ submitPersonalData }) {
       dropdownDataField("Kingdom Devotion", "kingdomLoyalty", KingdomStrings),
     ];
 
-    return fieldArray.map((field, index) => <div key={index}>{field}</div>);
+    return fieldArray.map((field, i) => field);
   };
 
   return (
-    <div>
-      {renderFields()}
-      <div>
-        <div>Set your character's starting Reputation</div>
-        {Object.keys(KingdomStrings).map((kingdom) => (
-          <div key={kingdom}>
-            <div>{KingdomStrings[kingdom]}</div>
-            {startingLoyalty(kingdom)}
+    <div style={{ textAlign: "left" }}>
+      <table>
+        <tbody>
+          {renderFields()}
+          <div>
+            <div>Set your character's starting Reputation</div>
+            {Object.keys(KingdomStrings).map((kingdom) => (
+              <div key={kingdom}>
+                <div>{KingdomStrings[kingdom]}</div>
+                {startingLoyalty(kingdom)}
+              </div>
+            ))}
+            {!Object.values(personalData).includes("") && (
+              <Button
+                onClick={() =>
+                  submitPersonalData(personalData, "personalDetails", "plus")
+                }
+              >
+                Next
+              </Button>
+            )}
           </div>
-        ))}
-        {!Object.values(personalData).includes("") && (
-          <Button
-            onClick={() =>
-              submitPersonalData(personalData, "personalDetails", "plus")
-            }
-          >
-            Next
-          </Button>
-        )}
-      </div>
+        </tbody>
+      </table>
     </div>
   );
 }

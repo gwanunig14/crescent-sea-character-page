@@ -18,15 +18,17 @@ export default function TextInput({ name, dataKey, value, setField }) {
   };
 
   return (
-    <div>
-      {`${name}: `}
-      <input
-        type="text"
-        value={inputValue}
-        onChange={handleInputChange}
-        onKeyDown={handleInputKeyDown}
-        onBlur={handleFocusChange}
-      />
-    </div>
+    <tr>
+      <td>{`${name}:`}</td>
+      <td>
+        <input
+          type="text"
+          value={inputValue}
+          onChange={handleInputChange}
+          onKeyDown={handleInputKeyDown}
+          onBlur={handleFocusChange}
+        />
+      </td>
+    </tr>
   );
 }

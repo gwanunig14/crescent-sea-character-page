@@ -20,20 +20,22 @@ export default function DropdownSelector({
   };
 
   return (
-    <div>
-      {name}
-      <Dropdown onSelect={handleSelect}>
-        <Dropdown.Toggle variant="success" id="dropdown-basic">
-          {label}
-        </Dropdown.Toggle>
-        <Dropdown.Menu>
-          {Object.keys(optionList)?.map((option) => (
-            <Dropdown.Item eventKey={option} key={option}>
-              {optionList[option]}
-            </Dropdown.Item>
-          ))}
-        </Dropdown.Menu>
-      </Dropdown>
-    </div>
+    <tr>
+      <td>{name}</td>
+      <td>
+        <Dropdown onSelect={handleSelect}>
+          <Dropdown.Toggle variant="success" id="dropdown-basic">
+            {label}
+          </Dropdown.Toggle>
+          <Dropdown.Menu>
+            {Object.keys(optionList)?.map((option) => (
+              <Dropdown.Item eventKey={option} key={option}>
+                {optionList[option]}
+              </Dropdown.Item>
+            ))}
+          </Dropdown.Menu>
+        </Dropdown>
+      </td>
+    </tr>
   );
 }
