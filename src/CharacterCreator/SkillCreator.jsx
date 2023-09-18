@@ -51,8 +51,8 @@ export default function SkillCreator({ submitSkillData, isDisabled }) {
       });
     });
 
-    // return 1232 - statCount;
-    return 883 - statCount;
+    return 1232 - statCount;
+    // return 883 - statCount;
   };
 
   return (
@@ -62,9 +62,8 @@ export default function SkillCreator({ submitSkillData, isDisabled }) {
         <tbody>
           <tr>
             {skillSections.map((sectionGroup) => (
-              <td>
+              <td style={{ verticalAlign: "top", textAlign: "left" }}>
                 {sectionGroup.map((section) => {
-                  console.log(section);
                   return (
                     <SkillSection
                       character={character}

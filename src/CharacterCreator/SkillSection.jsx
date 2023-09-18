@@ -41,12 +41,16 @@ export default function SkillSection(props) {
       if (typeof skillData[skillGroup][skill] === "number") {
         const skillString = skillHash[skill];
         const skillPoint = skillData[skillGroup][skill];
-        return countUpView(
-          skillString,
-          skill,
-          skillPoint,
-          disabled(skill, skillPoint, "plus"),
-          disabled(skill, skillPoint, "minus")
+        return (
+          <CountUp
+            key={skill}
+            fieldName={skillString}
+            dataKey={skill}
+            count={skillPoint}
+            returnText={setSkill}
+            plusDisabled={disabled(skill, skillPoint, "plus")}
+            minusDisabled={disabled(skill, skillPoint, "minus")}
+          />
         );
       } else if (skill !== "name") {
         return (
@@ -63,24 +67,6 @@ export default function SkillSection(props) {
       } else return null;
     });
   };
-
-  const countUpView = (
-    fieldName,
-    dataKey,
-    count,
-    plusDisabled,
-    minusDisabled
-  ) => (
-    <CountUp
-      key={dataKey}
-      fieldName={fieldName}
-      dataKey={dataKey}
-      count={count}
-      returnText={setSkill}
-      plusDisabled={plusDisabled}
-      minusDisabled={minusDisabled}
-    />
-  );
 
   function findGroup(hash, targetItem) {
     for (const k in hash) {
@@ -99,21 +85,13 @@ export default function SkillSection(props) {
 
   return (
     <div style={{ marginBottom: "30px" }}>
-      <table>
-        <tbody>
-          <tr>
-            <td style={{ top: 0, textAlign: "left" }}>
-              {`${sectionName} skills will have
+      {`${sectionName} skills will have
                 ${skillSectionModifierNumber(modifier)} ${
-                skillSectionModifierNumber(modifier) > 1 ? "points" : "point"
-              }
+        skillSectionModifierNumber(modifier) > 1 ? "points" : "point"
+      }
                  added to them based on ${
                    character.personalDetails.characterName
                  }'s ${modifier}`}
-            </td>
-          </tr>
-        </tbody>
-      </table>
       {countUpLoop(stringHash, section)}
     </div>
   );

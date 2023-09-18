@@ -10,6 +10,7 @@ const currentCharacterSlice = createSlice({
   reducers: {
     setCurrentCharacter: (state, action) => {
       // This reducer sets the current character to the payload
+      debugger;
       return action.payload;
     },
   },
