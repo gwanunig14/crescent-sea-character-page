@@ -42,7 +42,7 @@ export default function SpecialtyInputAndCountUp({
       const skillPoint = list[specialty];
 
       return (
-        <>
+        <div style={{ marginLeft: "50px" }}>
           <GenericCountUp
             key={specialty}
             fieldName={skillString}
@@ -52,17 +52,16 @@ export default function SpecialtyInputAndCountUp({
             plusDisabled={disabled(stringHash.name, skillPoint, "plus")}
             minusDisabled={disabled(stringHash.name, skillPoint, "minus")}
           />
-        </>
+        </div>
       );
     });
   };
 
   const characteristicWarning = () => {
-    debugger;
     if (ignore.includes(stringHash.name)) {
       return (
         <div
-          style={{ textAlign: "left", display: "inline-block", width: "350px" }}
+          style={{ textAlign: "left", display: "inline-block", width: "310px" }}
         >
           {`Starting ${stringHash.name} skill is based on characteristics and can't be altered directly.`}
         </div>
@@ -70,7 +69,7 @@ export default function SpecialtyInputAndCountUp({
     } else if (Object.keys(list).length === 0) {
       return (
         <div
-          style={{ textAlign: "left", display: "inline-block", width: "350px" }}
+          style={{ textAlign: "left", display: "inline-block", width: "310px" }}
         >
           {`${stringHash.name} has no basic skill and requires specialties to be usable.`}
         </div>
@@ -79,6 +78,7 @@ export default function SpecialtyInputAndCountUp({
     return null;
   };
 
+  debugger;
   return list.general ? (
     <>
       <GenericCountUp
@@ -89,37 +89,44 @@ export default function SpecialtyInputAndCountUp({
         plusDisabled={disabled(primarySkill, list.general, "plus")}
         minusDisabled={disabled(primarySkill, list.general, "minus")}
       />
-
-      <div style={{ textAlign: "left", paddingLeft: "120px" }}>
+      {renderSpecialties()}
+      <div style={{ textAlign: "left", paddingLeft: "140px" }}>
         <Button onClick={() => setOpened(true)}>New Specialty</Button>
       </div>
     </>
   ) : (
-    <>
-      <div
-        style={{
-          width: "120px",
-          textAlign: "left",
-          verticalAlign: "top",
-          display: "inline-block",
-        }}
-      >
-        {stringHash.name + ": "}
-      </div>
-      {characteristicWarning()}
-      {renderSpecialties()}
-      {opened ? (
-        <input
-          type="text"
-          value={inputValue}
-          onChange={handleInputChange}
-          onKeyDown={handleInputKeyDown}
-        />
-      ) : (
-        <div style={{ textAlign: "left", paddingLeft: "120px" }}>
-          <Button onClick={() => setOpened(true)}>New Specialty</Button>
+    <div style={{ marginBottom: "15px" }}>
+      <div style={{ marginBottom: "15px" }}>
+        <div
+          style={{
+            width: "140px",
+            textAlign: "left",
+            verticalAlign: "top",
+            display: "inline-block",
+          }}
+        >
+          {stringHash.name + ": "}
         </div>
-      )}
-    </>
+        {characteristicWarning()}
+      </div>
+      {renderSpecialties()}
+      {!ignore.includes(stringHash.name) ? (
+        opened ? (
+          <div>
+            <input
+              type="text"
+              value={inputValue}
+              style={{ marginLeft: "140px" }}
+              onChange={handleInputChange}
+              onKeyDown={handleInputKeyDown}
+            />
+          </div>
+        ) : (
+          <div style={{ textAlign: "left", paddingLeft: "140px" }}>
+            <Button onClick={() => setOpened(true)}>New Specialty</Button>
+          </div>
+        )
+      ) : null}
+    </div>
   );
 }

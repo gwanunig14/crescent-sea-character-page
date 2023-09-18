@@ -50,13 +50,19 @@ export default function SkillDetail({
             ? SkillStrings[grouping][skill]
             : SkillStrings[grouping][skill].name}
         </td>
-        <td>{modifiedSuccess}</td>
-        <td>{Math.ceil(modifiedSuccess / 5)}</td>
-        <td>{Math.ceil(modifiedSuccess / 20)}</td>
-        <td>{100 - Math.ceil((100 - modifiedSuccess) / 20)}</td>
-        <td>
+        <td style={{ textAlign: "center" }}>{modifiedSuccess}</td>
+        <td style={{ textAlign: "center" }}>
+          {Math.ceil(modifiedSuccess / 5)}
+        </td>
+        <td style={{ textAlign: "center" }}>
+          {Math.ceil(modifiedSuccess / 20)}
+        </td>
+        <td style={{ textAlign: "center" }}>
+          {100 - Math.ceil((100 - modifiedSuccess) / 20)}
+        </td>
+        <td style={{ textAlign: "center" }}>
           {!confirmation && (
-            <Button onClick={() => successfulTest(skill)}>Success</Button>
+            <Button onClick={() => successfulTest(skill)}>success</Button>
           )}
         </td>
       </tr>

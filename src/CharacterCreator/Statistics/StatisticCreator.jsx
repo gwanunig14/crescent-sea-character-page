@@ -37,7 +37,7 @@ export default function StatisticCreator({ submitStatisticData, changeStep }) {
         style={{
           fontSize: "12px !important",
           height: "45px",
-          margin: "10px 10px 0 0",
+          margin: "20px 0 0 20px",
           position: "absolute",
           left: "10px",
           top: "10px",
@@ -52,7 +52,7 @@ export default function StatisticCreator({ submitStatisticData, changeStep }) {
           style={{
             fontSize: "12px !important",
             height: "45px",
-            margin: "10px 10px 0 0",
+            margin: "20px 20px 0 0",
             position: "absolute",
             right: "10px",
             top: "10px",

@@ -1,8 +1,8 @@
 import React from "react";
-import { SkillStrings } from "../../Tools/Strings";
 import SkillDetail from "./SkillDetail";
 
 function SkillsSection({
+  sectionName,
   heading,
   modifier,
   skills,
@@ -14,23 +14,25 @@ function SkillsSection({
     <table>
       <tbody>
         <tr>
-          <td style={{ textAlign: "left" }}>Name</td>
-          <td>S</td>
-          <td>SS</td>
-          <td>Cr</td>
-          <td>F</td>
+          <td style={{ textAlign: "left", width: "130px" }}> </td>
+          <td style={{ textAlign: "center" }}>Success</td>
+          <td style={{ textAlign: "center" }}>Sp. Success</td>
+          <td style={{ textAlign: "center" }}>Critical</td>
+          <td style={{ textAlign: "center" }}>Fumble</td>
         </tr>
         <tr>
-          <td style={{ textAlign: "left" }}>{SkillStrings[heading].name}</td>
-          <td>{modifier}</td>
-          <td>{Math.ceil(modifier / 5)}</td>
-          <td>{Math.ceil(modifier / 20)}</td>
-          <td>{100 - Math.ceil((100 - modifier) / 20)}</td>
+          <td style={{ textAlign: "left" }}>{heading}</td>
+          <td style={{ textAlign: "center" }}>{modifier}</td>
+          <td style={{ textAlign: "center" }}>{Math.ceil(modifier / 5)}</td>
+          <td style={{ textAlign: "center" }}>{Math.ceil(modifier / 20)}</td>
+          <td style={{ textAlign: "center" }}>
+            {100 - Math.ceil((100 - modifier) / 20)}
+          </td>
         </tr>
         {Object.keys(skills).map((skill) =>
           skill === "modifier" ? null : (
             <SkillDetail
-              grouping={heading}
+              grouping={sectionName}
               key={skill}
               skill={skill}
               success={skills[skill]}

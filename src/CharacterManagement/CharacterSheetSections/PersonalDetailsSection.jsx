@@ -24,7 +24,7 @@ function PersonalDetailsSection({ personalData }) {
   } = personalData;
 
   return (
-    <table style={{ width: "100%" }}>
+    <table>
       <tbody>
         <tr>
           <td>Race:</td>

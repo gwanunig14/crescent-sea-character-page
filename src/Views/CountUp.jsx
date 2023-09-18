@@ -28,9 +28,9 @@ export default function GenericCountUp({
   };
 
   return (
-    <div>
+    <div style={{ marginBottom: "15px" }}>
       <div
-        style={{ width: "120px", textAlign: "left", display: "inline-block" }}
+        style={{ width: "140px", textAlign: "left", display: "inline-block" }}
       >{`${fieldName}:`}</div>
       <div
         style={{ width: "30px", textAlign: "left", display: "inline-block" }}
@@ -83,10 +83,6 @@ export function CharacteristicCountUp({
 
   return (
     <td>
-      <div style={{ display: "flex", width: "100%", justifyContent: "center" }}>
-        <div>{`${fieldName}:`}</div>
-        <div>{count}</div>
-      </div>
       <div
         style={{
           display: "flex",
@@ -102,6 +98,17 @@ export function CharacteristicCountUp({
             -
           </Button>
         )}
+        <div
+          style={{
+            display: "flex",
+            width: "100%",
+            justifyContent: "center",
+            bottom: 0,
+          }}
+        >
+          <span style={{ alignSelf: "center" }}>{`${fieldName}:`}</span>
+          <span style={{ alignSelf: "center" }}>{count}</span>
+        </div>
         {!plusDisabled && !confirmation && (
           <Button
             disabled={plusDisabled}

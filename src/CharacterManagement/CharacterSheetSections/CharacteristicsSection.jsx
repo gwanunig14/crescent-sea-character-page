@@ -52,7 +52,7 @@ function CharacteristicsSection({
   );
 
   return (
-    <table style={{ width: "100%" }}>
+    <table>
       <tbody>
         {renderCharacteristic("STR", "strength", "Effort")}
         {renderCharacteristic("CON", "constitution", "Stamina")}

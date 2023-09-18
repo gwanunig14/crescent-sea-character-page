@@ -14,8 +14,8 @@ export default function CharacteristicsCreator({
 }) {
   // Initialize characteristics based on race
   const character = useSelector((state) => state.currentCharacter);
-  const characteristicPointCount = 108;
-  // let characteristicPointCount = 85;
+  // const characteristicPointCount = 108;
+  let characteristicPointCount = 85;
 
   let characteristics = character.characteristics;
 

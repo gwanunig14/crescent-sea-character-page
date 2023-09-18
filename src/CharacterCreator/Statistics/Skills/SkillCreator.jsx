@@ -51,8 +51,8 @@ export default function SkillCreator({ submitSkillData, isDisabled }) {
       });
     });
 
-    return 1232 - statCount;
-    // return 883 - statCount;
+    // return 1232 - statCount;
+    return 883 - statCount;
   };
 
   return (

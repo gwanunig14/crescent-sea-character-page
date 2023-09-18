@@ -108,7 +108,7 @@ export default function PersonalCreator({ submitPersonalData, changeStep }) {
       <div>
         Set your character's starting reputation with each political group
       </div>
-      <table style={{ width: "100%" }}>
+      <table>
         <tbody>
           <tr>
             {Object.keys(KingdomStrings).map((kingdom) => (
