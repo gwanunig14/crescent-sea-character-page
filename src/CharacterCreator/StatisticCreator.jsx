@@ -7,9 +7,9 @@ import {
 import Button from "react-bootstrap/Button";
 import { useSelector } from "react-redux";
 import { makeMutableCopy } from "../Tools/ReusableFunctions";
-import { ignore } from "../Tools/Strings";
+import SkillCreator from "./SkillCreator";
 
-function CharacteristCountUp({
+function CharacteristicCountUp({
   fieldName,
   dataKey,
   count,
@@ -20,25 +20,12 @@ function CharacteristCountUp({
 }) {
   const handleButtonPress = (func) => {
     const newNumber = func === "plus" ? count + 1 : count - 1;
-    returnText(dataKey, newNumber);
-  };
-
-  const characteristicWarning = () => {
-    if (ignore.includes(fieldName)) {
-      return (
-        <div>
-          {`Starting ${fieldName} skill is based on characteristics and can't be altered directly.`}
-        </div>
-      );
-    }
-    return null;
+    returnText(dataKey, newNumber, "characteristics");
   };
 
   return (
     <td>
-      <div
-        style={{ display: "flex", width: "120px", justifyContent: "center" }}
-      >
+      <div style={{ display: "flex", width: "100%", justifyContent: "center" }}>
         <div>{`${fieldName}:`}</div>
         <div>{count}</div>
       </div>
@@ -74,14 +61,15 @@ function CharacteristCountUp({
   );
 }
 
-export default function CharacteristicCreator({ submitCharacteristicData }) {
+export default function StatisticCreator({ submitCharacteristicData }) {
   // Initialize characteristics based on race
   const character = useSelector((state) => state.currentCharacter);
+  // const characteristicPointCount = 108;
+  let characteristicPointCount = 85;
+
   let characteristics = character.characteristics;
 
   if (!characteristics) {
-    characteristics = newHumanCharacteristics;
-
     switch (character.personalDetails.race) {
       case "dwarf":
         characteristics = newDwarfCharacteristics;
@@ -90,6 +78,7 @@ export default function CharacteristicCreator({ submitCharacteristicData }) {
         characteristics = newElfCharacteristics;
         break;
       default:
+        characteristics = newHumanCharacteristics;
         break;
     }
   }
@@ -97,25 +86,28 @@ export default function CharacteristicCreator({ submitCharacteristicData }) {
   const [characteristicData, setCharacteristicData] = useState(characteristics);
 
   // Update the field in characteristicData
-  function setField(key, stringData) {
+  function setField(key, stringData, section) {
     let newCD = makeMutableCopy(characteristicData);
     newCD[key] = Number(stringData);
     setCharacteristicData(newCD);
+    submitCharacteristicData(newCD, section);
   }
 
   // Calculate remaining points
-  const getCount = () => {
+  const getCharacteristicCount = () => {
     let statCount = Object.values(characteristicData).reduce(
       (acc, v) => acc + v,
       0
     );
-    return 108 - statCount;
+
+    const result = characteristicPointCount - statCount;
+    return result;
   };
 
   // Check if a button should be disabled
   const isDisabled = (current, func, max) => {
     if (func === "plus") {
-      return getCount() === 0 || current === max;
+      return getCharacteristicCount() === 0 || current === max;
     } else {
       return current === 0;
     }
@@ -123,12 +115,14 @@ export default function CharacteristicCreator({ submitCharacteristicData }) {
 
   return (
     <div style={{ padding: "30px" }}>
-      <div>{`${getCount()} characteristic points remaining.`}</div>
+      <div>
+        {`${getCharacteristicCount()} characteristic points remaining.`}
+      </div>
       <table style={{ width: "100%" }}>
         <tbody>
           <tr>
             {Object.keys(characteristicData).map((key) => (
-              <CharacteristCountUp
+              <CharacteristicCountUp
                 key={key}
                 fieldName={key}
                 dataKey={key}
@@ -141,25 +135,36 @@ export default function CharacteristicCreator({ submitCharacteristicData }) {
           </tr>
         </tbody>
       </table>
+      <SkillCreator submitSkillData={setField} />
       <Button
+        style={{
+          fontSize: "12px !important",
+          height: "45px",
+          margin: "10px 10px 0 0",
+          position: "absolute",
+          left: "10px",
+          top: "10px",
+          width: "100px",
+        }}
         onClick={() =>
-          submitCharacteristicData(
-            characteristicData,
-            "characteristics",
-            "minus"
-          )
+          submitCharacteristicData(characteristicData, "characteristics")
         }
       >
         Back
       </Button>
-      {getCount() === 0 && (
+      {getCharacteristicCount() === 0 && (
         <Button
+          style={{
+            fontSize: "12px !important",
+            height: "45px",
+            margin: "10px 10px 0 0",
+            position: "absolute",
+            right: "10px",
+            top: "10px",
+            width: "100px",
+          }}
           onClick={() =>
-            submitCharacteristicData(
-              characteristicData,
-              "characteristics",
-              "plus"
-            )
+            submitCharacteristicData(characteristicData, "characteristics")
           }
         >
           Next

@@ -20,8 +20,6 @@ export default function DropdownSelector({
     setField(dataKey, selectedValue);
   };
 
-  debugger;
-
   return (
     <tr>
       {!rep ? <td>{name}</td> : null}

@@ -5,8 +5,7 @@ import { setCurrentCharacter } from "../reducers/currentCharacterReducer";
 import { addCharacter } from "../reducers/characterReducer";
 import Button from "react-bootstrap/Button";
 import PersonalCreator from "../CharacterCreator/PersonalCreator";
-import CharacteristicCreator from "../CharacterCreator/CharacteristicCreator";
-import SkillCreator from "../CharacterCreator/SkillCreator";
+import StatisticCreator from "../CharacterCreator/StatisticCreator";
 import CharacterSheet from "../CharacterManagement/CharacterSheet";
 import { makeMutableCopy } from "../Tools/ReusableFunctions";
 
@@ -15,18 +14,12 @@ function CharacterCreator() {
   const navigate = useNavigate();
   const character = useSelector((state) => state.currentCharacter);
 
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
 
-  const setCharacterData = (data, section, navigationAction) => {
+  const setCharacterData = (data, section) => {
     let newCharacterData = makeMutableCopy(character);
     newCharacterData[section] = data;
     dispatch(setCurrentCharacter(newCharacterData));
-
-    if (navigationAction === "plus") {
-      setPage(page + 1);
-    } else {
-      setPage(page - 1);
-    }
   };
 
   const createCharacter = () => {
@@ -40,28 +33,12 @@ function CharacterCreator() {
     case 1:
       const race = character.personalDetails?.race;
       return (
-        <CharacteristicCreator
+        <StatisticCreator
           race={race}
           submitCharacteristicData={setCharacterData}
         />
       );
     case 2:
-      return (
-        <SkillCreator
-          character={character}
-          maxSkillPoints={1132}
-          submitSkillData={setCharacterData}
-        />
-      );
-    case 3:
-      return (
-        <SkillCreator
-          character={character}
-          maxSkillPoints={1232}
-          submitSkillData={setCharacterData}
-        />
-      );
-    case 4:
       return (
         <div>
           <CharacterSheet confirmation={true} />

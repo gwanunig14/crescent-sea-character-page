@@ -42,15 +42,20 @@ export default function SpecialtyInputAndCountUp({
       const skillPoint = list[specialty];
 
       return (
-        <CountUp
-          key={specialty}
-          fieldName={skillString}
-          dataKey={specialty}
-          count={skillPoint}
-          returnText={specialtyChanged}
-          plusDisabled={disabled(stringHash.name, skillPoint, "plus")}
-          minusDisabled={disabled(stringHash.name, skillPoint, "minus")}
-        />
+        <>
+          <td></td>
+          <td>
+            <CountUp
+              key={specialty}
+              fieldName={skillString}
+              dataKey={specialty}
+              count={skillPoint}
+              returnText={specialtyChanged}
+              plusDisabled={disabled(stringHash.name, skillPoint, "plus")}
+              minusDisabled={disabled(stringHash.name, skillPoint, "minus")}
+            />
+          </td>
+        </>
       );
     });
   };
@@ -58,30 +63,30 @@ export default function SpecialtyInputAndCountUp({
   const characteristicWarning = () => {
     if (ignore.includes(stringHash.name)) {
       return (
-        <div>
+        <td style={{ textAlign: "left" }}>
           {`Starting ${stringHash.name} skill is based on characteristics and can't be altered directly.`}
-        </div>
+        </td>
       );
     }
     return null;
   };
 
-  return (
-    <div>
-      {list.general ? (
-        <CountUp
-          fieldName={stringHash.name}
-          dataKey={primarySkill}
-          count={list.general}
-          returnText={skillChanged}
-          plusDisabled={disabled(list.general, "plus")}
-          minusDisabled={disabled(list.general, "plus")}
-        />
-      ) : (
-        <div>{stringHash.name + ": "}</div>
-      )}
-      {characteristicWarning()}
-      {renderSpecialties()}
+  return list.general ? (
+    <CountUp
+      fieldName={stringHash.name}
+      dataKey={primarySkill}
+      count={list.general}
+      returnText={skillChanged}
+      plusDisabled={disabled(list.general, "plus")}
+      minusDisabled={disabled(list.general, "plus")}
+    />
+  ) : (
+    <>
+      <tr>
+        <td>{stringHash.name + ": "}</td>
+        <td>{characteristicWarning()}</td>
+      </tr>
+      <tr>{renderSpecialties()}</tr>
       {opened ? (
         <input
           type="text"
@@ -90,8 +95,13 @@ export default function SpecialtyInputAndCountUp({
           onKeyDown={handleInputKeyDown}
         />
       ) : (
-        <Button onClick={() => setOpened(true)}>New Specialty</Button>
+        <tr>
+          <td></td>
+          <td style={{ textAlign: "left" }}>
+            <Button onClick={() => setOpened(true)}>New Specialty</Button>
+          </td>
+        </tr>
       )}
-    </div>
+    </>
   );
 }
