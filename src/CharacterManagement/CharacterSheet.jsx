@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "../styles/characterSheet.scss";
 import PersonalDetailsSection from "./CharacterSheetSections/PersonalDetailsSection";
 import CharacteristicsSection from "./CharacterSheetSections/CharacteristicsSections";
-import CountUp from "../Views/CountUp";
+import GenericCountUp from "../Views/CountUp";
 import SkillsSection from "./CharacterSheetSections/SkillsSection";
 import { characterSheetStyleNames } from "../Tools/StyleNames";
 import { KingdomStrings } from "../Tools/Strings";
@@ -95,7 +95,7 @@ function CharacterSheet({ confirmation }) {
             <div className={characterSheetStyleNames.title}>Counters</div>
             <div className={characterSheetStyleNames.box}>
               <div>
-                <CountUp
+                <GenericCountUp
                   fieldName={"Hit Points"}
                   count={hitPoints}
                   returnText={adjustHitPoints}
@@ -106,7 +106,7 @@ function CharacterSheet({ confirmation }) {
               </div>
               {magicActivated && (
                 <div>
-                  <CountUp
+                  <GenericCountUp
                     fieldName={"Power Points"}
                     count={powerPoints}
                     returnText={adjustPowerPoints}
@@ -117,7 +117,7 @@ function CharacterSheet({ confirmation }) {
                 </div>
               )}
               <div>
-                <CountUp
+                <GenericCountUp
                   fieldName={"Drinks"}
                   count={drinkCounter}
                   returnText={adjustDrinks}

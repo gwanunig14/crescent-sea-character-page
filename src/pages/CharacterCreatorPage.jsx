@@ -16,7 +16,7 @@ function CharacterCreator() {
     useSelector((state) => state.currentCharacter)
   );
 
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
 
   const setCharacterData = (data, section) => {
     let newCharacterData = makeMutableCopy(character);

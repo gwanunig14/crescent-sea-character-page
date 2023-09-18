@@ -2,7 +2,7 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import { ignore } from "../Tools/Strings";
 
-export default function CountUp({
+export default function GenericCountUp({
   fieldName,
   dataKey,
   count,
@@ -19,23 +19,29 @@ export default function CountUp({
   const characteristicWarning = () => {
     if (ignore.includes(fieldName)) {
       return (
-        <td style={{ textAlign: "left" }}>
+        <div style={{ textAlign: "left", display: "inline-block" }}>
           {`Starting ${fieldName} skill is based on characteristics and can't be altered directly.`}
-        </td>
+        </div>
       );
     }
     return null;
   };
 
   return (
-    <tr>
-      <td style={{ width: "100px", textAlign: "left" }}>{`${fieldName}:`}</td>
-      <td style={{ width: "30px", textAlign: "right" }}>{count}</td>
+    <div>
+      <div
+        style={{ width: "120px", textAlign: "left", display: "inline-block" }}
+      >{`${fieldName}:`}</div>
+      <div
+        style={{ width: "30px", textAlign: "left", display: "inline-block" }}
+      >
+        {count}
+      </div>
       {characteristicWarning() ? (
         characteristicWarning()
       ) : (
         <>
-          <td>
+          <div style={{ display: "inline-block" }}>
             {!minusDisabled && !confirmation && (
               <Button
                 disabled={minusDisabled}
@@ -44,8 +50,8 @@ export default function CountUp({
                 -
               </Button>
             )}
-          </td>
-          <td>
+          </div>
+          <div style={{ display: "inline-block" }}>
             {!plusDisabled && !confirmation && (
               <Button
                 disabled={plusDisabled}
@@ -54,10 +60,10 @@ export default function CountUp({
                 +
               </Button>
             )}
-          </td>
+          </div>
         </>
       )}
-    </tr>
+    </div>
   );
 }
 
@@ -88,26 +94,22 @@ export function CharacteristicCountUp({
           justifyContent: "center",
         }}
       >
-        <div>
-          {!minusDisabled && !confirmation && (
-            <Button
-              disabled={minusDisabled}
-              onClick={() => handleButtonPress("minus")}
-            >
-              -
-            </Button>
-          )}
-        </div>
-        <div>
-          {!plusDisabled && !confirmation && (
-            <Button
-              disabled={plusDisabled}
-              onClick={() => handleButtonPress("plus")}
-            >
-              +
-            </Button>
-          )}
-        </div>
+        {!minusDisabled && !confirmation && (
+          <Button
+            disabled={minusDisabled}
+            onClick={() => handleButtonPress("minus")}
+          >
+            -
+          </Button>
+        )}
+        {!plusDisabled && !confirmation && (
+          <Button
+            disabled={plusDisabled}
+            onClick={() => handleButtonPress("plus")}
+          >
+            +
+          </Button>
+        )}
       </div>
     </td>
   );

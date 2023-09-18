@@ -1,6 +1,6 @@
 import { makeMutableCopy } from "../Tools/ReusableFunctions";
 import { ignore } from "../Tools/Strings";
-import CountUp from "../Views/CountUp";
+import GenericCountUp from "../Views/CountUp";
 import SpecialtyInputAndCountUp from "../Views/SpecialtyInputAndCountUp";
 
 export default function SkillSection(props) {
@@ -42,7 +42,7 @@ export default function SkillSection(props) {
         const skillString = skillHash[skill];
         const skillPoint = skillData[skillGroup][skill];
         return (
-          <CountUp
+          <GenericCountUp
             key={skill}
             fieldName={skillString}
             dataKey={skill}
@@ -84,14 +84,16 @@ export default function SkillSection(props) {
   };
 
   return (
-    <div style={{ marginBottom: "30px" }}>
-      {`${sectionName} skills will have
+    <div style={{ maxWidth: "470px", marginBottom: "30px" }}>
+      <div>
+        {`${sectionName} skills will have
                 ${skillSectionModifierNumber(modifier)} ${
-        skillSectionModifierNumber(modifier) > 1 ? "points" : "point"
-      }
+          skillSectionModifierNumber(modifier) > 1 ? "points" : "point"
+        }
                  added to them based on ${
                    character.personalDetails.characterName
                  }'s ${modifier}`}
+      </div>
       {countUpLoop(stringHash, section)}
     </div>
   );

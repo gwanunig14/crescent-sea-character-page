@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import SkillCreator from "./SkillCreator";
-import CharacteristicsSection from "./CharacteristicsSection";
+import CharacteristicsCreator from "./CharacteristicsCreator";
 
 export default function StatisticCreator({ submitStatisticData, changeStep }) {
   const [charactericsRemaining, setCharacteristicsRemaining] = useState(false);
@@ -28,7 +28,7 @@ export default function StatisticCreator({ submitStatisticData, changeStep }) {
 
   return (
     <div>
-      <CharacteristicsSection
+      <CharacteristicsCreator
         submitCharacteristicData={setField}
         isDisabled={isDisabled}
       />

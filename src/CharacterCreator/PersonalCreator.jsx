@@ -19,6 +19,7 @@ export default function PersonalCreator({ submitPersonalData, changeStep }) {
     let newPD = makeMutableCopy(personalData);
     newPD[key] = stringData;
     setPersonalData(newPD);
+    submitPersonalData(personalData, "personalDetails", "plus");
   };
 
   const textDataField = (name, dataKey) => {
@@ -122,7 +123,6 @@ export default function PersonalCreator({ submitPersonalData, changeStep }) {
       {!Object.values(personalData).includes("") && (
         <Button
           onClick={() => {
-            submitPersonalData(personalData, "personalDetails", "plus");
             changeStep("forward");
           }}
         >

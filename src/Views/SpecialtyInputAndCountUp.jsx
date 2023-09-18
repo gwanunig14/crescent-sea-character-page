@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
-import CountUp from "./CountUp";
+import GenericCountUp from "./CountUp";
 import { ignore } from "../Tools/Strings";
 
 export default function SpecialtyInputAndCountUp({
@@ -43,29 +43,37 @@ export default function SpecialtyInputAndCountUp({
 
       return (
         <>
-          <td></td>
-          <td>
-            <CountUp
-              key={specialty}
-              fieldName={skillString}
-              dataKey={specialty}
-              count={skillPoint}
-              returnText={specialtyChanged}
-              plusDisabled={disabled(stringHash.name, skillPoint, "plus")}
-              minusDisabled={disabled(stringHash.name, skillPoint, "minus")}
-            />
-          </td>
+          <GenericCountUp
+            key={specialty}
+            fieldName={skillString}
+            dataKey={specialty}
+            count={skillPoint}
+            returnText={specialtyChanged}
+            plusDisabled={disabled(stringHash.name, skillPoint, "plus")}
+            minusDisabled={disabled(stringHash.name, skillPoint, "minus")}
+          />
         </>
       );
     });
   };
 
   const characteristicWarning = () => {
+    debugger;
     if (ignore.includes(stringHash.name)) {
       return (
-        <td colSpan={3} style={{ textAlign: "left" }}>
+        <div
+          style={{ textAlign: "left", display: "inline-block", width: "350px" }}
+        >
           {`Starting ${stringHash.name} skill is based on characteristics and can't be altered directly.`}
-        </td>
+        </div>
+      );
+    } else if (Object.keys(list).length === 0) {
+      return (
+        <div
+          style={{ textAlign: "left", display: "inline-block", width: "350px" }}
+        >
+          {`${stringHash.name} has no basic skill and requires specialties to be usable.`}
+        </div>
       );
     }
     return null;
@@ -73,7 +81,7 @@ export default function SpecialtyInputAndCountUp({
 
   return list.general ? (
     <>
-      <CountUp
+      <GenericCountUp
         fieldName={stringHash.name}
         dataKey={primarySkill}
         count={list.general}
@@ -81,20 +89,25 @@ export default function SpecialtyInputAndCountUp({
         plusDisabled={disabled(primarySkill, list.general, "plus")}
         minusDisabled={disabled(primarySkill, list.general, "minus")}
       />
-      <tr>
-        <td></td>
-        <td style={{ textAlign: "left" }}>
-          <Button onClick={() => setOpened(true)}>New Specialty</Button>
-        </td>
-      </tr>
+
+      <div style={{ textAlign: "left", paddingLeft: "120px" }}>
+        <Button onClick={() => setOpened(true)}>New Specialty</Button>
+      </div>
     </>
   ) : (
     <>
-      <tr>
-        <td>{stringHash.name + ": "}</td>
-        {characteristicWarning()}
-      </tr>
-      <tr>{renderSpecialties()}</tr>
+      <div
+        style={{
+          width: "120px",
+          textAlign: "left",
+          verticalAlign: "top",
+          display: "inline-block",
+        }}
+      >
+        {stringHash.name + ": "}
+      </div>
+      {characteristicWarning()}
+      {renderSpecialties()}
       {opened ? (
         <input
           type="text"
@@ -103,12 +116,9 @@ export default function SpecialtyInputAndCountUp({
           onKeyDown={handleInputKeyDown}
         />
       ) : (
-        <tr>
-          <td></td>
-          <td style={{ textAlign: "left" }}>
-            <Button onClick={() => setOpened(true)}>New Specialty</Button>
-          </td>
-        </tr>
+        <div style={{ textAlign: "left", paddingLeft: "120px" }}>
+          <Button onClick={() => setOpened(true)}>New Specialty</Button>
+        </div>
       )}
     </>
   );

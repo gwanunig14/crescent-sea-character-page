@@ -57,7 +57,8 @@ export default function SkillCreator({ submitSkillData, isDisabled }) {
 
   return (
     <div>
-      <div>{`${getSkillsCount()} skill points remaining.`}</div>
+      <div>{`${getSkillsCount()}`}</div>
+      <div>{`skill points remaining.`}</div>
       <table>
         <tbody>
           <tr>

@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import { makeMutableCopy } from "../Tools/ReusableFunctions";
 import { CharacteristicCountUp } from "../Views/CountUp";
 
-export default function CharacteristicsSection({
+export default function CharacteristicsCreator({
   submitCharacteristicData,
   isDisabled,
 }) {
@@ -60,9 +60,8 @@ export default function CharacteristicsSection({
 
   return (
     <>
-      <div>
-        {`${getCharacteristicsCount()} characteristic points remaining.`}
-      </div>
+      <div>{`${getCharacteristicsCount()}`}</div>
+      <div>{`characteristic points remaining.`}</div>
       <table style={{ width: "100%" }}>
         <tbody>
           <tr>
