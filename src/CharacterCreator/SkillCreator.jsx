@@ -8,7 +8,7 @@ import {
 import { useSelector } from "react-redux";
 import SkillSection from "./SkillSection";
 
-export default function SkillCreator(submitSkillData) {
+export default function SkillCreator({ submitSkillData, isDisabled }) {
   const character = useSelector((state) => state.currentCharacter);
   const [skillData, setSkillData] = useState(
     character.skills || getDefaultSkills(character)
@@ -22,7 +22,7 @@ export default function SkillCreator(submitSkillData) {
 
   const alterSkillData = (newSD) => {
     setSkillData(newSD);
-    submitSkillData(newSD, "skills");
+    submitSkillData(newSD, getSkillsCount(), "skills");
   };
 
   function getDefaultSkills(character) {
@@ -36,7 +36,7 @@ export default function SkillCreator(submitSkillData) {
     }
   }
 
-  const getCount = () => {
+  const getSkillsCount = () => {
     let statCount = 0;
     Object.values(skillData).forEach((v) => {
       Object.values(v).forEach((va) => {
@@ -57,7 +57,7 @@ export default function SkillCreator(submitSkillData) {
 
   return (
     <div>
-      <div>{`${getCount()} skill points remaining.`}</div>
+      <div>{`${getSkillsCount()} skill points remaining.`}</div>
       <table>
         <tbody>
           <tr>
@@ -71,7 +71,8 @@ export default function SkillCreator(submitSkillData) {
                       sectionData={section}
                       skillData={skillData}
                       setSkillData={alterSkillData}
-                      getCount={getCount}
+                      getSkillsCount={getSkillsCount}
+                      isDisabled={isDisabled}
                     />
                   );
                 })}

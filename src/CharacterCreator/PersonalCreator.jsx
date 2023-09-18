@@ -11,7 +11,7 @@ import Button from "react-bootstrap/Button";
 import { useSelector } from "react-redux";
 import { makeMutableCopy } from "../Tools/ReusableFunctions";
 
-export default function PersonalCreator({ submitPersonalData }) {
+export default function PersonalCreator({ submitPersonalData, changeStep }) {
   const character = useSelector((state) => state.currentCharacter);
   const [personalData, setPersonalData] = useState(character.personalDetails);
 
@@ -121,9 +121,10 @@ export default function PersonalCreator({ submitPersonalData }) {
       </table>
       {!Object.values(personalData).includes("") && (
         <Button
-          onClick={() =>
-            submitPersonalData(personalData, "personalDetails", "plus")
-          }
+          onClick={() => {
+            submitPersonalData(personalData, "personalDetails", "plus");
+            changeStep("forward");
+          }}
         >
           Next
         </Button>

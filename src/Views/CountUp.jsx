@@ -19,50 +19,96 @@ export default function CountUp({
   const characteristicWarning = () => {
     if (ignore.includes(fieldName)) {
       return (
-        <div style={{ textAlign: "left" }}>
+        <td style={{ textAlign: "left" }}>
           {`Starting ${fieldName} skill is based on characteristics and can't be altered directly.`}
-        </div>
+        </td>
       );
     }
     return null;
   };
 
   return (
-    <table style={{ width: "100%" }}>
-      <tbody>
-        <tr>
-          <td
-            style={{ width: "100px", textAlign: "left" }}
-          >{`${fieldName}:`}</td>
-          <td style={{ width: "30px", textAlign: "right" }}>{count}</td>
-          {characteristicWarning() ? (
-            <td>{characteristicWarning()}</td>
-          ) : (
-            <>
-              <td>
-                {!minusDisabled && !confirmation && (
-                  <Button
-                    disabled={minusDisabled}
-                    onClick={() => handleButtonPress("minus")}
-                  >
-                    -
-                  </Button>
-                )}
-              </td>
-              <td>
-                {!plusDisabled && !confirmation && (
-                  <Button
-                    disabled={plusDisabled}
-                    onClick={() => handleButtonPress("plus")}
-                  >
-                    +
-                  </Button>
-                )}
-              </td>
-            </>
+    <tr>
+      <td style={{ width: "100px", textAlign: "left" }}>{`${fieldName}:`}</td>
+      <td style={{ width: "30px", textAlign: "right" }}>{count}</td>
+      {characteristicWarning() ? (
+        characteristicWarning()
+      ) : (
+        <>
+          <td>
+            {!minusDisabled && !confirmation && (
+              <Button
+                disabled={minusDisabled}
+                onClick={() => handleButtonPress("minus")}
+              >
+                -
+              </Button>
+            )}
+          </td>
+          <td>
+            {!plusDisabled && !confirmation && (
+              <Button
+                disabled={plusDisabled}
+                onClick={() => handleButtonPress("plus")}
+              >
+                +
+              </Button>
+            )}
+          </td>
+        </>
+      )}
+    </tr>
+  );
+}
+
+export function CharacteristicCountUp({
+  fieldName,
+  dataKey,
+  count,
+  returnText,
+  plusDisabled,
+  minusDisabled,
+  confirmation,
+}) {
+  const handleButtonPress = (func) => {
+    const newNumber = func === "plus" ? count + 1 : count - 1;
+    returnText(dataKey, newNumber, "characteristics");
+  };
+
+  return (
+    <td>
+      <div style={{ display: "flex", width: "100%", justifyContent: "center" }}>
+        <div>{`${fieldName}:`}</div>
+        <div>{count}</div>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          textAlign: "center",
+          justifyContent: "center",
+        }}
+      >
+        <div>
+          {!minusDisabled && !confirmation && (
+            <Button
+              disabled={minusDisabled}
+              onClick={() => handleButtonPress("minus")}
+            >
+              -
+            </Button>
           )}
-        </tr>
-      </tbody>
-    </table>
+        </div>
+        <div>
+          {!plusDisabled && !confirmation && (
+            <Button
+              disabled={plusDisabled}
+              onClick={() => handleButtonPress("plus")}
+            >
+              +
+            </Button>
+          )}
+        </div>
+      </div>
+    </td>
   );
 }

@@ -4,7 +4,14 @@ import CountUp from "../Views/CountUp";
 import SpecialtyInputAndCountUp from "../Views/SpecialtyInputAndCountUp";
 
 export default function SkillSection(props) {
-  const { character, sectionData, skillData, setSkillData, getCount } = props;
+  const {
+    character,
+    sectionData,
+    skillData,
+    setSkillData,
+    getSkillsCount,
+    isDisabled,
+  } = props;
   const { sectionName, section, modifier, stringHash } = sectionData;
 
   function setSkill(key, skillValue) {
@@ -26,7 +33,6 @@ export default function SkillSection(props) {
   }
 
   const skillSectionModifierNumber = (modifier) => {
-    debugger;
     return Math.floor(character.characteristics[modifier] / 2);
   };
 
@@ -88,19 +94,7 @@ export default function SkillSection(props) {
 
   const disabled = (skill, current, func) => {
     if (ignore.includes(skill)) return true;
-    if (func === "plus") {
-      if (getCount() === 0) {
-        return true;
-      } else if (current === 100) {
-        return true;
-      }
-    } else {
-      if (current === 0) {
-        return true;
-      }
-    }
-
-    return false;
+    return isDisabled(current, func, getSkillsCount(), 100);
   };
 
   return (
@@ -115,8 +109,7 @@ export default function SkillSection(props) {
               }
                  added to them based on ${
                    character.personalDetails.characterName
-                 }
-                's ${modifier}`}
+                 }'s ${modifier}`}
             </td>
           </tr>
         </tbody>

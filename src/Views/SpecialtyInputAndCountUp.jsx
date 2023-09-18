@@ -63,7 +63,7 @@ export default function SpecialtyInputAndCountUp({
   const characteristicWarning = () => {
     if (ignore.includes(stringHash.name)) {
       return (
-        <td style={{ textAlign: "left" }}>
+        <td colSpan={3} style={{ textAlign: "left" }}>
           {`Starting ${stringHash.name} skill is based on characteristics and can't be altered directly.`}
         </td>
       );
@@ -72,19 +72,27 @@ export default function SpecialtyInputAndCountUp({
   };
 
   return list.general ? (
-    <CountUp
-      fieldName={stringHash.name}
-      dataKey={primarySkill}
-      count={list.general}
-      returnText={skillChanged}
-      plusDisabled={disabled(list.general, "plus")}
-      minusDisabled={disabled(list.general, "plus")}
-    />
+    <>
+      <CountUp
+        fieldName={stringHash.name}
+        dataKey={primarySkill}
+        count={list.general}
+        returnText={skillChanged}
+        plusDisabled={disabled(primarySkill, list.general, "plus")}
+        minusDisabled={disabled(primarySkill, list.general, "minus")}
+      />
+      <tr>
+        <td></td>
+        <td style={{ textAlign: "left" }}>
+          <Button onClick={() => setOpened(true)}>New Specialty</Button>
+        </td>
+      </tr>
+    </>
   ) : (
     <>
       <tr>
         <td>{stringHash.name + ": "}</td>
-        <td>{characteristicWarning()}</td>
+        {characteristicWarning()}
       </tr>
       <tr>{renderSpecialties()}</tr>
       {opened ? (
