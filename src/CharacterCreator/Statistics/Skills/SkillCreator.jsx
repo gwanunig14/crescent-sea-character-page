@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { SkillSectionStrings, ignore } from "../Tools/Strings";
+import { SkillSectionStrings, ignore } from "../../../Tools/Strings";
 import {
   StarterDwarfSkills,
   StarterElfSkills,
   StarterHumanSkills,
-} from "../DataTemplates/Skills/StarterRaces";
+} from "../../../DataTemplates/Skills/StarterRaces";
 import { useSelector } from "react-redux";
 import SkillSection from "./SkillSection";
 
