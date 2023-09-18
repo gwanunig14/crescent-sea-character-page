@@ -1,7 +1,7 @@
-import { makeMutableCopy } from "../Tools/ReusableFunctions";
-import { ignore } from "../Tools/Strings";
-import GenericCountUp from "../Views/CountUp";
-import SpecialtyInputAndCountUp from "../Views/SpecialtyInputAndCountUp";
+import { makeMutableCopy } from "../../../Tools/ReusableFunctions";
+import { ignore } from "../../../Tools/Strings";
+import GenericCountUp from "../../../Views/CountUp";
+import SpecialtyInputAndCountUp from "../../../Views/SpecialtyInputAndCountUp";
 
 export default function SkillSection(props) {
   const {

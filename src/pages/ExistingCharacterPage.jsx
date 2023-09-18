@@ -3,11 +3,7 @@ import React from "react";
 import CharacterSheet from "../CharacterManagement/CharacterSheet";
 
 function ExistingCharacterPage() {
-  return (
-    <div>
-      <CharacterSheet />
-    </div>
-  );
+  return <CharacterSheet />;
 }
 
 export default ExistingCharacterPage;

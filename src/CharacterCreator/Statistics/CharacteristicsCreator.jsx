@@ -3,10 +3,10 @@ import {
   newDwarfCharacteristics,
   newElfCharacteristics,
   newHumanCharacteristics,
-} from "../DataTemplates/CharacteristicData";
+} from "../../DataTemplates/CharacteristicData";
 import { useSelector } from "react-redux";
-import { makeMutableCopy } from "../Tools/ReusableFunctions";
-import { CharacteristicCountUp } from "../Views/CountUp";
+import { makeMutableCopy } from "../../Tools/ReusableFunctions";
+import { CharacteristicCountUp } from "../../Views/CountUp";
 
 export default function CharacteristicsCreator({
   submitCharacteristicData,

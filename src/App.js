@@ -7,7 +7,7 @@ import CharacterSheet from "./CharacterManagement/CharacterSheet";
 import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
 import CharacterCreator from "./pages/CharacterCreatorPage";
-import PostGameCheckPage from "./CharacterManagement/PostGameCheckPage";
+import PostGameCheckPage from "./pages/PostGameCheckPage";
 
 function App() {
   return (

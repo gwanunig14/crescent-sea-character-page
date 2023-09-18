@@ -5,7 +5,7 @@ import { setCurrentCharacter } from "../reducers/currentCharacterReducer";
 import { addCharacter } from "../reducers/characterReducer";
 import Button from "react-bootstrap/Button";
 import PersonalCreator from "../CharacterCreator/PersonalCreator";
-import StatisticCreator from "../CharacterCreator/StatisticCreator";
+import StatisticCreator from "../CharacterCreator/Statistics/StatisticCreator";
 import CharacterSheet from "../CharacterManagement/CharacterSheet";
 import { makeMutableCopy } from "../Tools/ReusableFunctions";
 

@@ -4,7 +4,7 @@ import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import "../styles/characterSheet.scss";
 import PersonalDetailsSection from "./CharacterSheetSections/PersonalDetailsSection";
-import CharacteristicsSection from "./CharacterSheetSections/CharacteristicsSections";
+import CharacteristicsSection from "./CharacterSheetSections/CharacteristicsSection";
 import GenericCountUp from "../Views/CountUp";
 import SkillsSection from "./CharacterSheetSections/SkillsSection";
 import { characterSheetStyleNames } from "../Tools/StyleNames";
@@ -67,7 +67,6 @@ function CharacterSheet({ confirmation }) {
           </Button>
         )}
       </div>
-      {/* <div className={"sectionTopRow"}> */}
       <table style={{ width: "100%" }}>
         <tr className={characterSheetStyleNames.skillCategoryRow}>
           <td>
@@ -143,7 +142,6 @@ function CharacterSheet({ confirmation }) {
           </tr>
         </tbody>
       </table>
-      {/* </div> */}
       <div>
         <div className={characterSheetStyleNames.title}>Skills</div>
         <table style={{ width: "100%" }}>
