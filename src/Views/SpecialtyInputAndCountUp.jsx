@@ -78,7 +78,6 @@ export default function SpecialtyInputAndCountUp({
     return null;
   };
 
-  debugger;
   return list.general ? (
     <>
       <GenericCountUp

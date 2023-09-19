@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../styles/personalCreator.scss";
 import TextInput from "../Views/TextInput";
 import DropdownSelector from "../Views/DropdownSelector";
 import {
@@ -10,6 +11,7 @@ import {
 import Button from "react-bootstrap/Button";
 import { useSelector } from "react-redux";
 import { makeMutableCopy } from "../Tools/ReusableFunctions";
+import { personalStyle } from "../Tools/StyleNames";
 
 export default function PersonalCreator({ submitPersonalData, changeStep }) {
   const character = useSelector((state) => state.currentCharacter);
@@ -30,6 +32,7 @@ export default function PersonalCreator({ submitPersonalData, changeStep }) {
         dataKey={dataKey}
         value={value}
         setField={setField}
+        style={personalStyle.form}
       />
     );
   };
@@ -44,16 +47,20 @@ export default function PersonalCreator({ submitPersonalData, changeStep }) {
     />
   );
 
-  const distinctiveFeatureDataField = () => (
-    <TextInput
-      name="Distinctive Features (separated by commas)"
-      dataKey="distinctiveFeatures"
-      setField={(value) => {
-        const features = value.split(",");
-        setField("distinctiveFeatures", features);
-      }}
-    />
-  );
+  const distinctiveFeatureDataField = () => {
+    return (
+      <TextInput
+        name="Distinctive Features (separated by commas)"
+        dataKey="distinctiveFeatures"
+        value={personalData.distinctiveFeatures.toString()}
+        setField={(value) => {
+          const features = value.split(",");
+          setField("distinctiveFeatures", features);
+        }}
+        style={personalStyle.distinctive}
+      />
+    );
+  };
 
   const startingLoyalty = (kingdom) => {
     return (
@@ -77,43 +84,61 @@ export default function PersonalCreator({ submitPersonalData, changeStep }) {
     );
   };
 
-  const renderFields = () => {
-    const fieldArray = [
-      textDataField("Name", "characterName"),
-      dropdownDataField("Race", "race", RaceStrings),
-      dropdownDataField("Gender", "gender", GenderStrings),
-      dropdownDataField("Birth Kingdom", "kingdomBirth", KingdomStrings),
-      textDataField("Height in centimeters", "height"),
-      textDataField("Weight in pounds", "weight"),
-      textDataField(
-        personalData.characterName
-          ? `${personalData.characterName}'s profession`
-          : "Your character's profession",
-        "startingProfession"
-      ),
-      dropdownDataField("Religion", "religion", ReligionStrings),
-      distinctiveFeatureDataField(),
-      textDataField("Age", "age"),
-      dropdownDataField("Kingdom Devotion", "kingdomLoyalty", KingdomStrings),
-    ];
-
-    return fieldArray.map((field, i) => field);
-  };
-
   return (
     <div style={{ padding: "30px" }}>
       <div style={{ display: "flex", textAlign: "left", width: "100%" }}>
-        <div style={{ width: "100%" }}>{renderFields()}</div>
+        <div style={{ width: "100%" }}>
+          <table style={{ width: "100%", marginBottom: "20px" }}>
+            <tbody>
+              <tr>
+                <td>{textDataField("Name", "characterName")}</td>
+                <td>{dropdownDataField("Race", "race", RaceStrings)}</td>
+                <td>{dropdownDataField("Gender", "gender", GenderStrings)}</td>
+              </tr>
+              <tr>
+                <td>
+                  {textDataField(
+                    personalData.characterName
+                      ? `${personalData.characterName}'s profession`
+                      : "Character's profession",
+                    "startingProfession"
+                  )}
+                </td>
+                <td>
+                  {dropdownDataField(
+                    "Birth Kingdom",
+                    "kingdomBirth",
+                    KingdomStrings
+                  )}
+                </td>
+                <td>
+                  {dropdownDataField("Religion", "religion", ReligionStrings)}
+                </td>
+              </tr>
+              <tr>
+                <td>{textDataField("Age", "age")}</td>
+                <td>
+                  {dropdownDataField(
+                    "Kingdom Devotion",
+                    "kingdomLoyalty",
+                    KingdomStrings
+                  )}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          {distinctiveFeatureDataField()}
+        </div>
       </div>
       <div>
         Set your character's starting reputation with each political group
       </div>
-      <table>
+      <table style={{ width: "100%" }}>
         <tbody>
           <tr>
             {Object.keys(KingdomStrings).map((kingdom) => (
               <td key={kingdom}>
-                <tr>{KingdomStrings[kingdom]}</tr>
+                <div>{KingdomStrings[kingdom]}</div>
                 {startingLoyalty(kingdom)}
               </td>
             ))}

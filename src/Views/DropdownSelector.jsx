@@ -20,12 +20,22 @@ export default function DropdownSelector({
     setField(dataKey, selectedValue);
   };
 
+  const style = !rep ? { width: "132px" } : { width: "100px" };
+
   return (
-    <tr>
-      {!rep ? <td>{name}</td> : null}
-      <td>
+    <div>
+      {!rep ? (
+        <div
+          style={{
+            display: "inline-block",
+            marginRight: "10px",
+            width: "140px",
+          }}
+        >{`${name}:`}</div>
+      ) : null}
+      <div style={{ display: "inline-block" }}>
         <Dropdown onSelect={handleSelect}>
-          <Dropdown.Toggle variant="success" id="dropdown-basic">
+          <Dropdown.Toggle variant="success" id="dropdown-basic" style={style}>
             {label}
           </Dropdown.Toggle>
           <Dropdown.Menu>
@@ -36,7 +46,7 @@ export default function DropdownSelector({
             ))}
           </Dropdown.Menu>
         </Dropdown>
-      </td>
-    </tr>
+      </div>
+    </div>
   );
 }

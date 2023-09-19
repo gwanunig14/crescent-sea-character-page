@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import "../styles/personalCreator.scss";
 
-export default function TextInput({ name, dataKey, value, setField }) {
+export default function TextInput({ name, dataKey, value, setField, style }) {
   const [inputValue, setInputValue] = useState(value);
 
   const handleInputChange = (event) => {
@@ -19,8 +20,8 @@ export default function TextInput({ name, dataKey, value, setField }) {
 
   return (
     <div style={{ width: "100%", display: "flex" }}>
-      <div>{name}</div>
-      <div style={{ width: "100%" }}>
+      <div className={style}>{`${name}:`}</div>
+      <div style={{ width: "100%", marginRight: "20px" }}>
         <input
           type="text"
           value={inputValue}

@@ -10,3 +10,8 @@ export const characterSheetStyleNames = {
   characteristic: "characteristic",
   skillCategoryRow: "skillCategoryRow",
 };
+
+export const personalStyle = {
+  form: "textInputForm",
+  distinctive: "textInputDistinctiveFeatures",
+};

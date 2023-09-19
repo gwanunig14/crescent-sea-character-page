@@ -3,8 +3,6 @@ export const newCharacterPersonalDetails = {
   gender: "",
   race: "",
   kingdomBirth: "",
-  height: "",
-  weight: "",
   startingProfession: "",
   religion: "",
   distinctiveFeatures: "",
