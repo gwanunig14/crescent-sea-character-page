@@ -1,8 +1,13 @@
+body {
+  height: 100vh;
+  min-height: 100vh;
+  background-color: lemonchiffon !important;
+}
+
 .App {
   text-align: center;
-  background-color:lemonchiffon;
   /* font-family:serif; */
-  padding: 30px
+  padding: 30px;
 }
 
 .App-logo {

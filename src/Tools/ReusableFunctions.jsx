@@ -66,3 +66,7 @@ export function updateObjectAtPath(obj, path, newValue) {
 export function generalCheck(stat) {
   return stat.general || stat;
 }
+
+export function emptyArray(array) {
+  return Object.keys(array).length === 0;
+}

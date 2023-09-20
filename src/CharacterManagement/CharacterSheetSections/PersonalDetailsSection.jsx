@@ -14,8 +14,6 @@ function PersonalDetailsSection({ personalData }) {
     gender,
     kingdomBirth,
     kingdomLoyalty,
-    height,
-    weight,
     startingProfession,
     wealth,
     religion,
@@ -26,46 +24,63 @@ function PersonalDetailsSection({ personalData }) {
   return (
     <table>
       <tbody>
-        <tr>
-          <td>Race:</td>
+        <tr className={characterSheetStyleNames.ptr}>
+          <td>
+            <div>Race:</div>
+          </td>
           <td className={characterSheetStyleNames.ptrd}>{RaceStrings[race]}</td>
           <td>Gender:</td>
           <td>{GenderStrings[gender]}</td>
         </tr>
         <tr className={characterSheetStyleNames.ptr}>
-          <td>Height:</td>
-          <td className={characterSheetStyleNames.ptrd}>{height}</td>
-          <td>Weight:</td>
-          <td>{weight}</td>
-        </tr>
-        <tr className={characterSheetStyleNames.ptr}>
-          <td>Age:</td>
+          <td>
+            <div>Age:</div>
+          </td>
           <td className={characterSheetStyleNames.ptrd}>{age}</td>
           <td>Wealth:</td>
           <td>{WealthStrings[wealth]}</td>
         </tr>
         <tr className={characterSheetStyleNames.ptr}>
-          <td colSpan={2}>Profession:</td>
+          <td colSpan={2}>
+            <div>Profession:</div>
+          </td>
           <td colSpan={2}>{startingProfession}</td>
         </tr>
         <tr className={characterSheetStyleNames.ptr}>
-          <td colSpan={2}>Birth Kingdom:</td>
+          <td colSpan={2}>
+            <div>Birth Kingdom:</div>
+          </td>
           <td colSpan={2}>{KingdomStrings[kingdomBirth]}</td>
         </tr>
         <tr className={characterSheetStyleNames.ptr}>
-          <td colSpan={2}>Kingdom Loyalty:</td>
+          <td colSpan={2}>
+            <div>Kingdom Loyalty:</div>
+          </td>
           <td colSpan={2}>{KingdomStrings[kingdomLoyalty]}</td>
         </tr>
         <tr className={characterSheetStyleNames.ptr}>
-          <td colSpan={2}>Religion:</td>
+          <td colSpan={2}>
+            <div>Religion:</div>
+          </td>
           <td colSpan={2}>{ReligionStrings[religion]}</td>
         </tr>
         <tr className={characterSheetStyleNames.ptr}>
-          <td colSpan={2}>Distinctive Features:</td>
-          <td colSpan={2}>
-            {distinctiveFeatures.map((f, i) => {
-              return i === distinctiveFeatures.length - 1 ? `${f} ` : `${f}, `;
-            })}
+          <td
+            style={{
+              verticalAlign: "top",
+            }}
+            colSpan={2}
+          >
+            Distinctive Features:
+          </td>
+          <td className={characterSheetStyleNames.distinctiv} colSpan={2}>
+            <div>
+              {distinctiveFeatures.map((f, i) => {
+                return i === distinctiveFeatures.length - 1
+                  ? `${f} `
+                  : `${f}, `;
+              })}
+            </div>
           </td>
         </tr>
       </tbody>

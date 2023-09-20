@@ -64,9 +64,18 @@ function CharacterSheet({ confirmation }) {
           </Button>
         )}
       </div>
-      <table>
+      <table
+        style={{
+          width: "100%",
+          borderCollapse: "collapse",
+          marginBottom: "30px",
+        }}
+      >
         <tbody>
-          <tr className={characterSheetStyleNames.skillCategoryRow}>
+          <tr
+            className={characterSheetStyleNames.skillCategoryRow}
+            style={{ display: "flex", justifyContent: "space-between" }}
+          >
             <td>
               <div className={characterSheetStyleNames.title}>Personal</div>
               <div className={characterSheetStyleNames.box}>
@@ -78,7 +87,9 @@ function CharacterSheet({ confirmation }) {
                 <div className={characterSheetStyleNames.title}>
                   Characteristics
                 </div>
-                <div className={characterSheetStyleNames.box}>
+                <div
+                  className={`${characterSheetStyleNames.box} characteristics`}
+                >
                   <CharacteristicsSection
                     characteristics={characteristics}
                     postGameCheck={addToPostGameCheckList}
@@ -99,45 +110,65 @@ function CharacterSheet({ confirmation }) {
           </tr>
         </tbody>
       </table>
-      <div className={characterSheetStyleNames.title}>Kingdom Reputations</div>
-      <table style={{ width: "100%" }}>
+      <div
+        style={{ paddingTop: "30px" }}
+        className={characterSheetStyleNames.title}
+      >
+        Kingdom Reputations
+      </div>
+      <table
+        style={{
+          width: "100%",
+          borderCollapse: "collapse",
+          borderTop: "1px solid black",
+          padding: "8px",
+          height: "38px",
+        }}
+      >
         <tbody>
-          <tr>
+          <tr style={{ display: "flex", justifyContent: "space-between" }}>
             {Object.keys(personalDetails.kingdomReputations).map((rep) => (
-              <td>
-                <div>{KingdomStrings[rep]}</div>
+              <td style={{ maxWidth: "170px" }}>
+                <div
+                  style={{
+                    fontWeight: "bold",
+                    fontSize: "20px",
+                    marginTop: "8px",
+                  }}
+                >
+                  {KingdomStrings[rep]}
+                </div>
                 <div>{personalDetails.kingdomReputations[rep]}</div>
               </td>
             ))}
           </tr>
         </tbody>
       </table>
-      <div>
-        <div className={characterSheetStyleNames.title}>Skills</div>
-        <table>
-          <tbody>
-            <tr>
-              {skillSections.map((sectionGroup) => (
-                <td style={{ verticalAlign: "top", textAlign: "left" }}>
-                  {sectionGroup.map((section) => (
-                    <SkillsSection
-                      key={section.section}
-                      sectionName={section.section}
-                      heading={section.sectionName}
-                      modifier={Math.floor(
-                        characteristics[section.modifier] / 2
-                      )}
-                      skills={skills[section.section]}
-                      drinks={drinkCounter}
-                      postGameCheck={addToPostGameCheckList}
-                      confirmation={confirmation}
-                    />
-                  ))}
-                </td>
+      <div style={{ paddingTop: "30px" }}>
+        <div
+          style={{ borderBottom: "1px solid black" }}
+          className={characterSheetStyleNames.title}
+        >
+          Skills
+        </div>
+        <div className="skill-section-groups">
+          {skillSections.map((sectionGroup) => (
+            <div style={{ verticalAlign: "top", textAlign: "left" }}>
+              {sectionGroup.map((section) => (
+                <SkillsSection
+                  key={section.section}
+                  sectionName={section.section}
+                  heading={section.sectionName}
+                  modifier={Math.floor(characteristics[section.modifier] / 2)}
+                  skills={skills[section.section]}
+                  drinks={drinkCounter}
+                  postGameCheck={addToPostGameCheckList}
+                  confirmation={confirmation}
+                />
               ))}
-            </tr>
-          </tbody>
-        </table>
+            </div>
+          ))}
+        </div>
       </div>
       <div>Weapons</div>
       <div>Armor</div>

@@ -35,15 +35,21 @@ function CharacteristicsSection({
   };
 
   const renderCharacteristic = (name, statName, rollType) => (
-    <tr>
-      <td>{name}</td>
-      <td>{characteristics[statName] - drinks}</td>
-      <td>{`${rollType} Roll ${calculateEffortRoll(
-        statName === "size"
-          ? characteristics[statName]
-          : characteristics[statName] - drinks
-      )}%`}</td>
+    <tr style={{ height: "40px" }}>
+      <td style={{ fontWeight: "bold", fontSize: "20px" }}>{`${name}:`}</td>
+      <td style={{ paddingLeft: "8px" }}>
+        {characteristics[statName] - drinks}
+      </td>
+      <td style={{ paddingLeft: "15px" }}>{`${rollType} Roll`}</td>{" "}
       <td>
+        {`${calculateEffortRoll(
+          statName === "size"
+            ? characteristics[statName]
+            : characteristics[statName] - drinks
+        )}
+        %`}
+      </td>
+      <td style={{ paddingLeft: "8px" }}>
         {!confirmation && (
           <Button onClick={() => successfulTest(statName)}>success</Button>
         )}
@@ -56,11 +62,15 @@ function CharacteristicsSection({
       <tbody>
         {renderCharacteristic("STR", "strength", "Effort")}
         {renderCharacteristic("CON", "constitution", "Stamina")}
-        <tr>
-          <td colSpan={1}>SIZ</td>
-          <td>{characteristics.size}</td>
-          <td>Damage Modifier</td>
-          <td>{damageModifier()}</td>
+        <tr style={{ height: "40px" }}>
+          <td style={{ fontWeight: "bold", fontSize: "20px" }} colSpan={1}>
+            SIZ:
+          </td>
+          <td style={{ paddingLeft: "8px" }}>{characteristics.size}</td>
+          <td style={{ paddingLeft: "15px" }} colSpan={2}>
+            Damage Modifier
+          </td>
+          <td style={{ paddingLeft: "8px" }}>{damageModifier()}</td>
         </tr>
         {renderCharacteristic("INT", "intelligence", "Idea")}
         {renderCharacteristic("POW", "power", "Luck")}

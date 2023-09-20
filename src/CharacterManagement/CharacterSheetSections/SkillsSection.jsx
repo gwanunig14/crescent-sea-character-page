@@ -11,40 +11,55 @@ function SkillsSection({
   confirmation,
 }) {
   return (
-    <table>
-      <tbody>
-        <tr>
-          <td style={{ textAlign: "left", width: "130px" }}> </td>
-          <td style={{ textAlign: "center" }}>Success</td>
-          <td style={{ textAlign: "center" }}>Sp. Success</td>
-          <td style={{ textAlign: "center" }}>Critical</td>
-          <td style={{ textAlign: "center" }}>Fumble</td>
-        </tr>
-        <tr>
-          <td style={{ textAlign: "left" }}>{heading}</td>
-          <td style={{ textAlign: "center" }}>{modifier}</td>
-          <td style={{ textAlign: "center" }}>{Math.ceil(modifier / 5)}</td>
-          <td style={{ textAlign: "center" }}>{Math.ceil(modifier / 20)}</td>
-          <td style={{ textAlign: "center" }}>
-            {100 - Math.ceil((100 - modifier) / 20)}
-          </td>
-        </tr>
-        {Object.keys(skills).map((skill) =>
-          skill === "modifier" ? null : (
-            <SkillDetail
-              grouping={sectionName}
-              key={skill}
-              skill={skill}
-              success={skills[skill]}
-              modifier={modifier}
-              postGameCheck={postGameCheck}
-              drinks={drinks * 5}
-              confirmation={confirmation}
-            />
-          )
-        )}
-      </tbody>
-    </table>
+    <div
+      style={{
+        marginBottom: "30px",
+      }}
+    >
+      <div className="column-labels">
+        <div className={"skill-name-cell"} style={{ textAlign: "left" }} />
+        <div className="stat-cell column-label">Success</div>
+        <div className="stat-cell column-label">Sp. Suc.</div>
+        <div className="stat-cell column-label">Critical</div>
+        <div className="stat-cell column-label">Fumble</div>
+      </div>
+      <div
+        className="skill-row header"
+        style={{ borderBottom: "1px solid black" }}
+      >
+        <div
+          className={"skill-name-cell"}
+          style={{
+            fontSize: "24px",
+            fontStyle: "bold",
+            textAlign: "left",
+            width: "180px",
+          }}
+        >
+          {heading}
+        </div>
+        <div className="stat-cell">{modifier}</div>
+        <div className="stat-cell">{Math.ceil(modifier / 5)}</div>
+        <div className="stat-cell">{Math.ceil(modifier / 20)}</div>
+        <div className="stat-cell">
+          {100 - Math.ceil((100 - modifier) / 20)}
+        </div>
+      </div>
+      {Object.keys(skills).map((skill) =>
+        skill === "modifier" ? null : (
+          <SkillDetail
+            grouping={sectionName}
+            key={skill}
+            skill={skill}
+            success={skills[skill]}
+            modifier={modifier}
+            postGameCheck={postGameCheck}
+            drinks={drinks * 5}
+            confirmation={confirmation}
+          />
+        )
+      )}
+    </div>
   );
 }
 

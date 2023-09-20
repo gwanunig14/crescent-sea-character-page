@@ -24,7 +24,7 @@ export default function CounterSection({
   return (
     <td>
       <div className={characterSheetStyleNames.title}>Counters</div>
-      <div className={characterSheetStyleNames.box}>
+      <div className={`${characterSheetStyleNames.box} counter`}>
         <div>
           <GenericCountUp
             fieldName={"Hit Points"}

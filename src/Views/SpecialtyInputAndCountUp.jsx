@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import GenericCountUp from "./CountUp";
 import { ignore } from "../Tools/Strings";
+import { emptyArray } from "../Tools/ReusableFunctions";
 
 export default function SpecialtyInputAndCountUp({
   primarySkill,
@@ -66,7 +67,7 @@ export default function SpecialtyInputAndCountUp({
           {`Starting ${stringHash.name} skill is based on characteristics and can't be altered directly.`}
         </div>
       );
-    } else if (Object.keys(list).length === 0) {
+    } else if (emptyArray(list)) {
       return (
         <div
           style={{ textAlign: "left", display: "inline-block", width: "310px" }}
