@@ -8,10 +8,12 @@ import PersonalCreator from "../CharacterCreator/PersonalCreator";
 import StatisticCreator from "../CharacterCreator/Statistics/StatisticCreator";
 import CharacterSheet from "../CharacterManagement/CharacterSheet";
 import { makeMutableCopy } from "../Tools/ReusableFunctions";
+import { CreateCharacter } from "../FirebaseCommunications";
 
 function CharacterCreator() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const player = useSelector((state) => state.currentPlayer);
   const [character, setCharacter] = useState(
     useSelector((state) => state.currentCharacter)
   );
@@ -26,7 +28,7 @@ function CharacterCreator() {
   };
 
   const createCharacter = () => {
-    dispatch(addCharacter(character));
+    CreateCharacter(player, character);
     navigate("/home-page");
   };
 

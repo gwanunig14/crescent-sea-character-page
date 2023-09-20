@@ -13,15 +13,6 @@ import { getDatabase, ref, set } from "firebase/database";
 import { database } from "./database";
 
 function App() {
-  // function writeUserData(userId) {
-  //   const db = database;
-  //   set(ref(db, "characters/" + userId), {
-  //     paul: TestingCharacter1,
-  //   });
-  // }
-
-  // writeUserData("gregory");
-
   return (
     <Provider store={store}>
       <div className="App">

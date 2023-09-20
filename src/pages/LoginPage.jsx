@@ -1,25 +1,19 @@
 // src/components/LoginPage.js
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { FetchUser } from "../FirebaseCommunications";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { setCurrentPlayer } from "../reducers/currentPlayerReducer";
-import { addplayer } from "../reducers/playerReducer";
 
 function LoginPage() {
-  const dispatch = useDispatch();
-  const players = useSelector((state) => state.players);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleEnterPressed = (event) => {
     if (event.key === "Enter") {
-      if (players.includes(event.target.value)) {
-        dispatch(setCurrentPlayer(event.target.value));
-        navigate("/home-page");
-      } else {
-        dispatch(addplayer(event.target.value));
-        dispatch(setCurrentPlayer(event.target.value));
-        navigate("/home-page");
-      }
+      FetchUser(event.target.value);
+      dispatch(setCurrentPlayer(event.target.value));
+      navigate("/home-page");
     }
   };
 
