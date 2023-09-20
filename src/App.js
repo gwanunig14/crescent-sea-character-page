@@ -8,8 +8,20 @@ import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
 import CharacterCreator from "./pages/CharacterCreatorPage";
 import PostGameCheckPage from "./pages/PostGameCheckPage";
+import { TestingCharacter1 } from "./TestingData";
+import { getDatabase, ref, set } from "firebase/database";
+import { database } from "./database";
 
 function App() {
+  // function writeUserData(userId) {
+  //   const db = database;
+  //   set(ref(db, "characters/" + userId), {
+  //     paul: TestingCharacter1,
+  //   });
+  // }
+
+  // writeUserData("gregory");
+
   return (
     <Provider store={store}>
       <div className="App">

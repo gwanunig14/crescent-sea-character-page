@@ -1,8 +1,7 @@
 // src/reducers/characterReducer.js
 import { createSlice } from "@reduxjs/toolkit";
-import { TestingCharacter1, TestingCharacter2 } from "../TestingData";
 
-const initialState = [TestingCharacter1, TestingCharacter2]; // Initial state for characters
+const initialState = []; // Initial state for characters
 
 const characterSlice = createSlice({
   name: "characters",
