@@ -2,7 +2,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { TestingCharacter1 } from "../TestingData";
 
-const initialState = TestingCharacter1; // Initial state for currentCharacter
+const initialState = {}; // Initial state for currentCharacter
 
 const currentCharacterSlice = createSlice({
   name: "currentCharacter",
