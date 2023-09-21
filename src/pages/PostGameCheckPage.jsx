@@ -11,6 +11,7 @@ import {
   generalCheck,
   updateObjectAtPath,
 } from "../Tools/ReusableFunctions";
+import { CreateCharacter } from "../FirebaseCommunications";
 
 function PostGameCheckPage() {
   // TODO if characteristic increase would increase a relient stat, update that stat as well
@@ -18,6 +19,7 @@ function PostGameCheckPage() {
   const dispatch = useDispatch();
   const { state } = useLocation();
   const character = useSelector((state) => state.currentCharacter);
+  const player = useSelector((state) => state.currentPlayer);
   const characters = useSelector((state) => state.characters);
   const [statsToCheck, setStatsToCheck] = useState(state?.checks);
   const [statCheck, setStatCheck] = useState(statsToCheck[0]);
@@ -33,7 +35,9 @@ function PostGameCheckPage() {
   const statName = digIn(Strings, statCheck).object;
   const pathAndObject = digIn(character, statCheck);
 
-  let rollGoal = generalCheck(pathAndObject.object);
+  let rollGoal =
+    generalCheck(pathAndObject.object) +
+    character.characteristics.intelligence / 2;
   let increaseInstruction = "";
   let increases = [];
 
@@ -59,7 +63,7 @@ function PostGameCheckPage() {
       );
       dispatch(
         upDateCharacter({
-          characterIndex: characters.indexOf(character),
+          characterName: character.personalDetails.characterName,
           character: updatedCharacter,
         })
       );
@@ -72,6 +76,7 @@ function PostGameCheckPage() {
   }
 
   function backHome() {
+    CreateCharacter(player, character);
     navigate("/home-page");
   }
 

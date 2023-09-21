@@ -17,7 +17,7 @@ export const startingElfMental = {
   firstAid: 30,
   gaming: 22,
   knowledge: {},
-  literacy: { basic: 45, elven: 45 },
+  literacy: { basic: 45, elvish: 45 },
   medicine: 10,
   potion: { general: 5 },
   science: { general: 1 },

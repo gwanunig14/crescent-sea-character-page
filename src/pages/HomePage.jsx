@@ -10,7 +10,7 @@ import { TestingCharacter1, TestingCharacter2 } from "../TestingData";
 import { setCharacters } from "../reducers/characterReducer";
 
 function HomePage() {
-  const [characters, setCharacters] = useState(
+  const [characters, setHomePageCharacters] = useState(
     useSelector((state) => state.characters)
   );
   const player = useSelector((state) => state.currentPlayer);
@@ -27,8 +27,8 @@ function HomePage() {
       const fetchedCharacters = await FetchCharacters(player);
 
       // The characters data is available here
-      console.log(fetchedCharacters);
-      setCharacters(fetchedCharacters);
+      setHomePageCharacters(fetchedCharacters);
+      dispatch(setCharacters(fetchedCharacters));
     } catch (error) {
       // Handle any errors that may occur during the fetch.
       console.error(error);

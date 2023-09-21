@@ -11,8 +11,8 @@ const characterSlice = createSlice({
       state.push(action.payload);
     },
     upDateCharacter: (state, action) => {
-      const { characterIndex, character } = action.payload;
-      state[characterIndex] = character;
+      const { characterName, character } = action.payload;
+      state[characterName] = character;
     },
     setCharacters: (state, action) => action.payload,
   },

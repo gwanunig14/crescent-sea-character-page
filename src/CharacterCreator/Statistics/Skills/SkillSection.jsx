@@ -33,7 +33,9 @@ export default function SkillSection(props) {
   }
 
   const skillSectionModifierNumber = (modifier) => {
-    return Math.floor(character.characteristics[modifier] / 2);
+    return character.characteristics
+      ? Math.floor(character.characteristics[modifier] / 2)
+      : 0;
   };
 
   const countUpLoop = (skillHash, skillGroup) => {

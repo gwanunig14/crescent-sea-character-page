@@ -13,7 +13,7 @@ export const startingElfCombat = {
   dodge: 24,
   grapple: 25,
   meleeWeapon: { general: 20 },
-  missileWeapon: { general: 10, bow: 25 },
+  missileWeapon: { general: 10, longBow: 25 },
   shield: 25,
   modifier: "dexterity",
 };

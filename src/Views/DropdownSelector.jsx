@@ -12,15 +12,15 @@ export default function DropdownSelector({
   rep = false,
 }) {
   const label =
-    value && typeof value === "string"
-      ? optionList[value]
-      : `Select your ${name}`;
+    value && typeof value === "string" ? optionList[value] : `${name}`;
 
   const handleSelect = (selectedValue) => {
     setField(dataKey, selectedValue);
   };
 
-  const style = !rep ? { width: "132px" } : { width: "100px" };
+  const style = !rep
+    ? { fontSize: "12px", width: "132px" }
+    : { fontSize: "12px", width: "100px" };
 
   return (
     <div>

@@ -76,7 +76,7 @@ export default function SkillDetail({
     );
   } else {
     success = success - drinks;
-    modifiedSuccess = success + modifier < 100 ? success + modifier : 100;
+    modifiedSuccess = success + modifier < 99 ? success + modifier : 99;
     return (
       <div className={`skill-detail skill-row ${heading && "skill-heading"}`}>
         <div
@@ -92,9 +92,11 @@ export default function SkillDetail({
         <div className="stat-cell">{Math.ceil(modifiedSuccess / 5)}</div>
         <div className="stat-cell">{Math.ceil(modifiedSuccess / 20)}</div>
         <div className="stat-cell">
-          {100 - Math.ceil((100 - modifiedSuccess) / 20)}
+          {modifiedSuccess === 99
+            ? 100
+            : 100 - Math.ceil((100 - modifiedSuccess) / 20)}
         </div>
-        {!confirmation && (
+        {!confirmation && modifiedSuccess < 99 && (
           <div className="skill-button-cell">
             <Button onClick={() => successfulTest(skill)}>success</Button>
           </div>

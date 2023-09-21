@@ -68,6 +68,8 @@ export const CombatStrings = {
   meleeWeapon: MeleeWeaponStrings,
   missileWeapon: MissileWeaponStrings,
   shield: "Shield",
+  longBow: "Long Bow",
+  shortBow: "Short Bow",
 };
 
 export const LanguageStrings = {
@@ -98,6 +100,7 @@ export const CommunicationStrings = {
   perform: "Perform",
   persuade: "Persuade",
   teach: "Teach",
+  animal: "Animal",
 };
 
 export const KnowledgeStrings = {

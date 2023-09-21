@@ -53,9 +53,9 @@ export default function PersonalCreator({ submitPersonalData, changeStep }) {
         name="Distinctive Features (separated by commas)"
         dataKey="distinctiveFeatures"
         value={personalData.distinctiveFeatures.toString()}
-        setField={(value) => {
+        setField={(key, value) => {
           const features = value.split(",");
-          setField("distinctiveFeatures", features);
+          setField(key, features);
         }}
         style={personalStyle.distinctive}
       />
