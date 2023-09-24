@@ -60,7 +60,7 @@ export const startingDwarfWeapons = {
   headButt: headButt,
   kick: kick,
   battleAxe: {
-    type: "BattleAxe",
+    type: "Battle Axe",
     name: "",
     skill: "axe",
     damage: "1d8 + 2",
