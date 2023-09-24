@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "../styles/personalCreator.scss";
 import TextInput from "../Views/TextInput";
 import DropdownSelector from "../Views/DropdownSelector";
@@ -9,19 +9,21 @@ import {
   ReligionStrings,
 } from "../Tools/Strings";
 import Button from "react-bootstrap/Button";
-import { useSelector } from "react-redux";
 import { makeMutableCopy } from "../Tools/ReusableFunctions";
 import { personalStyle } from "../Tools/StyleNames";
 
-export default function PersonalCreator({ submitPersonalData, changeStep }) {
-  const character = useSelector((state) => state.currentCharacter);
-  const [personalData, setPersonalData] = useState(character.personalDetails);
+export default function PersonalCreator({
+  character,
+  submitPersonalData,
+  changeStep,
+}) {
+  const personalData = character.personalDetails;
 
   const setField = (key, stringData) => {
+    debugger;
     let newPD = makeMutableCopy(personalData);
     newPD[key] = stringData;
-    setPersonalData(newPD);
-    submitPersonalData(personalData, "personalDetails", "plus");
+    submitPersonalData(newPD, "personalDetails", "plus");
   };
 
   const textDataField = (name, dataKey) => {
@@ -73,11 +75,7 @@ export default function PersonalCreator({ submitPersonalData, changeStep }) {
           aware: "Aware",
           dislike: "Dislike",
         }}
-        setField={(key, stringData) => {
-          let newPD = makeMutableCopy(personalData);
-          newPD.kingdomReputations[kingdom] = stringData;
-          setPersonalData(newPD);
-        }}
+        setField={setField}
         value={personalData.kingdomReputations[kingdom]}
         rep={true}
       />

@@ -9,6 +9,7 @@ import SkillsSection from "./CharacterSheetSections/SkillsSection";
 import { characterSheetStyleNames } from "../Tools/StyleNames";
 import { KingdomStrings, SkillSectionStrings } from "../Tools/Strings";
 import CounterSection from "./CounterSection";
+import WeaponsSection from "./CharacterSheetSections/WeaponsSection";
 
 function CharacterSheet({ confirmation }) {
   const navigate = useNavigate();
@@ -170,9 +171,19 @@ function CharacterSheet({ confirmation }) {
           ))}
         </div>
       </div>
-      {Object.keys(character.weapons).length !== 0 && <div>Weapons</div>}
       {character.armor && Object.keys(character.armor).length !== 0 && (
         <div>Armor</div>
+      )}
+      {character.weapons && Object.keys(character.weapons).length !== 0 && (
+        <div style={{ paddingTop: "30px" }}>
+          <div
+            style={{ borderBottom: "1px solid black" }}
+            className={characterSheetStyleNames.title}
+          >
+            Weapons
+          </div>
+          <WeaponsSection character={character} drinks={drinkCounter} />
+        </div>
       )}
     </div>
   );

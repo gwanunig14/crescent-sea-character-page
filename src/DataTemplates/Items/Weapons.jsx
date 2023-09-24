@@ -9,6 +9,7 @@ const fist = {
   hands: "1H",
   hitPoints: "-",
   parry: "No",
+  modifier: true,
 };
 
 const grapple = {
@@ -22,6 +23,7 @@ const grapple = {
   hands: "2H",
   hitPoints: "-",
   parry: "No",
+  modifier: false,
 };
 
 const headButt = {
@@ -35,6 +37,7 @@ const headButt = {
   hands: "-",
   hitPoints: "-",
   parry: "No",
+  modifier: true,
 };
 
 const kick = {
@@ -48,6 +51,7 @@ const kick = {
   hands: "-",
   hitPoints: "-",
   parry: "No",
+  modifier: true,
 };
 
 export const startingDwarfWeapons = {
@@ -66,6 +70,7 @@ export const startingDwarfWeapons = {
     hands: "1h",
     hitPoints: "15",
     parry: "Yes",
+    modifier: true,
   },
 };
 
@@ -85,6 +90,7 @@ export const startingElfWeapons = {
     hands: "2h",
     hitPoints: "15",
     parry: "No",
+    modifier: true,
   },
 };
 
@@ -104,5 +110,6 @@ export const startingHumanWeapons = {
     hands: "2h",
     hitPoints: "15",
     parry: "No",
+    modifier: true,
   },
 };

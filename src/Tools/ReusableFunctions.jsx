@@ -75,3 +75,26 @@ export function setRelativeStat(character, stat, number) {
   const pathAndObject = digIn(character, stat);
   return updateObjectAtPath(character, pathAndObject.path, number);
 }
+
+export const GetDamageModifier = (characteristics) => {
+  const strengthAndSizeCombo = characteristics.strength + characteristics.size;
+
+  const damageModifiers = [
+    { condition: strengthAndSizeCombo > 152, value: "9d6" },
+    { condition: strengthAndSizeCombo > 136, value: "8d6" },
+    { condition: strengthAndSizeCombo > 120, value: "7d6" },
+    { condition: strengthAndSizeCombo > 104, value: "6d6" },
+    { condition: strengthAndSizeCombo > 88, value: "5d6" },
+    { condition: strengthAndSizeCombo > 72, value: "4d6" },
+    { condition: strengthAndSizeCombo > 56, value: "3d6" },
+    { condition: strengthAndSizeCombo > 40, value: "2d6" },
+    { condition: strengthAndSizeCombo > 32, value: "1d6" },
+    { condition: strengthAndSizeCombo > 25, value: "1d4" },
+    { condition: strengthAndSizeCombo > 16, value: "None" },
+    { condition: strengthAndSizeCombo > 12, value: "-1d4" },
+  ];
+
+  const result = damageModifiers.find((modifier) => modifier.condition);
+
+  return result ? result.value : "-1D6";
+};

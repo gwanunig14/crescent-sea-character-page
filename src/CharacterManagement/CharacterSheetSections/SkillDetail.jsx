@@ -80,9 +80,7 @@ export default function SkillDetail({
     return (
       <div className={`skill-detail skill-row ${heading && "skill-heading"}`}>
         <div
-          className={`skill-name-cell ${heading && "skill-heading"} ${
-            specialy && "skill-specialty-cell"
-          }`}
+          className={`skill-name-cell "} ${specialy && "skill-specialty-cell"}`}
         >
           {typeof digIn(SkillStrings, skill).object === "string"
             ? digIn(SkillStrings, skill).object

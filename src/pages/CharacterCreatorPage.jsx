@@ -44,11 +44,13 @@ function CharacterCreator() {
       newCharacterData = addStarterStats(newCharacterData);
     }
 
-    newCharacterData["skills"]["combat"]["dodge"] =
-      newCharacterData.characteristics.dexterity * 2;
-    newCharacterData["skills"]["mental"]["gaming"] =
-      newCharacterData.characteristics.power +
-      newCharacterData.characteristics.intelligence;
+    if (newCharacterData.skills) {
+      newCharacterData["skills"]["combat"]["dodge"] =
+        newCharacterData.characteristics.dexterity * 2;
+      newCharacterData["skills"]["mental"]["gaming"] =
+        newCharacterData.characteristics.power +
+        newCharacterData.characteristics.intelligence;
+    }
 
     setCharacter(newCharacterData);
     dispatch(setCurrentCharacter(newCharacterData));
@@ -93,6 +95,7 @@ function CharacterCreator() {
     case 0:
       return (
         <PersonalCreator
+          character={character}
           submitPersonalData={setCharacterData}
           changeStep={changeStep}
         />
