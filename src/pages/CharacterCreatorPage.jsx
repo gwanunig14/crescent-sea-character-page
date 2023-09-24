@@ -23,6 +23,11 @@ import {
   StarterElfSkills,
   StarterHumanSkills,
 } from "../DataTemplates/Skills/StarterRaces";
+import {
+  starterDwarfArmor,
+  starterElfArmor,
+  starterHumanArmor,
+} from "../DataTemplates/Items/Armor";
 
 function CharacterCreator() {
   const dispatch = useDispatch();
@@ -62,16 +67,19 @@ function CharacterCreator() {
         nCD["characteristics"] = newDwarfCharacteristics;
         nCD["skills"] = StarterDwarfSkills;
         nCD["weapons"] = startingDwarfWeapons;
+        nCD["armor"] = starterDwarfArmor;
         break;
       case "elf":
         nCD["characteristics"] = newElfCharacteristics;
         nCD["skills"] = StarterElfSkills;
         nCD["weapons"] = startingElfWeapons;
+        nCD["armor"] = starterElfArmor;
         break;
       default:
         nCD["characteristics"] = newHumanCharacteristics;
         nCD["skills"] = StarterHumanSkills;
-        addStarterStats["weapons"] = startingHumanWeapons;
+        nCD["weapons"] = startingHumanWeapons;
+        nCD["armor"] = starterHumanArmor;
         break;
     }
 
