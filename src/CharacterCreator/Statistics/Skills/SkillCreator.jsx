@@ -1,18 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { SkillSectionStrings, ignore } from "../../../Tools/Strings";
-import {
-  StarterDwarfSkills,
-  StarterElfSkills,
-  StarterHumanSkills,
-} from "../../../DataTemplates/Skills/StarterRaces";
-import { useSelector } from "react-redux";
 import SkillSection from "./SkillSection";
 
-export default function SkillCreator({ submitSkillData, isDisabled }) {
-  const character = useSelector((state) => state.currentCharacter);
-  const [skillData, setSkillData] = useState(
-    character.skills || getDefaultSkills(character)
-  );
+export default function SkillCreator({
+  character,
+  submitSkillData,
+  isDisabled,
+}) {
+  const skillData = character.skills;
 
   const skillSections = [
     [SkillSectionStrings.communication, SkillSectionStrings.motorSkills],
@@ -21,26 +16,15 @@ export default function SkillCreator({ submitSkillData, isDisabled }) {
   ];
 
   const alterSkillData = (newSD) => {
-    setSkillData(newSD);
     submitSkillData(newSD, getSkillsCount(), "skills");
   };
 
-  function getDefaultSkills(character) {
-    switch (character.personalDetails.race) {
-      case "dwarf":
-        return StarterDwarfSkills;
-      case "elf":
-        return StarterElfSkills;
-      default:
-        return StarterHumanSkills;
-    }
-  }
 
   const getSkillsCount = () => {
     let statCount = 0;
     Object.values(skillData).forEach((v) => {
       Object.values(v).forEach((va) => {
-        if (!ignore.includes(v))
+        if (!ignore.includes(v)) {
           if (typeof va === "number") {
             statCount += va;
           } else if (typeof va !== "string") {
@@ -48,10 +32,12 @@ export default function SkillCreator({ submitSkillData, isDisabled }) {
               statCount += val;
             });
           }
+        }
       });
     });
 
-    return 1232 - statCount;
+    // return 1232 - statCount;
+    return 897 - statCount;
   };
 
   return (

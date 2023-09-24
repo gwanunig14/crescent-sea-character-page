@@ -68,8 +68,7 @@ export const CombatStrings = {
   meleeWeapon: MeleeWeaponStrings,
   missileWeapon: MissileWeaponStrings,
   shield: "Shield",
-  longBow: "Long Bow",
-  shortBow: "Short Bow",
+  bow: "Bow",
 };
 
 export const LanguageStrings = {

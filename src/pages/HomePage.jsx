@@ -13,6 +13,7 @@ function HomePage() {
   const [characters, setHomePageCharacters] = useState(
     useSelector((state) => state.characters)
   );
+  const [fetched, setFetched] = useState(false);
   const player = useSelector((state) => state.currentPlayer);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -27,15 +28,18 @@ function HomePage() {
       const fetchedCharacters = await FetchCharacters(player);
 
       // The characters data is available here
-      setHomePageCharacters(fetchedCharacters);
-      dispatch(setCharacters(fetchedCharacters));
+      if (fetchedCharacters) {
+        setHomePageCharacters(fetchedCharacters);
+        dispatch(setCharacters(fetchedCharacters));
+      }
+      setFetched(true);
     } catch (error) {
       // Handle any errors that may occur during the fetch.
       console.error(error);
     }
   }
 
-  if (Object.keys(characters).length === 0) {
+  if (!fetched) {
     fetchData();
   }
 
@@ -56,16 +60,17 @@ function HomePage() {
   return (
     <div>
       <h1>{`${player}'s Home Page`}</h1>
-      {Object.keys(characters).map((character, i) => (
-        <div key={i}>
-          <Button
-            key={i}
-            onClick={() => characterSelected(characters[character])}
-          >
-            {characters[character].personalDetails.characterName}
-          </Button>
-        </div>
-      ))}
+      {Object.keys(characters) &&
+        Object.keys(characters).map((character, i) => (
+          <div key={i}>
+            <Button
+              key={i}
+              onClick={() => characterSelected(characters[character])}
+            >
+              {characters[character].personalDetails.characterName}
+            </Button>
+          </div>
+        ))}
       <Button onClick={createNewCharacter}>Create New Character</Button>
     </div>
   );

@@ -170,8 +170,8 @@ function CharacterSheet({ confirmation }) {
           ))}
         </div>
       </div>
-      <div>Weapons</div>
-      <div>Armor</div>
+      {Object.keys(character.weapons).length !== 0 && <div>Weapons</div>}
+      {Object.keys(character.armor).length !== 0 && <div>Armor</div>}
     </div>
   );
 }

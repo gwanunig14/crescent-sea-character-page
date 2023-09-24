@@ -3,9 +3,13 @@ import Button from "react-bootstrap/Button";
 import SkillCreator from "./Skills/SkillCreator";
 import CharacteristicsCreator from "./CharacteristicsCreator";
 
-export default function StatisticCreator({ submitStatisticData, changeStep }) {
-  const [charactericsRemaining, setCharacteristicsRemaining] = useState(false);
-  const [skillsRemaining, setSkillsRemaining] = useState(false);
+export default function StatisticCreator({
+  submitStatisticData,
+  changeStep,
+  character,
+}) {
+  const [characteristicsRemaining, setCharacteristicsRemaining] = useState(0);
+  const [skillsRemaining, setSkillsRemaining] = useState(0);
 
   // Update the field in characteristicData
   function setField(nD, remaining, section) {
@@ -16,7 +20,6 @@ export default function StatisticCreator({ submitStatisticData, changeStep }) {
     }
     submitStatisticData(nD, section);
   }
-
   // Check if a button should be disabled
   const isDisabled = (current, func, counter, max) => {
     if (func === "plus") {
@@ -29,10 +32,15 @@ export default function StatisticCreator({ submitStatisticData, changeStep }) {
   return (
     <div>
       <CharacteristicsCreator
+        character={character}
         submitCharacteristicData={setField}
         isDisabled={isDisabled}
       />
-      <SkillCreator submitSkillData={setField} isDisabled={isDisabled} />
+      <SkillCreator
+        character={character}
+        submitSkillData={setField}
+        isDisabled={isDisabled}
+      />
       <Button
         style={{
           fontSize: "12px !important",
@@ -47,7 +55,7 @@ export default function StatisticCreator({ submitStatisticData, changeStep }) {
       >
         Back
       </Button>
-      {charactericsRemaining === 0 && skillsRemaining === 0 && (
+      {characteristicsRemaining === 0 && skillsRemaining === 0 && (
         <Button
           style={{
             fontSize: "12px !important",

@@ -70,3 +70,8 @@ export function generalCheck(stat) {
 export function emptyArray(array) {
   return Object.keys(array).length === 0;
 }
+
+export function setRelativeStat(character, stat, number) {
+  const pathAndObject = digIn(character, stat);
+  return updateObjectAtPath(character, pathAndObject.path, number);
+}

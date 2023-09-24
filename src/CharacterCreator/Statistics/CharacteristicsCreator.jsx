@@ -1,44 +1,23 @@
-import React, { useState } from "react";
-import {
-  newDwarfCharacteristics,
-  newElfCharacteristics,
-  newHumanCharacteristics,
-} from "../../DataTemplates/CharacteristicData";
-import { useSelector } from "react-redux";
+import React from "react";
 import { makeMutableCopy } from "../../Tools/ReusableFunctions";
 import { CharacteristicCountUp } from "../../Views/CountUp";
 
 export default function CharacteristicsCreator({
+  character,
   submitCharacteristicData,
   isDisabled,
 }) {
   // Initialize characteristics based on race
-  const character = useSelector((state) => state.currentCharacter);
-  const characteristicPointCount = 108;
+  // const characteristicPointCount = 108;
+  const characteristicPointCount = 85;
 
-  let characteristics = character.characteristics;
+  let characteristicData = character.characteristics;
 
-  if (!characteristics) {
-    switch (character.personalDetails.race) {
-      case "dwarf":
-        characteristics = newDwarfCharacteristics;
-        break;
-      case "elf":
-        characteristics = newElfCharacteristics;
-        break;
-      default:
-        characteristics = newHumanCharacteristics;
-        break;
-    }
-  }
-
-  const [characteristicData, setCharacteristicData] = useState(characteristics);
 
   // Update the field in characteristicData
   function setCharactics(key, stringData) {
     let newCD = makeMutableCopy(characteristicData);
     newCD[key] = Number(stringData);
-    setCharacteristicData(newCD);
     submitCharacteristicData(
       newCD,
       getCharacteristicsCount(),

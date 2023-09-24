@@ -40,6 +40,7 @@ export default function SkillSection(props) {
 
   const countUpLoop = (skillHash, skillGroup) => {
     return Object.keys(skillHash).map((skill) => {
+      if (!skillData[skillGroup][skill]) return null;
       if (typeof skillData[skillGroup][skill] === "number") {
         const skillString = skillHash[skill];
         const skillPoint = skillData[skillGroup][skill];

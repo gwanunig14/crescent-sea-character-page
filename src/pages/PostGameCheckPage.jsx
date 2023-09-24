@@ -10,6 +10,7 @@ import {
   makeMutableCopy,
   generalCheck,
   updateObjectAtPath,
+  setRelativeStat,
 } from "../Tools/ReusableFunctions";
 import { CreateCharacter } from "../FirebaseCommunications";
 
@@ -20,7 +21,6 @@ function PostGameCheckPage() {
   const { state } = useLocation();
   const character = useSelector((state) => state.currentCharacter);
   const player = useSelector((state) => state.currentPlayer);
-  const characters = useSelector((state) => state.characters);
   const [statsToCheck, setStatsToCheck] = useState(state?.checks);
   const [statCheck, setStatCheck] = useState(statsToCheck[0]);
 
@@ -61,6 +61,20 @@ function PostGameCheckPage() {
         pathAndObject.path,
         newStat
       );
+
+      if (["power", "intelligence", "dexterity"].includes(statCheck)) {
+        updatedCharacter = setRelativeStat(
+          updatedCharacter,
+          "dodge",
+          character.characteristics.dexterity * 2
+        );
+        updatedCharacter = setRelativeStat(
+          updatedCharacter,
+          "gaming",
+          character.characteristics.intelligence +
+            character.characteristics.power
+        );
+      }
       dispatch(
         upDateCharacter({
           characterName: character.personalDetails.characterName,
