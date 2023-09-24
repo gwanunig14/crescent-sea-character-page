@@ -1,29 +1,28 @@
-import React, { useState } from "react";
-import { GetDamageModifier } from "../../Tools/ReusableFunctions";
-import WeaponDetail from "./WeaponDetail";
-import ArmorDetail from "./ArmorDetail";
+import React from "react";
+import ShieldDetail from "./ShieldDetail";
 
-function ArmorSection({ armor }) {
-  const [av, setAV] = useState(0);
-
+function ShieldSection({ shields, skill }) {
   return (
     <div>
       <div
         style={{ borderBottom: "1px solid black" }}
         className={characterSheetStyleNames.title}
       >
-        {`Armor Value: ${av}`}
+        Shield
       </div>
       <table style={{ width: "100%" }}>
         <tbody>
           <tr style={{ borderBottom: "1px solid black" }}>
-            <td>Armor Name</td>
-            <td>Armor Type</td>
-            <td>AV</td>
+            <td>Shield Name</td>
+            <td>Shield Type</td>
+            <td>%</td>
+            <td>AV/HP</td>
+            <td>Damage</td>
+            <td>Atk</td>
+            <td>Special</td>
           </tr>
-          {Object.keys(armor).map((armor) => {
-            setAV(av + armor.av);
-            return <ArmorDetail armor={armor} />;
+          {Object.keys(shields).map((shield) => {
+            return <ShieldDetail shield={shield} skill={skill} />;
           })}
         </tbody>
       </table>
@@ -31,4 +30,4 @@ function ArmorSection({ armor }) {
   );
 }
 
-export default ArmorSection;
+export default ShieldSection;
