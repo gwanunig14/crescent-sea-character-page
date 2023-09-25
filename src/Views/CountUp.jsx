@@ -90,14 +90,6 @@ export function CharacteristicCountUp({
           justifyContent: "center",
         }}
       >
-        {!minusDisabled && !confirmation && (
-          <Button
-            disabled={minusDisabled}
-            onClick={() => handleButtonPress("minus")}
-          >
-            -
-          </Button>
-        )}
         <div
           style={{
             display: "flex",
@@ -109,6 +101,14 @@ export function CharacteristicCountUp({
           <span style={{ alignSelf: "center" }}>{`${fieldName}:`}</span>
           <span style={{ alignSelf: "center" }}>{count}</span>
         </div>
+        {!minusDisabled && !confirmation && (
+          <Button
+            disabled={minusDisabled}
+            onClick={() => handleButtonPress("minus")}
+          >
+            -
+          </Button>
+        )}
         {!plusDisabled && !confirmation && (
           <Button
             disabled={plusDisabled}

@@ -3,18 +3,15 @@ import { useSelector } from "react-redux";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import "../styles/characterSheet.scss";
-import PersonalDetailsSection from "./CharacterSheetSections/PersonalDetailsSection";
-import CharacteristicsSection from "./CharacterSheetSections/CharacteristicsSection";
-import SkillsSection from "./CharacterSheetSections/SkillsSection";
 import { characterSheetStyleNames } from "../Tools/StyleNames";
-import { KingdomStrings, SkillSectionStrings } from "../Tools/Strings";
-import CounterSection from "./CounterSection";
+import { SkillSectionStrings } from "../Tools/Strings";
 import WeaponsSection from "./CharacterSheetSections/WeaponsSection";
 import ArmorSection from "./CharacterSheetSections/ArmorSection";
 import ShieldSection from "./CharacterSheetSections/ShieldSection";
 import KingdomReputationsSection from "./KingdomReputationsSection";
 import SkillsBlock from "./CharacterSheetSections/SkillsBlock";
 import { emptyArray } from "../Tools/ReusableFunctions";
+import CharacterDetailsSection from "./CharacterSheetSections/CharacterDetailsSection";
 
 function CharacterSheet({ confirmation }) {
   const navigate = useNavigate();
@@ -70,52 +67,16 @@ function CharacterSheet({ confirmation }) {
           </Button>
         )}
       </div>
-      <table
-        style={{
-          width: "100%",
-          borderCollapse: "collapse",
-          marginBottom: "30px",
-        }}
-      >
-        <tbody>
-          <tr
-            className={characterSheetStyleNames.skillCategoryRow}
-            style={{ display: "flex", justifyContent: "space-between" }}
-          >
-            <td>
-              <div className={characterSheetStyleNames.title}>Personal</div>
-              <div className={characterSheetStyleNames.box}>
-                <PersonalDetailsSection personalData={personalDetails} />
-              </div>
-            </td>
-            <td>
-              <div>
-                <div className={characterSheetStyleNames.title}>
-                  Characteristics
-                </div>
-                <div
-                  className={`${characterSheetStyleNames.box} characteristics`}
-                >
-                  <CharacteristicsSection
-                    characteristics={characteristics}
-                    postGameCheck={addToPostGameCheckList}
-                    drinks={drinkCounter}
-                    confirmation={confirmation}
-                  />
-                </div>
-              </div>
-            </td>
-            <CounterSection
-              maxHitPoints={maxHitPoints}
-              power={characteristics.power}
-              magicActivated={magicActivated}
-              drinkCounter={drinkCounter}
-              adjustDrinks={adjustDrinks}
-              confirmation={confirmation}
-            />
-          </tr>
-        </tbody>
-      </table>
+      <CharacterDetailsSection
+        personalDetails={personalDetails}
+        characteristics={characteristics}
+        addToPostGameCheckList={addToPostGameCheckList}
+        drinkCounter={drinkCounter}
+        confirmation={confirmation}
+        maxHitPoints={maxHitPoints}
+        magicActivated={magicActivated}
+        adjustDrinks={adjustDrinks}
+      />
       <KingdomReputationsSection
         kingdomReputations={personalDetails.kingdomReputations}
       />
