@@ -10,7 +10,7 @@ function WeaponsSection({ character, drinks }) {
     <table style={{ width: "100%" }}>
       <tbody>
         <tr style={{ borderBottom: "1px solid black" }}>
-          <td>Weapon Name</td>
+          {/* <td>Weapon Name</td> */}
           <td>Weapon Type</td>
           <td>Skill</td>
           <td>%</td>

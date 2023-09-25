@@ -16,7 +16,7 @@ export default function WeaponDetail({
   success = success + successModifier < 99 ? success + successModifier : 99;
   return (
     <tr>
-      <td>{weapon.name}</td>
+      {/* <td>{weapon.name}</td> */}
       <td>{weapon.type}</td>
       <td>{digIn(CombatStrings, weapon.skill).object}</td>
       <td>{success}</td>
