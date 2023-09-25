@@ -1,20 +1,34 @@
 import "./App.css";
-import React from "react";
+import React, { Component, useEffect, useState } from "react";
 import { Provider } from "react-redux";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom"; // Import Routes from react-router-dom
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import store from "./store/store";
 import CharacterSheet from "./CharacterManagement/CharacterSheet";
 import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
 import CharacterCreator from "./pages/CharacterCreatorPage";
 import PostGameCheckPage from "./pages/PostGameCheckPage";
+import { getDatabase, ref, set } from "firebase/database";
+import { database } from "./database";
 
 function App() {
+  // Initialize your state from localStorage or use default values
+  const [appState, setAppState] = useState(
+    JSON.parse(localStorage.getItem("appState")) ||
+      {
+        // Define your initial state here
+      }
+  );
+
+  // Save state to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem("appState", JSON.stringify(appState));
+  }, [appState]);
+
   return (
     <Provider store={store}>
       <div className="App">
         <Router>
-          {/* Use Routes to define your routes */}
           <Routes>
             <Route path="/" element={<LoginPage />} />
             <Route path="/home-page" element={<HomePage />} />

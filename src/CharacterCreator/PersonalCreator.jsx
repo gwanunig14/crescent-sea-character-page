@@ -20,7 +20,6 @@ export default function PersonalCreator({
   const personalData = character.personalDetails;
 
   const setField = (key, stringData) => {
-    debugger;
     let newPD = makeMutableCopy(personalData);
     newPD[key] = stringData;
     submitPersonalData(newPD, "personalDetails", "plus");

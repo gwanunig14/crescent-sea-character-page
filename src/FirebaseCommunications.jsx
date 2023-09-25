@@ -28,6 +28,20 @@ export async function FetchCharacters(user) {
   }
 }
 
+export async function FetchCharacter(user, character) {
+  const dbRef = ref(getDatabase());
+  const urlPath = `characters/${user}/${character.personalDetails.characterName}`;
+  try {
+    const data = await get(child(dbRef, urlPath));
+    if (data.exists()) {
+      debugger;
+      return data.val();
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export function CreateCharacter(user, character) {
   const db = getDatabase();
   const urlPath = `characters/${user}/${character.personalDetails.characterName}`;

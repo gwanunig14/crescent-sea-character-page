@@ -1,28 +1,27 @@
-import React from "react";
-import ShieldDetail from "./ShieldDetail";
+import React, { useState } from "react";
+import ArmorDetail from "./ArmorDetail";
 
-function ShieldSection({ shields, skill }) {
+function ArmorSection({ armor }) {
+  const [av, setAV] = useState(0);
+
   return (
     <div>
       <div
         style={{ borderBottom: "1px solid black" }}
         className={characterSheetStyleNames.title}
       >
-        Shield
+        {`Armor Value: ${av}`}
       </div>
       <table style={{ width: "100%" }}>
         <tbody>
           <tr style={{ borderBottom: "1px solid black" }}>
-            <td>Shield Name</td>
-            <td>Shield Type</td>
-            <td>%</td>
-            <td>AV/HP</td>
-            <td>Damage</td>
-            <td>Atk</td>
-            <td>Special</td>
+            <td>Armor Name</td>
+            <td>Armor Type</td>
+            <td>AV</td>
           </tr>
-          {Object.keys(shields).map((shield) => {
-            return <ShieldDetail shield={shield} skill={skill} />;
+          {Object.keys(armor).map((armor) => {
+            setAV(av + armor.av);
+            return <ArmorDetail armor={armor} />;
           })}
         </tbody>
       </table>
@@ -30,4 +29,4 @@ function ShieldSection({ shields, skill }) {
   );
 }
 
-export default ShieldSection;
+export default ArmorSection;

@@ -1,5 +1,6 @@
 // src/reducers/currentCharacterReducer.js
 import { createSlice } from "@reduxjs/toolkit";
+import { localStorageCharacterMiddleware } from "./localStorage";
 
 const initialState = {}; // Initial state for currentCharacter
 
@@ -12,6 +13,7 @@ const currentCharacterSlice = createSlice({
       return action.payload;
     },
   },
+  middleware: [localStorageCharacterMiddleware],
 });
 
 export const { setCurrentCharacter } = currentCharacterSlice.actions;
