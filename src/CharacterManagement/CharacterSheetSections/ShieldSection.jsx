@@ -1,4 +1,5 @@
 import React from "react";
+import { characterSheetStyleNames } from "../../Tools/StyleNames";
 import ShieldDetail from "./ShieldDetail";
 
 function ShieldSection({ shields, skill }) {
@@ -10,10 +11,11 @@ function ShieldSection({ shields, skill }) {
       >
         Shield
       </div>
+      <div style={{ borderBottom: "1px solid black" }}>Shield</div>
       <table style={{ width: "100%" }}>
         <tbody>
           <tr style={{ borderBottom: "1px solid black" }}>
-            <td>Shield Name</td>
+            {/* <td>Shield Name</td> */}
             <td>Shield Type</td>
             <td>%</td>
             <td>AV/HP</td>
@@ -21,7 +23,7 @@ function ShieldSection({ shields, skill }) {
             <td>Atk</td>
             <td>Special</td>
           </tr>
-          {Object.keys(shields).map((shield) => {
+          {Object.values(shields).map((shield) => {
             return <ShieldDetail shield={shield} skill={skill} />;
           })}
         </tbody>

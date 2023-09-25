@@ -3,7 +3,7 @@ import React from "react";
 export default function ShieldDetail({ shield, skill }) {
   return (
     <tr>
-      <td>{shield.name}</td>
+      {/* <td>{shield.name}</td> */}
       <td>{shield.type}</td>
       <td>{skill}</td>
       <td>{shield.av}</td>

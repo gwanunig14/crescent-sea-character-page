@@ -1,14 +1,14 @@
 import React, { useState } from "react";
+import { characterSheetStyleNames } from "../../Tools/StyleNames";
 import ArmorDetail from "./ArmorDetail";
 
 function ArmorSection({ armor }) {
   const [av, setAV] = useState(0);
-  console.log(armor);
 
   const buildArmorViewsAndAddArmorValue = (armorList) => {
     let armVal = 0;
     let armorViews = [];
-    Object.values(armorList).map((a) => {
+    Object.values(armorList).forEach((a) => {
       armVal = armVal + Number(a.av);
       armorViews.push(<ArmorDetail armor={a} />);
     });
@@ -19,7 +19,13 @@ function ArmorSection({ armor }) {
   };
 
   return (
-    <div>
+    <div style={{ paddingTop: "30px" }}>
+      <div
+        style={{ borderBottom: "1px solid black" }}
+        className={characterSheetStyleNames.title}
+      >
+        Armor
+      </div>
       <div style={{ borderBottom: "1px solid black" }}>
         {`Armor Value: ${av}`}
       </div>

@@ -11,6 +11,10 @@ import { KingdomStrings, SkillSectionStrings } from "../Tools/Strings";
 import CounterSection from "./CounterSection";
 import WeaponsSection from "./CharacterSheetSections/WeaponsSection";
 import ArmorSection from "./CharacterSheetSections/ArmorSection";
+import ShieldSection from "./CharacterSheetSections/ShieldSection";
+import KingdomReputationsSection from "./KingdomReputationsSection";
+import SkillsBlock from "./CharacterSheetSections/SkillsBlock";
+import { emptyArray } from "../Tools/ReusableFunctions";
 
 function CharacterSheet({ confirmation }) {
   const navigate = useNavigate();
@@ -112,77 +116,30 @@ function CharacterSheet({ confirmation }) {
           </tr>
         </tbody>
       </table>
-      <div
-        style={{ paddingTop: "30px" }}
-        className={characterSheetStyleNames.title}
-      >
-        Kingdom Reputations
-      </div>
-      <table
-        style={{
-          width: "100%",
-          borderCollapse: "collapse",
-          borderTop: "1px solid black",
-          padding: "8px",
-          height: "38px",
-        }}
-      >
-        <tbody>
-          <tr style={{ display: "flex", justifyContent: "space-between" }}>
-            {Object.keys(personalDetails.kingdomReputations).map((rep) => (
-              <td style={{ maxWidth: "170px" }}>
-                <div
-                  style={{
-                    fontWeight: "bold",
-                    fontSize: "20px",
-                    marginTop: "8px",
-                  }}
-                >
-                  {KingdomStrings[rep]}
-                </div>
-                <div>{personalDetails.kingdomReputations[rep]}</div>
-              </td>
-            ))}
-          </tr>
-        </tbody>
-      </table>
-      <div style={{ paddingTop: "30px" }}>
-        <div
-          style={{ borderBottom: "1px solid black" }}
-          className={characterSheetStyleNames.title}
-        >
-          Skills
-        </div>
-        <div className="skill-section-groups">
-          {skillSections.map((sectionGroup) => (
-            <div style={{ verticalAlign: "top", textAlign: "left" }}>
-              {sectionGroup.map((section) => (
-                <SkillsSection
-                  key={section.section}
-                  sectionName={section.section}
-                  heading={section.sectionName}
-                  modifier={Math.floor(characteristics[section.modifier] / 2)}
-                  skills={skills[section.section]}
-                  drinks={drinkCounter}
-                  postGameCheck={addToPostGameCheckList}
-                  confirmation={confirmation}
-                />
-              ))}
-            </div>
-          ))}
-        </div>
-      </div>
-      {character.armor && Object.keys(character.armor).length !== 0 && (
-        <div style={{ paddingTop: "30px" }}>
-          <div
-            style={{ borderBottom: "1px solid black" }}
-            className={characterSheetStyleNames.title}
-          >
-            Armor
-          </div>
+      <KingdomReputationsSection
+        kingdomReputations={personalDetails.kingdomReputations}
+      />
+      <SkillsBlock
+        skillSections={skillSections}
+        characteristics={characteristics}
+        skills={skills}
+        drinkCounter={drinkCounter}
+        addToPostGameCheckList={addToPostGameCheckList}
+        confirmation={confirmation}
+      />
+      {!confirmation &&
+        character.armor &&
+        !emptyArray(character.armor.armor) && (
           <ArmorSection armor={character.armor.armor} />
-        </div>
-      )}
+        )}
+      {!confirmation &&
+        character.armor.shield &&
+        !emptyArray(character.armor.shield) && (
+          <ShieldSection
+            shields={character.armor.shield}
+            skill={character.skills.combat.shield}
+          />
+        )}
       {character.weapons && Object.keys(character.weapons).length !== 0 && (
         <div style={{ paddingTop: "30px" }}>
           <div

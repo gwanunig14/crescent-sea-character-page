@@ -34,7 +34,6 @@ export async function FetchCharacter(user, character) {
   try {
     const data = await get(child(dbRef, urlPath));
     if (data.exists()) {
-      debugger;
       return data.val();
     }
   } catch (error) {
