@@ -10,6 +10,7 @@ import { characterSheetStyleNames } from "../Tools/StyleNames";
 import { KingdomStrings, SkillSectionStrings } from "../Tools/Strings";
 import CounterSection from "./CounterSection";
 import WeaponsSection from "./CharacterSheetSections/WeaponsSection";
+import ArmorSection from "./CharacterSheetSections/ArmorSection";
 
 function CharacterSheet({ confirmation }) {
   const navigate = useNavigate();
@@ -172,7 +173,15 @@ function CharacterSheet({ confirmation }) {
         </div>
       </div>
       {character.armor && Object.keys(character.armor).length !== 0 && (
-        <div>Armor</div>
+        <div style={{ paddingTop: "30px" }}>
+          <div
+            style={{ borderBottom: "1px solid black" }}
+            className={characterSheetStyleNames.title}
+          >
+            Armor
+          </div>
+          <ArmorSection armor={character.armor.armor} />
+        </div>
       )}
       {character.weapons && Object.keys(character.weapons).length !== 0 && (
         <div style={{ paddingTop: "30px" }}>
