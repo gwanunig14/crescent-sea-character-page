@@ -5,8 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { setCurrentCharacter } from "../reducers/currentCharacterReducer";
 import Button from "react-bootstrap/Button";
 import { newCharacterPersonalDetails } from "../DataTemplates/PersonalData";
-import { CreateCharacter, FetchCharacters } from "../FirebaseCommunications";
-import { TestingCharacter1, TestingCharacter2 } from "../TestingData";
+import { FetchCharacters } from "../FirebaseCommunications";
 import { setCharacters } from "../reducers/characterReducer";
 
 function HomePage() {

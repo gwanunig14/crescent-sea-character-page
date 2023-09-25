@@ -8,9 +8,6 @@ import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
 import CharacterCreator from "./pages/CharacterCreatorPage";
 import PostGameCheckPage from "./pages/PostGameCheckPage";
-import { TestingCharacter1 } from "./TestingData";
-import { getDatabase, ref, set } from "firebase/database";
-import { database } from "./database";
 
 function App() {
   return (

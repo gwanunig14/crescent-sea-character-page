@@ -1,6 +1,5 @@
 import React from "react";
 import { SkillStrings } from "../../Tools/Strings";
-import { characterSheetStyleNames } from "../../Tools/StyleNames";
 import { digIn, emptyArray } from "../../Tools/ReusableFunctions";
 import Button from "react-bootstrap/Button";
 

@@ -1,4 +1,3 @@
-import React from "react";
 import { child, get, getDatabase, ref, set } from "firebase/database";
 
 export function FetchUser(name) {
