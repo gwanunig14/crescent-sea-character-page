@@ -50,13 +50,16 @@ const loadStateFromLocalStorage = (store) => {
 const initializeStateFromDatabase = async (store) => {
   try {
     const playerAndCharacter = getPlayerAndCharacter();
-    const fetchedCharacter = await FetchCharacter(
-      playerAndCharacter.player,
-      playerAndCharacter.character
-    ); // Assuming you have a function to fetch characters
+    if (playerAndCharacter.player && playerAndCharacter.character) {
+      const fetchedCharacter = await FetchCharacter(
+        playerAndCharacter.player,
+        playerAndCharacter.character
+      );
+      // Assuming you have a function to fetch characters
 
-    // Dispatch the latest character as the initial state for currentCharacter
-    store.dispatch(setCurrentCharacter(fetchedCharacter));
+      // Dispatch the latest character as the initial state for currentCharacter
+      store.dispatch(setCurrentCharacter(fetchedCharacter));
+    }
   } catch (error) {
     // Handle any errors that may occur during initialization
     console.error(error);
