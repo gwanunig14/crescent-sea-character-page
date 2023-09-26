@@ -12,7 +12,6 @@ import {
   localStoragePlayerMiddleware,
 } from "../reducers/localStorage";
 import { FetchCharacter } from "../FirebaseCommunications";
-import { getDatabase, ref, set } from "firebase/database";
 import { database } from "../database";
 
 const getPlayerAndCharacter = () => {

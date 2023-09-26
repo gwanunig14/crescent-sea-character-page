@@ -1,7 +1,3 @@
-// localStorageMiddleware.js
-
-import { emptyArray } from "../Tools/ReusableFunctions";
-
 export const localStorageCharacterMiddleware =
   (store) => (next) => (action) => {
     // Call the next middleware or reducer in the chain

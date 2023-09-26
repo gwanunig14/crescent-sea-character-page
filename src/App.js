@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { Component, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import store from "./store/store";
@@ -8,8 +8,6 @@ import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
 import CharacterCreator from "./pages/CharacterCreatorPage";
 import PostGameCheckPage from "./pages/PostGameCheckPage";
-import { getDatabase, ref, set } from "firebase/database";
-import { database } from "./database";
 
 function App() {
   // Initialize your state from localStorage or use default values
