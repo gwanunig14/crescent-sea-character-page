@@ -49,7 +49,10 @@ const loadStateFromLocalStorage = (store) => {
 const initializeStateFromDatabase = async (store) => {
   try {
     const playerAndCharacter = getPlayerAndCharacter();
-    if (playerAndCharacter.player && playerAndCharacter.character) {
+    if (
+      playerAndCharacter.player &&
+      playerAndCharacter.character.personalDetails
+    ) {
       const fetchedCharacter = await FetchCharacter(
         playerAndCharacter.player,
         playerAndCharacter.character

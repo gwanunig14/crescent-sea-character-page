@@ -64,6 +64,7 @@ function HomePage() {
           <div key={i}>
             <Button
               key={i}
+              style={{ marginBottom: "15px" }}
               onClick={() => characterSelected(characters[character])}
             >
               {characters[character].personalDetails.characterName}
