@@ -2,6 +2,7 @@
   "name": "crescent-sea-character-page",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://gwanunig14.github.io/crescent-sea-character-page/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/jest-dom": "^6.1.3",
