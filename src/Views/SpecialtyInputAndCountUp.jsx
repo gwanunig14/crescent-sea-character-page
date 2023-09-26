@@ -36,14 +36,14 @@ export default function SpecialtyInputAndCountUp({
   };
 
   const renderSpecialties = () => {
-    return Object.keys(list).map((specialty) => {
+    return list.map(({ specialty, val }, i) => {
       if (specialty === "general") return null;
 
       const skillString = stringHash[specialty] || specialty;
-      const skillPoint = list[specialty];
+      const skillPoint = val;
 
       return (
-        <div style={{ marginLeft: "50px" }}>
+        <div style={{ marginLeft: "50px" }} key={i}>
           <GenericCountUp
             key={specialty}
             fieldName={skillString}

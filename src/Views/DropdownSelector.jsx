@@ -39,9 +39,9 @@ export default function DropdownSelector({
             {label}
           </Dropdown.Toggle>
           <Dropdown.Menu>
-            {Object.keys(optionList)?.map((option) => (
+            {optionList?.map(({ option, val }) => (
               <Dropdown.Item eventKey={option} key={option}>
-                {optionList[option]}
+                {val}
               </Dropdown.Item>
             ))}
           </Dropdown.Menu>

@@ -8,9 +8,9 @@ function ArmorSection({ armor }) {
   const buildArmorViewsAndAddArmorValue = (armorList) => {
     let armVal = 0;
     let armorViews = [];
-    Object.values(armorList).forEach((a) => {
+    Object.values(armorList).forEach((a, i) => {
       armVal = armVal + Number(a.av);
-      armorViews.push(<ArmorDetail armor={a} />);
+      armorViews.push(<ArmorDetail key={i} armor={a} />);
     });
     if (armVal !== av) {
       setAV(armVal);

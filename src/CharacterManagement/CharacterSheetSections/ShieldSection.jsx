@@ -23,8 +23,8 @@ function ShieldSection({ shields, skill }) {
             <td>Atk</td>
             <td>Special</td>
           </tr>
-          {Object.values(shields).map((shield) => {
-            return <ShieldDetail shield={shield} skill={skill} />;
+          {Object.values(shields).map((shield, i) => {
+            return <ShieldDetail key={i} shield={shield} skill={skill} />;
           })}
         </tbody>
       </table>

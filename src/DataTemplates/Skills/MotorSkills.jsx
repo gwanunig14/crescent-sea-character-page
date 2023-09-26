@@ -17,7 +17,7 @@ export const startingElfMotorSkills = {
   fineManipulation: 15,
   instrument: { general: 5 },
   lockpicking: 1,
-  repair: { general: 15 },
+  repair: { general: 12 },
   sleightOfHand: 5,
   modifier: "dexterity",
 };

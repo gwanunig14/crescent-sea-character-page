@@ -39,10 +39,10 @@ export default function SkillSection(props) {
   };
 
   const countUpLoop = (skillHash, skillGroup) => {
-    return Object.keys(skillHash).map((skill) => {
+    return skillHash.map(({ skill, val }) => {
       if (!skillData[skillGroup][skill]) return null;
       if (typeof skillData[skillGroup][skill] === "number") {
-        const skillString = skillHash[skill];
+        const skillString = val;
         const skillPoint = skillData[skillGroup][skill];
         return (
           <GenericCountUp
@@ -60,7 +60,7 @@ export default function SkillSection(props) {
           <SpecialtyInputAndCountUp
             key={skill}
             primarySkill={skill}
-            stringHash={skillHash[skill]}
+            stringHash={val}
             list={skillData[skillGroup][skill]}
             setSkill={setSkill}
             setSpecialty={setSpecialty}

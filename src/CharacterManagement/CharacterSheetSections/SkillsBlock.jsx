@@ -11,7 +11,6 @@ export default function SkillsBlock({
   addToPostGameCheckList,
   confirmation,
 }) {
-  debugger;
   return (
     <div style={{ paddingTop: "30px" }}>
       <div
@@ -21,8 +20,8 @@ export default function SkillsBlock({
         Skills
       </div>
       <div className="skill-section-groups">
-        {skillSections.map((sectionGroup) => (
-          <div style={{ verticalAlign: "top", textAlign: "left" }}>
+        {skillSections.map((sectionGroup, i) => (
+          <div key={i} style={{ verticalAlign: "top", textAlign: "left" }}>
             {sectionGroup.map((section) => (
               <SkillsSection
                 key={section.section}

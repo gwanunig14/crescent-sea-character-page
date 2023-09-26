@@ -24,7 +24,7 @@ export const startingElfCommunication = {
   nature: { animal: 10 },
   perform: 5,
   persuade: 15,
-  teach: 10,
+  teach: 5,
   modifier: "charisma",
 };
 

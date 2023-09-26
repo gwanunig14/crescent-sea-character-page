@@ -23,8 +23,8 @@ export default function KingdomReputationsSection({ kingdomReputations }) {
       >
         <tbody>
           <tr style={{ display: "flex", justifyContent: "space-between" }}>
-            {Object.keys(kingdomReputations).map((rep) => (
-              <td style={{ maxWidth: "170px" }}>
+            {kingdomReputations.map(({ kingdom, rep }, i) => (
+              <td key={i} style={{ maxWidth: "170px" }}>
                 <div
                   style={{
                     fontWeight: "bold",
@@ -32,9 +32,9 @@ export default function KingdomReputationsSection({ kingdomReputations }) {
                     marginTop: "8px",
                   }}
                 >
-                  {KingdomStrings[rep]}
+                  {KingdomStrings[kingdom]}
                 </div>
-                <div>{kingdomReputations[rep]}</div>
+                <div>{rep}</div>
               </td>
             ))}
           </tr>

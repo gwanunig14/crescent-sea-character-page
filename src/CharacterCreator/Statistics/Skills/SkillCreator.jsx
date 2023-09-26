@@ -19,12 +19,11 @@ export default function SkillCreator({
     submitSkillData(newSD, getSkillsCount(), "skills");
   };
 
-
   const getSkillsCount = () => {
     let statCount = 0;
     Object.values(skillData).forEach((v) => {
-      Object.values(v).forEach((va) => {
-        if (!ignore.includes(v)) {
+      v.forEach(({ k, va }) => {
+        if (!ignore.includes(k.charAt(0).toUpperCase() + k.slice(1))) {
           if (typeof va === "number") {
             statCount += va;
           } else if (typeof va !== "string") {
@@ -36,8 +35,8 @@ export default function SkillCreator({
       });
     });
 
-    // return 1232 - statCount;
-    return 897 - statCount;
+    return 1002 - statCount;
+    return 653 - statCount;
   };
 
   return (
@@ -49,9 +48,10 @@ export default function SkillCreator({
           <tr>
             {skillSections.map((sectionGroup) => (
               <td style={{ verticalAlign: "top", textAlign: "left" }}>
-                {sectionGroup.map((section) => {
+                {sectionGroup.map((section, i) => {
                   return (
                     <SkillSection
+                      key={i}
                       character={character}
                       sectionData={section}
                       skillData={skillData}

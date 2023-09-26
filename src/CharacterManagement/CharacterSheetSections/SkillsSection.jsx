@@ -45,13 +45,13 @@ function SkillsSection({
           {100 - Math.ceil((100 - modifier) / 20)}
         </div>
       </div>
-      {Object.keys(skills).map((skill) =>
+      {skills.map(({ skill, val }) =>
         skill === "modifier" ? null : (
           <SkillDetail
             grouping={sectionName}
             key={skill}
             skill={skill}
-            success={skills[skill]}
+            success={val}
             modifier={modifier}
             postGameCheck={postGameCheck}
             drinks={drinks * 5}

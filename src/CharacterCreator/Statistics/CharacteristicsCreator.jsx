@@ -8,11 +8,9 @@ export default function CharacteristicsCreator({
   isDisabled,
 }) {
   // Initialize characteristics based on race
-  // const characteristicPointCount = 108;
-  const characteristicPointCount = 85;
+  const characteristicPointCount = 106;
 
   let characteristicData = character.characteristics;
-
 
   // Update the field in characteristicData
   function setCharactics(key, stringData) {
@@ -43,21 +41,21 @@ export default function CharacteristicsCreator({
       <table style={{ width: "100%" }}>
         <tbody>
           <tr>
-            {Object.keys(characteristicData).map((key) => (
+            {characteristicData.map(({ key, value }) => (
               <CharacteristicCountUp
                 key={key}
                 fieldName={key}
                 dataKey={key}
-                count={characteristicData[key]}
+                count={value}
                 returnText={setCharactics}
                 plusDisabled={isDisabled(
-                  characteristicData[key],
+                  value,
                   "plus",
                   getCharacteristicsCount(),
                   20
                 )}
                 minusDisabled={isDisabled(
-                  characteristicData[key],
+                  value,
                   "minus",
                   getCharacteristicsCount()
                 )}

@@ -22,8 +22,9 @@ function WeaponsSection({ character, drinks }) {
           <td>HP</td>
           <td>Parry</td>
         </tr>
-        {Object.keys(weapons).map((weapon) => (
+        {Object.keys(weapons).map((weapon, i) => (
           <WeaponDetail
+            key={i}
             damageModifier={damageModifier}
             weapon={weapons[weapon]}
             drinks={drinks}
