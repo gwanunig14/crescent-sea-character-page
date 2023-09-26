@@ -22,8 +22,8 @@ export default function SkillCreator({
   const getSkillsCount = () => {
     let statCount = 0;
     Object.values(skillData).forEach((v) => {
-      v.forEach(({ k, va }) => {
-        if (!ignore.includes(k.charAt(0).toUpperCase() + k.slice(1))) {
+      Object.values(v).forEach((va) => {
+        if (!ignore.includes(v.charAt(0).toUpperCase() + v.slice(1))) {
           if (typeof va === "number") {
             statCount += va;
           } else if (typeof va !== "string") {
@@ -36,7 +36,7 @@ export default function SkillCreator({
     });
 
     return 1002 - statCount;
-    return 653 - statCount;
+    // return 653 - statCount;
   };
 
   return (

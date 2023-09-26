@@ -60,10 +60,13 @@ function HomePage() {
     <div>
       <h1>{`${player}'s Home Page`}</h1>
       {Object.keys(characters) &&
-        characters.map(({ character, val }, i) => (
+        Object.keys(characters).map((character, i) => (
           <div key={i}>
-            <Button key={i} onClick={() => characterSelected(val)}>
-              {val.personalDetails.characterName}
+            <Button
+              key={i}
+              onClick={() => characterSelected(characters[character])}
+            >
+              {characters[character].personalDetails.characterName}
             </Button>
           </div>
         ))}

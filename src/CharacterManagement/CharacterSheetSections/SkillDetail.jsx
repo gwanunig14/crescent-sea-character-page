@@ -56,12 +56,12 @@ export default function SkillDetail({
             </div>
           )
         )}
-        {success.map(({ specialty, val }) => {
+        {Object.keys(success).map((specialty) => {
           return specialty !== "general" ? (
             <SkillDetail
               key={specialty}
               skill={specialty}
-              success={val}
+              success={success[specialty]}
               modifier={modifier}
               confirmation={confirmation}
               drinks={drinks}

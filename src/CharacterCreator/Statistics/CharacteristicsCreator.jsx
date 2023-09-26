@@ -41,21 +41,21 @@ export default function CharacteristicsCreator({
       <table style={{ width: "100%" }}>
         <tbody>
           <tr>
-            {characteristicData.map(({ key, value }) => (
+            {Object.keys(characteristicData).map((key) => (
               <CharacteristicCountUp
                 key={key}
                 fieldName={key}
                 dataKey={key}
-                count={value}
+                count={characteristicData[key]}
                 returnText={setCharactics}
                 plusDisabled={isDisabled(
-                  value,
+                  characteristicData[key],
                   "plus",
                   getCharacteristicsCount(),
                   20
                 )}
                 minusDisabled={isDisabled(
-                  value,
+                  characteristicData[key],
                   "minus",
                   getCharacteristicsCount()
                 )}

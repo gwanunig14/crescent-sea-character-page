@@ -133,10 +133,10 @@ export default function PersonalCreator({
       <table style={{ width: "100%" }}>
         <tbody>
           <tr>
-            {KingdomStrings.map(({ snakeCase, format }) => (
-              <td key={snakeCase}>
-                <div>{format}</div>
-                {startingLoyalty(snakeCase)}
+            {Object.keys(KingdomStrings).map((kingdom) => (
+              <td key={kingdom}>
+                <div>{KingdomStrings[kingdom]}</div>
+                {startingLoyalty(kingdom)}
               </td>
             ))}
           </tr>

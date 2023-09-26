@@ -36,11 +36,11 @@ export default function SpecialtyInputAndCountUp({
   };
 
   const renderSpecialties = () => {
-    return list.map(({ specialty, val }, i) => {
+    return Object.keys(list).map((specialty, i) => {
       if (specialty === "general") return null;
 
       const skillString = stringHash[specialty] || specialty;
-      const skillPoint = val;
+      const skillPoint = list[specialty];
 
       return (
         <div style={{ marginLeft: "50px" }} key={i}>

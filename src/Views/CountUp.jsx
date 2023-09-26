@@ -42,7 +42,7 @@ export default function GenericCountUp({
       ) : (
         <>
           <div style={{ display: "inline-block" }}>
-            {!minusDisabled && !confirmation && (
+            {!confirmation && (
               <Button
                 disabled={minusDisabled}
                 onClick={() => handleButtonPress("minus")}
@@ -52,7 +52,7 @@ export default function GenericCountUp({
             )}
           </div>
           <div style={{ display: "inline-block" }}>
-            {!plusDisabled && !confirmation && (
+            {!confirmation && (
               <Button
                 disabled={plusDisabled}
                 onClick={() => handleButtonPress("plus")}

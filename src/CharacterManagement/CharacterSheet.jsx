@@ -101,7 +101,7 @@ function CharacterSheet({ confirmation }) {
             skill={character.skills.combat.shield}
           />
         )}
-      {character.weapons && !emptyArray(character.weapons) && (
+      {character.weapons && emptyArray(character.weapons) && (
         <div style={{ paddingTop: "30px" }}>
           <div
             style={{ borderBottom: "1px solid black" }}
