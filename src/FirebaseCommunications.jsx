@@ -1,4 +1,4 @@
-import { child, get, getDatabase, ref, set } from "firebase/database";
+import { child, get, getDatabase, ref, set, update } from "firebase/database";
 
 export function FetchUser(name) {
   const dbRef = ref(getDatabase());
@@ -46,4 +46,14 @@ export function CreateCharacter(user, character) {
   const urlPath = `characters/${user}/${character.personalDetails.characterName}`;
 
   set(ref(db, urlPath), character);
+}
+
+export function CreateItems(category, items) {
+  const db = getDatabase();
+  const urlPath = `${category}/`;
+  const updates = {};
+  Object.keys(items).forEach(
+    (key) => (updates[`${urlPath}/${key}`] = items[key])
+  );
+  update(ref(db), updates);
 }

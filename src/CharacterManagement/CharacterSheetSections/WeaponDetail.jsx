@@ -22,7 +22,7 @@ export default function WeaponDetail({
       <td>{success}</td>
       <td>
         {weapon.modifier
-          ? `${weapon.damage} + ${damageModifier}`
+          ? `${weapon.damage}${damageModifier}`
           : `${weapon.damage}`}
       </td>
       <td>{weapon.attack}</td>
