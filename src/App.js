@@ -8,6 +8,7 @@ import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
 import CharacterCreator from "./pages/CharacterCreatorPage";
 import PostGameCheckPage from "./pages/PostGameCheckPage";
+import EditCharacterPage from "./pages/EditCharacterPage";
 
 function App() {
   // Initialize your state from localStorage or use default values
@@ -36,6 +37,7 @@ function App() {
             />
             <Route path="/character-creator" element={<CharacterCreator />} />
             <Route path="/finalize" element={<PostGameCheckPage />} />
+            <Route path="/edit" element={<EditCharacterPage />} />
           </Routes>
         </Router>
       </div>

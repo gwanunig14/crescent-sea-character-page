@@ -12,7 +12,11 @@ export default function DropdownSelector({
   rep = false,
 }) {
   const label =
-    value && typeof value === "string" ? optionList[value] : `${name}`;
+    value && typeof value === "string"
+      ? optionList[value] && typeof optionList[value] !== "object"
+        ? optionList[value]
+        : value
+      : `${name}`;
 
   const handleSelect = (selectedValue) => {
     setField(dataKey, selectedValue);
@@ -39,9 +43,51 @@ export default function DropdownSelector({
             {label}
           </Dropdown.Toggle>
           <Dropdown.Menu>
+            {optionList.constructor === Array
+              ? optionList.map((option) => (
+                  <Dropdown.Item eventKey={option} key={option}>
+                    {option}
+                  </Dropdown.Item>
+                ))
+              : Object.keys(optionList)?.map((option) => (
+                  <Dropdown.Item eventKey={option} key={option}>
+                    {typeof optionList[option] === "string"
+                      ? optionList[option]
+                      : option}
+                  </Dropdown.Item>
+                ))}
+          </Dropdown.Menu>
+        </Dropdown>
+      </div>
+    </div>
+  );
+}
+
+export function AddItemDropdownSelector({ name, optionList, setField, value }) {
+  const label = value && typeof value === "string" ? value : `${name}`;
+
+  const handleSelect = (selectedValue) => {
+    setField(selectedValue, optionList[selectedValue]);
+  };
+
+  return (
+    <div>
+      <div
+        style={{
+          display: "inline-block",
+          marginRight: "10px",
+          width: "140px",
+        }}
+      >{`${name}:`}</div>
+      <div style={{ display: "inline-block" }}>
+        <Dropdown onSelect={handleSelect}>
+          <Dropdown.Toggle variant="success" id="dropdown-basic">
+            {label}
+          </Dropdown.Toggle>
+          <Dropdown.Menu>
             {Object.keys(optionList)?.map((option) => (
               <Dropdown.Item eventKey={option} key={option}>
-                {optionList[option]}
+                {option}
               </Dropdown.Item>
             ))}
           </Dropdown.Menu>
