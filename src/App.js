@@ -25,10 +25,9 @@ function App() {
   }, [appState]);
 
   return (
-    // <Provider store={store}>
-    <div>
-      <div>HELLO</div>
-      {/* <Router>
+    <Provider store={store}>
+      <div className="App">
+        <Router>
           <Routes>
             <Route path="/" element={<LoginPage />} />
             <Route path="/home-page" element={<HomePage />} />
@@ -40,9 +39,9 @@ function App() {
             <Route path="/finalize" element={<PostGameCheckPage />} />
             <Route path="/edit" element={<EditCharacterPage />} />
           </Routes>
-        </Router> */}
-    </div>
-    // </Provider>
+        </Router>
+      </div>
+    </Provider>
   );
 }
 
