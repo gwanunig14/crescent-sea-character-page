@@ -27,7 +27,9 @@ function App() {
   return (
     <Provider store={store}>
       <div className="App">
-        <div>Show some text</div>
+        <Router basename="/crescent-sea-character-page">
+          <div>Show some text</div>
+        </Router>
         {/* <Router>
           <Routes>
             <Route path="/" element={<LoginPage />} />
