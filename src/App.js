@@ -1,7 +1,7 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
 import { Provider } from "react-redux";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import store from "./store/store";
 import CharacterSheet from "./CharacterManagement/CharacterSheet";
 import LoginPage from "./pages/LoginPage";
@@ -27,10 +27,7 @@ function App() {
   return (
     <Provider store={store}>
       <div className="App">
-        <Router basename="/crescent-sea-character-page">
-          <div>Show some text</div>
-        </Router>
-        {/* <Router>
+        <Router>
           <Routes>
             <Route path="/" element={<LoginPage />} />
             <Route path="/home-page" element={<HomePage />} />
@@ -42,7 +39,7 @@ function App() {
             <Route path="/finalize" element={<PostGameCheckPage />} />
             <Route path="/edit" element={<EditCharacterPage />} />
           </Routes>
-        </Router> */}
+        </Router>
       </div>
     </Provider>
   );
