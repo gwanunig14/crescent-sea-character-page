@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/crescent-sea-character-page/static/css/main.b12db4a9.css",
-    "main.js": "/crescent-sea-character-page/static/js/main.9819de19.js",
+    "main.js": "/crescent-sea-character-page/static/js/main.79bd2dcd.js",
     "static/js/496.ff396216.chunk.js": "/crescent-sea-character-page/static/js/496.ff396216.chunk.js",
     "index.html": "/crescent-sea-character-page/index.html",
     "main.b12db4a9.css.map": "/crescent-sea-character-page/static/css/main.b12db4a9.css.map",
-    "main.9819de19.js.map": "/crescent-sea-character-page/static/js/main.9819de19.js.map",
+    "main.79bd2dcd.js.map": "/crescent-sea-character-page/static/js/main.79bd2dcd.js.map",
     "496.ff396216.chunk.js.map": "/crescent-sea-character-page/static/js/496.ff396216.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b12db4a9.css",
-    "static/js/main.9819de19.js"
+    "static/js/main.79bd2dcd.js"
   ]
 }
