@@ -27,7 +27,8 @@ function App() {
   return (
     <Provider store={store}>
       <div className="App">
-        <Router>
+        <div>Show some text</div>
+        {/* <Router>
           <Routes>
             <Route path="/" element={<LoginPage />} />
             <Route path="/home-page" element={<HomePage />} />
@@ -39,7 +40,7 @@ function App() {
             <Route path="/finalize" element={<PostGameCheckPage />} />
             <Route path="/edit" element={<EditCharacterPage />} />
           </Routes>
-        </Router>
+        </Router> */}
       </div>
     </Provider>
   );
