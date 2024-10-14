@@ -1,0 +1,36 @@
+.tattered-banner {
+  background-color: #d2b48c;
+  color: #4a2c2a;
+  font-weight: bold;
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  position: relative;
+  text-align: center;
+  font-size: 1.5rem; /* Increased font size */
+}
+
+.tattered-banner::before,
+.tattered-banner::after {
+  content: "";
+  position: absolute;
+  bottom: -15px;
+  width: 100%;
+  height: 15px;
+  left: 0;
+  background: linear-gradient(
+      45deg,
+      transparent 33.33%,
+      #d2b48c 33.33%,
+      #d2b48c 66.66%,
+      transparent 66.66%
+    ),
+    linear-gradient(
+      -45deg,
+      transparent 33.33%,
+      #d2b48c 33.33%,
+      #d2b48c 66.66%,
+      transparent 66.66%
+    );
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 0;
+}

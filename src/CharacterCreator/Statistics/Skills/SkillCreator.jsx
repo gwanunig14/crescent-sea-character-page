@@ -21,18 +21,16 @@ export default function SkillCreator({
 
   const getSkillsCount = () => {
     let statCount = 0;
-    Object.values(skillData).forEach((v) => {
-      Object.values(v).forEach((va) => {
-        if (!ignore.includes(v.charAt(0).toUpperCase() + v.slice(1))) {
-          if (typeof va === "number") {
-            statCount += va;
-          } else if (typeof va !== "string") {
-            Object.values(va).forEach((val) => {
+    Object.entries(skillData).forEach(([key, value]) => {
+      if (!ignore.includes(key.charAt(0).toUpperCase() + key.slice(1))) {
+        if (typeof value === "object") {
+          Object.values(value).forEach((val) => {
+            if (typeof val === "number") {
               statCount += val;
-            });
-          }
+            }
+          });
         }
-      });
+      }
     });
 
     return 1002 - statCount;

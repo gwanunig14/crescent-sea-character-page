@@ -3,101 +3,116 @@ import { ignore } from "../../../Tools/Strings";
 import GenericCountUp from "../../../Views/CountUp";
 import SpecialtyInputAndCountUp from "../../../Views/SpecialtyInputAndCountUp";
 
-export default function SkillSection(props) {
-  const {
-    character,
-    sectionData,
-    skillData,
-    setSkillData,
-    getSkillsCount,
-    isDisabled,
-  } = props;
+const SkillCountUp = ({
+  skill,
+  skillString,
+  skillPoint,
+  setSkill,
+  disabled,
+}) => (
+  <GenericCountUp
+    key={skill}
+    fieldName={skillString}
+    dataKey={skill}
+    count={skillPoint}
+    returnText={setSkill}
+    plusDisabled={disabled(skill, skillPoint, "plus")}
+    minusDisabled={disabled(skill, skillPoint, "minus")}
+  />
+);
+
+export default function SkillSection({
+  character,
+  sectionData,
+  skillData,
+  setSkillData,
+  getSkillsCount,
+  isDisabled,
+}) {
   const { sectionName, section, modifier, stringHash } = sectionData;
 
-  function setSkill(key, skillValue) {
+  const setSkill = (key, skillValue) => {
     const group = findGroup(skillData, key);
-    let newSD = makeMutableCopy(skillData);
-    if (typeof skillData[group][key] === "number") {
-      newSD[group][key] = Number(skillValue);
+    const newSkillData = makeMutableCopy(skillData);
+    const targetSkill = newSkillData[group][key];
+
+    if (typeof targetSkill === "number") {
+      newSkillData[group][key] = Number(skillValue);
     } else {
-      newSD[group][key].general = Number(skillValue);
+      newSkillData[group][key].general = Number(skillValue);
     }
-    setSkillData(newSD);
-  }
+    setSkillData(newSkillData);
+  };
 
-  function setSpecialty(skillKey, specialtyKey, specialtyValue) {
+  const setSpecialty = (skillKey, specialtyKey, specialtyValue) => {
     const group = findGroup(skillData, skillKey);
-    let newSD = makeMutableCopy(skillData);
-    newSD[group][skillKey][specialtyKey] = specialtyValue;
-    setSkillData(newSD);
-  }
+    const newSkillData = makeMutableCopy(skillData);
+    newSkillData[group][skillKey][specialtyKey] = specialtyValue;
+    setSkillData(newSkillData);
+  };
 
-  const skillSectionModifierNumber = (modifier) => {
+  const getSkillSectionModifier = () => {
     return character.characteristics
       ? Math.floor(character.characteristics[modifier] / 2)
       : 0;
   };
 
-  const countUpLoop = (skillHash, skillGroup) => {
-    return Object.keys(skillHash).map((skill) => {
-      if (!skillData[skillGroup][skill]) return null;
-      if (typeof skillData[skillGroup][skill] === "number") {
-        const skillString = skillHash[skill];
-        const skillPoint = skillData[skillGroup][skill];
+  const renderSkills = (skillHash, skillGroup) => {
+    return Object.entries(skillHash).map(([skill, skillString]) => {
+      if (!skillData[skillGroup][skill] || skill === "name") return null;
+
+      const skillValue = skillData[skillGroup][skill];
+
+      if (typeof skillValue === "number") {
         return (
-          <GenericCountUp
+          <SkillCountUp
             key={skill}
-            fieldName={skillString}
-            dataKey={skill}
-            count={skillPoint}
-            returnText={setSkill}
-            plusDisabled={disabled(skill, skillPoint, "plus")}
-            minusDisabled={disabled(skill, skillPoint, "minus")}
+            skill={skill}
+            skillString={skillString}
+            skillPoint={skillValue}
+            setSkill={setSkill}
+            disabled={disabled}
           />
         );
-      } else if (skill !== "name") {
+      } else {
         return (
           <SpecialtyInputAndCountUp
             key={skill}
             primarySkill={skill}
-            stringHash={skillHash[skill]}
-            list={skillData[skillGroup][skill]}
+            stringHash={skillString}
+            list={skillValue}
             setSkill={setSkill}
             setSpecialty={setSpecialty}
             disabled={disabled}
           />
         );
-      } else return null;
+      }
     });
   };
 
-  function findGroup(hash, targetItem) {
-    for (const k in hash) {
-      for (const ke in hash[k]) {
-        if (ke === targetItem) {
-          return k;
-        }
-      }
+  const findGroup = (hash, targetItem) => {
+    for (const group in hash) {
+      if (targetItem in hash[group]) return group;
     }
-  }
+  };
 
   const disabled = (skill, current, func) => {
     if (ignore.includes(skill)) return true;
     return isDisabled(current, func, getSkillsCount(), 100);
   };
 
+  const modifierPoints = getSkillSectionModifier();
+
   return (
     <div style={{ maxWidth: "470px", marginBottom: "30px" }}>
       <div>
-        {`${sectionName} skills will have
-                ${skillSectionModifierNumber(modifier)} ${
-          skillSectionModifierNumber(modifier) > 1 ? "points" : "point"
-        }
-                 added to them based on ${
-                   character.personalDetails.characterName
-                 }'s ${modifier}`}
+        {`${sectionName} skills will have ${modifierPoints} ${
+          modifierPoints > 1 ? "points" : "point"
+        } added to them based on ${
+          character.personalDetails.characterName
+        }'s ${modifier}`}
       </div>
-      {countUpLoop(stringHash, section)}
+      {renderSkills(stringHash, section)}
     </div>
   );
 }
