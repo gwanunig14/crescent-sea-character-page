@@ -28,7 +28,11 @@ export default function TextInput({ name, dataKey, value, setField, style }) {
           onChange={handleInputChange}
           onKeyDown={handleInputKeyDown}
           onBlur={handleFocusChange}
-          style={{ width: "100%" }}
+          style={{
+            width: "100%",
+            border: "2px solid #4a2c2a", // Increased border width to 2px
+            borderRadius: "4px", // Added slight border radius
+          }}
         />
       </div>
     </div>

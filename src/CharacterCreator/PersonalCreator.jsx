@@ -130,7 +130,7 @@ export default function PersonalCreator({
       <div>
         Set your character's starting reputation with each political group
       </div>
-      <table style={{ width: "100%" }}>
+      <table style={{ width: "100%", marginBottom: "20px" }}>
         <tbody>
           <tr>
             {Object.keys(KingdomStrings).map((kingdom) => (
@@ -146,6 +146,13 @@ export default function PersonalCreator({
         <Button
           onClick={() => {
             changeStep("forward");
+          }}
+          style={{
+            backgroundColor: "white",
+            color: "#4a2c2a",
+            borderColor: "#4a2c2a",
+            borderWidth: "2px",
+            fontWeight: "bold",
           }}
         >
           Next
