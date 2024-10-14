@@ -28,6 +28,7 @@ export default function SkillSection({
   setSkillData,
   getSkillsCount,
   isDisabled,
+  style,
 }) {
   const { sectionName, section, modifier, stringHash } = sectionData;
 
@@ -104,13 +105,24 @@ export default function SkillSection({
   const modifierPoints = getSkillSectionModifier();
 
   return (
-    <div style={{ maxWidth: "470px", marginBottom: "30px" }}>
+    <div style={{ ...style, maxWidth: "470px", marginBottom: "30px" }}>
+      <h2
+        style={{
+          textAlign: "center",
+          fontSize: "1.5em",
+          fontWeight: "bold",
+          marginBottom: "3px",
+        }}
+      >
+        {sectionName} Skills
+      </h2>
       <div>
-        {`${sectionName} skills will have ${modifierPoints} ${
+        {`${modifierPoints} ${
           modifierPoints > 1 ? "points" : "point"
-        } added to them based on ${
+        } will be added to these skills based on ${
           character.personalDetails.characterName
-        }'s ${modifier}`}
+        }'s `}
+        <strong>{modifier.toUpperCase()}</strong>
       </div>
       {renderSkills(stringHash, section)}
     </div>

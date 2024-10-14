@@ -50,6 +50,11 @@ export default function StatisticCreator({
           left: "10px",
           top: "10px",
           width: "100px",
+          backgroundColor: "white",
+          color: "#4a2c2a",
+          borderColor: "#4a2c2a",
+          borderWidth: "2px",
+          fontWeight: "bold",
         }}
         onClick={() => changeStep("backward")}
       >
@@ -65,6 +70,11 @@ export default function StatisticCreator({
             right: "10px",
             top: "10px",
             width: "100px",
+            backgroundColor: "white",
+            color: "#4a2c2a",
+            borderColor: "#4a2c2a",
+            borderWidth: "2px",
+            fontWeight: "bold",
           }}
           onClick={() => changeStep("forward")}
         >

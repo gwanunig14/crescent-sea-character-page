@@ -1,5 +1,5 @@
 import React from "react";
-import { SkillSectionStrings, ignore } from "../../../Tools/Strings";
+import { SkillSectionStrings } from "../../../Tools/Strings";
 import SkillSection from "./SkillSection";
 
 export default function SkillCreator({
@@ -10,9 +10,12 @@ export default function SkillCreator({
   const skillData = character.skills;
 
   const skillSections = [
-    [SkillSectionStrings.communication, SkillSectionStrings.motorSkills],
-    [SkillSectionStrings.mental, SkillSectionStrings.perception],
-    [SkillSectionStrings.physical, SkillSectionStrings.combat],
+    SkillSectionStrings.communication,
+    SkillSectionStrings.motorSkills,
+    SkillSectionStrings.mental,
+    SkillSectionStrings.perception,
+    SkillSectionStrings.physical,
+    SkillSectionStrings.combat,
   ];
 
   const alterSkillData = (newSD) => {
@@ -22,14 +25,12 @@ export default function SkillCreator({
   const getSkillsCount = () => {
     let statCount = 0;
     Object.entries(skillData).forEach(([key, value]) => {
-      if (!ignore.includes(key.charAt(0).toUpperCase() + key.slice(1))) {
-        if (typeof value === "object") {
-          Object.values(value).forEach((val) => {
-            if (typeof val === "number") {
-              statCount += val;
-            }
-          });
-        }
+      if (typeof value === "object") {
+        Object.values(value).forEach((val) => {
+          if (typeof val === "number") {
+            statCount += val;
+          }
+        });
       }
     });
 
@@ -38,32 +39,96 @@ export default function SkillCreator({
   };
 
   return (
-    <div>
-      <div>{`${getSkillsCount()}`}</div>
-      <div>{`skill points remaining.`}</div>
-      <table>
-        <tbody>
-          <tr>
-            {skillSections.map((sectionGroup) => (
-              <td style={{ verticalAlign: "top", textAlign: "left" }}>
-                {sectionGroup.map((section, i) => {
-                  return (
-                    <SkillSection
-                      key={i}
-                      character={character}
-                      sectionData={section}
-                      skillData={skillData}
-                      setSkillData={alterSkillData}
-                      getSkillsCount={getSkillsCount}
-                      isDisabled={isDisabled}
-                    />
-                  );
-                })}
-              </td>
-            ))}
-          </tr>
-        </tbody>
-      </table>
+    <div style={{ marginTop: "30px" }}>
+      <div className="tattered-banner">
+        <div>{`${getSkillsCount()} Skill Point${
+          getSkillsCount() === 1 ? "" : "s"
+        } Remaining.`}</div>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "20px",
+          alignItems: "flex-start",
+        }}
+      >
+        <div
+          style={{
+            flex: "1 1 30%",
+            display: "flex",
+            flexDirection: "column",
+            gap: "20px",
+          }}
+        >
+          <SkillSection
+            character={character}
+            sectionData={skillSections[0]}
+            skillData={skillData}
+            setSkillData={alterSkillData}
+            getSkillsCount={getSkillsCount}
+            isDisabled={isDisabled}
+          />
+          <SkillSection
+            character={character}
+            sectionData={skillSections[3]}
+            skillData={skillData}
+            setSkillData={alterSkillData}
+            getSkillsCount={getSkillsCount}
+            isDisabled={isDisabled}
+          />
+        </div>
+        <div
+          style={{
+            flex: "1 1 30%",
+            display: "flex",
+            flexDirection: "column",
+            gap: "20px",
+          }}
+        >
+          <SkillSection
+            character={character}
+            sectionData={skillSections[1]}
+            skillData={skillData}
+            setSkillData={alterSkillData}
+            getSkillsCount={getSkillsCount}
+            isDisabled={isDisabled}
+          />
+          <SkillSection
+            character={character}
+            sectionData={skillSections[4]}
+            skillData={skillData}
+            setSkillData={alterSkillData}
+            getSkillsCount={getSkillsCount}
+            isDisabled={isDisabled}
+          />
+        </div>
+        <div
+          style={{
+            flex: "1 1 30%",
+            display: "flex",
+            flexDirection: "column",
+            gap: "20px",
+          }}
+        >
+          <SkillSection
+            character={character}
+            sectionData={skillSections[2]}
+            skillData={skillData}
+            setSkillData={alterSkillData}
+            getSkillsCount={getSkillsCount}
+            isDisabled={isDisabled}
+          />
+          <SkillSection
+            character={character}
+            sectionData={skillSections[5]}
+            skillData={skillData}
+            setSkillData={alterSkillData}
+            getSkillsCount={getSkillsCount}
+            isDisabled={isDisabled}
+          />
+        </div>
+      </div>
     </div>
   );
 }

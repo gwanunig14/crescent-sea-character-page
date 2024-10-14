@@ -43,16 +43,37 @@ export default function SpecialtyInputAndCountUp({
       const skillPoint = list[specialty];
 
       return (
-        <div style={{ marginLeft: "50px" }} key={i}>
-          <GenericCountUp
-            key={specialty}
-            fieldName={skillString}
-            dataKey={specialty}
-            count={skillPoint}
-            returnText={specialtyChanged}
-            plusDisabled={disabled(stringHash.name, skillPoint, "plus")}
-            minusDisabled={disabled(stringHash.name, skillPoint, "minus")}
-          />
+        <div key={i}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              marginLeft: "50px",
+            }}
+          >
+            <hr
+              style={{
+                border: "none",
+                width: "20px",
+                height: "3px",
+                backgroundColor: "rgba(74, 44, 42, 1)",
+                opacity: 1,
+                margin: "0 10px 0 0",
+                flexShrink: 0,
+              }}
+            />
+            <div style={{ flexGrow: 1 }}>
+              <GenericCountUp
+                key={specialty}
+                fieldName={skillString}
+                dataKey={specialty}
+                count={skillPoint}
+                returnText={specialtyChanged}
+                plusDisabled={disabled(stringHash.name, skillPoint, "plus")}
+                minusDisabled={disabled(stringHash.name, skillPoint, "minus")}
+              />
+            </div>
+          </div>
         </div>
       );
     });
@@ -91,7 +112,34 @@ export default function SpecialtyInputAndCountUp({
       />
       {renderSpecialties()}
       <div style={{ textAlign: "left", paddingLeft: "140px" }}>
-        <Button onClick={() => setOpened(true)}>New Specialty</Button>
+        {opened ? (
+          <div>
+            <input
+              type="text"
+              value={inputValue}
+              style={{ marginLeft: "140px" }}
+              onChange={handleInputChange}
+              onKeyDown={handleInputKeyDown}
+            />
+          </div>
+        ) : (
+          <Button
+            style={{
+              backgroundColor: "white",
+              color: "#4a2c2a",
+              borderColor: "#4a2c2a",
+              borderWidth: "2px",
+              fontWeight: "bold",
+              marginBottom: "15px",
+            }}
+            onClick={() => {
+              console.log("clicked");
+              setOpened(true);
+            }}
+          >
+            New Specialty
+          </Button>
+        )}
       </div>
     </>
   ) : (
@@ -123,7 +171,19 @@ export default function SpecialtyInputAndCountUp({
           </div>
         ) : (
           <div style={{ textAlign: "left", paddingLeft: "140px" }}>
-            <Button onClick={() => setOpened(true)}>New Specialty</Button>
+            <Button
+              style={{
+                backgroundColor: "white",
+                color: "#4a2c2a",
+                borderColor: "#4a2c2a",
+                borderWidth: "2px",
+                fontWeight: "bold",
+                marginBottom: "15px",
+              }}
+              onClick={() => setOpened(true)}
+            >
+              New Specialty
+            </Button>
           </div>
         )
       ) : null}
